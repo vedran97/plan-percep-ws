@@ -1,0 +1,4 @@
+ros-noetic-rviz
+ros-noetic-gazebo-ros-pkgs
+ros-noetic-gazebo-ros-control
+ros-noetic-navigation
