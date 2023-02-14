@@ -1,3 +1,4 @@
+build-essential
 openssh-server
 python3-catkin-tools
 python3-dev
@@ -12,3 +13,4 @@ git
 xclip
 nano
 htop
+python3-psutil

@@ -2,7 +2,7 @@
 
 1. To be a container for and workspace for various packages that will be created for ENPM661 ENPM673 semester projects
 
-# Initial Setup :
+# Initial Setup for Development on PC/Laptop:
 
 1. Install vs-code editor on your ubuntu 20.04 host OS : https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-20-04/
 2. Install docker on your ubuntu 20.04 host OS : https://docs.docker.com/engine/install/ubuntu/
@@ -34,8 +34,14 @@
 
 1. Run the VSCode task "ROS:Install ROS dependencies"
 
+# Initial Setup for Development on Raspberry PI:
 
-
+1. Setup github ssh on RPI.
+2. Clone this repository using:
+    > ``` git clone --recurse-submodules https://github.com/vedran97/plan-percep-ws.git ```
+3. > ```cd plan-percep-ws```
+4. > ```sudo bash ./robot-scripts/install-ros.bash $(pwd) ```
+5. > ```sudo  bash ./robot-scripts/dep.bash  ```
 
 
 
