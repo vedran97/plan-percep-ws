@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robo1">
+  
+  <link
+    name="dummy_base_link">
+  </link>
+  
+  <joint
+    name="base_to_dummy_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.1"
+      rpy="-1.5707963267 0 0" />
+    <parent
+      link="dummy_base_link"  />
+    <child
+      link="base_link"  />>
+  </joint>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.050277 1.5878E-17 -0.0039091"
+        rpy="0 0 0" />
+      <mass
+        value="0.45001" />
+      <inertia
+        ixx="0.0016105"
+        ixy="3.9894E-19"
+        ixz="-2.5907E-06"
+        iyy="0.0018761"
+        iyz="1.6927E-20"
+        izz="0.0034323" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="top_link">
+    <inertial>
+      <origin
+        xyz="-0.04528 1.3465E-17 -0.005"
+        rpy="0 0 0" />
+      <mass
+        value="0.48107" />
+      <inertia
+        ixx="0.0019287"
+        ixy="2.8403E-19"
+        ixz="3.8178E-21"
+        iyy="0.0019281"
+        iyz="-3.4909E-21"
+        izz="0.0038488" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/top_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.85882 0.85882 0.85882 0.1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/top_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="top_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.062 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="top_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rpi_link">
+    <inertial>
+      <origin
+        xyz="-0.0032059 0.075568 0.0051311"
+        rpy="0 0 0" />
+      <mass
+        value="0.018105" />
+      <inertia
+        ixx="3.1358E-06"
+        ixy="-5.9316E-09"
+        ixz="2.6139E-10"
+        iyy="9.7625E-06"
+        iyz="2.0861E-10"
+        izz="6.8317E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/rpi_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/rpi_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rpi_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.072"
+      rpy="1.5708 0 0" />
+    <parent
+      link="top_link" />
+    <child
+      link="rpi_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camhold_link">
+    <inertial>
+      <origin
+        xyz="0.0060631 -0.017238 0.0029511"
+        rpy="0 0 0" />
+      <mass
+        value="0.0085111" />
+      <inertia
+        ixx="1.1884E-06"
+        ixy="3.3421E-07"
+        ixz="-4.5393E-23"
+        iyy="8.8896E-07"
+        iyz="6.2131E-23"
+        izz="1.5005E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/camhold_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/camhold_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camhold_joint"
+    type="fixed">
+    <origin
+      xyz="-0.148 0 0.029"
+      rpy="1.5708 0 0" />
+    <parent
+      link="top_link" />
+    <child
+      link="camhold_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="motorR_link">
+    <inertial>
+      <origin
+        xyz="0.00016384 0.028949 8.6736E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.025532" />
+      <inertia
+        ixx="8.4702E-06"
+        ixy="-4.1514E-08"
+        ixz="8.7543E-23"
+        iyy="1.7671E-06"
+        iyz="-1.2558E-22"
+        izz="8.4695E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/motorR_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/motorR_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motorR_joint"
+    type="fixed">
+    <origin
+      xyz="0.005 -0.012 0.01075"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="motorR_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheelR_link">
+    <inertial>
+      <origin
+        xyz="-0.012902 5.8214E-11 3.3057E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.056366" />
+      <inertia
+        ixx="3.7787E-05"
+        ixy="-2.3415E-14"
+        ixz="2.1909E-10"
+        iyy="2.1814E-05"
+        iyz="-2.0943E-14"
+        izz="2.1815E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/wheelR_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/wheelR_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheelR_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.073 0"
+      rpy="1.9007 0 -1.5708" />
+    <parent
+      link="motorR_link" />
+    <child
+      link="wheelR_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="motorL_link">
+    <inertial>
+      <origin
+        xyz="0.00016384 0.028949 2.6021E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.025532" />
+      <inertia
+        ixx="8.4702E-06"
+        ixy="-4.1514E-08"
+        ixz="6.8393E-23"
+        iyy="1.7671E-06"
+        iyz="-8.1516E-22"
+        izz="8.4695E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/motorL_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/motorL_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motorL_joint"
+    type="fixed">
+    <origin
+      xyz="0.005 -0.012 -0.01075"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="motorL_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheelL_link">
+    <inertial>
+      <origin
+        xyz="-0.012902 5.8214E-11 3.3057E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.056366" />
+      <inertia
+        ixx="3.7787E-05"
+        ixy="-2.3415E-14"
+        ixz="2.1909E-10"
+        iyy="2.1814E-05"
+        iyz="-2.0943E-14"
+        izz="2.1815E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/wheelL_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/wheelL_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheelL_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.073 0"
+      rpy="-1.3561 0 -1.5708" />
+    <parent
+      link="motorL_link" />
+    <child
+      link="wheelL_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="castor1_link">
+    <inertial>
+      <origin
+        xyz="-9.3404E-10 0.006163 4.9149E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.0025376" />
+      <inertia
+        ixx="8.8742E-08"
+        ixy="1.3854E-14"
+        ixz="-4.889E-14"
+        iyy="9.142E-08"
+        iyz="-3.3654E-14"
+        izz="8.8742E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/castor1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/castor1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="castor1_joint"
+    type="fixed">
+    <origin
+      xyz="-0.145 0.01 0.06375"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="castor1_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="castor2_link">
+    <inertial>
+      <origin
+        xyz="-9.3404E-10 0.006163 4.9149E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.0025376" />
+      <inertia
+        ixx="8.8742E-08"
+        ixy="1.3854E-14"
+        ixz="-4.889E-14"
+        iyy="9.142E-08"
+        iyz="-3.3654E-14"
+        izz="8.8742E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/castor2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/castor2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="castor2_joint"
+    type="fixed">
+    <origin
+      xyz="-0.145 0.01 -0.06375"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="castor2_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="arduino_link">
+    <inertial>
+      <origin
+        xyz="0.0014319 -0.001834 0.003602"
+        rpy="0 0 0" />
+      <mass
+        value="0.010674" />
+      <inertia
+        ixx="2.6737E-06"
+        ixy="2.9619E-07"
+        ixz="3.2048E-07"
+        iyy="5.0764E-06"
+        iyz="-1.2762E-08"
+        izz="7.4555E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/arduino_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/arduino_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arduino_joint"
+    type="fixed">
+    <origin
+      xyz="-0.12896 0 0"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="arduino_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="battery_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.010674" />
+      <inertia
+        ixx="2.6737E-06"
+        ixy="2.9619E-07"
+        ixz="3.2048E-07"
+        iyy="5.0764E-06"
+        iyz="-1.2762E-08"
+        izz="7.4555E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/battery_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo1/meshes/battery_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery_joint"
+    type="fixed">
+    <origin
+      xyz="-0.035021 0 0.045843"
+      rpy="3.1416 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
