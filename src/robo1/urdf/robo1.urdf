@@ -5,6 +5,19 @@
 <robot
   name="robo1">
   
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  
+  
   <link
     name="dummy_base_link">
   </link>
@@ -48,7 +61,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0 0 0 0.2" />
       </material>
     </visual>
     <collision>
@@ -88,7 +101,7 @@
       <material
         name="">
         <color
-          rgba="0.85882 0.85882 0.85882 0.1" />
+          rgba="0 0 0 0.2" />
       </material>
     </visual>
     <collision>
@@ -194,7 +207,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="1 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -298,9 +311,7 @@
           filename="package://robo1/meshes/wheelR_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -404,9 +415,7 @@
           filename="package://robo1/meshes/wheelL_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -457,9 +466,7 @@
           filename="package://robo1/meshes/castor1_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -476,8 +483,8 @@
     name="castor1_joint"
     type="fixed">
     <origin
-      xyz="-0.145 0.01 0.06375"
-      rpy="3.1416 -1.5708 0" />
+      xyz="-0.145 0.005 0.06375"
+      rpy="3.1416 -1.5708 3.14159" />
     <parent
       link="base_link" />
     <child
@@ -510,9 +517,7 @@
           filename="package://robo1/meshes/castor2_link.STL" />
       </geometry>
       <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
+        name="black">
       </material>
     </visual>
     <collision>
@@ -529,8 +534,8 @@
     name="castor2_joint"
     type="fixed">
     <origin
-      xyz="-0.145 0.01 -0.06375"
-      rpy="3.1416 -1.5708 0" />
+      xyz="-0.145 0.005 -0.06375"
+      rpy="3.1416 -1.5708 3.14159" />
     <parent
       link="base_link" />
     <child
@@ -618,7 +623,7 @@
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="1 1 0 1" />
       </material>
     </visual>
     <collision>
@@ -644,4 +649,57 @@
     <axis
       xyz="0 0 0" />
   </joint>
+  
+  
+  <gazebo reference="camhold_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="battery_link">
+    <material>Gazebo/ZincYellow</material>
+  </gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/BlackTransparent</material>
+  </gazebo>
+  <gazebo reference="top_link">
+    <material>Gazebo/BlackTransparent</material>
+  </gazebo>
+  <gazebo reference="wheelR_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="wheelL_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="castor1_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="castor2_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  
+  <transmission name="wheelR_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheelR_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="driveR_motor">
+      <mechanicalReduction>50</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+  
+  <transmission name="wheelL_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheelL_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="driveL_motor">
+      <mechanicalReduction>50</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+  
+  
 </robot>
+
+

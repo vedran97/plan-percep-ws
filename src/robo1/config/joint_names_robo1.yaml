@@ -1,1 +1,15 @@
-controller_joint_names: ['', 'wheelR_joint', 'wheelL_joint', ]
+controller_joint_names: ['','wheelR_joint', 'wheelL_joint', ]
+robo1:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+    
+  driveR_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: wheelR_joint
+    pid: {p: 10.0 , i: 0.0 , d: 10.0}
+    
+  driveL_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: wheelL_joint
+    pid: {p: 10.0 , i: 0.0 , d: 10.0}

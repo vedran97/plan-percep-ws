@@ -1,0 +1,38 @@
+<!-- Every launch file starts with this command -->
+<launch> 
+
+	<include file= "$(find robo1)/launch/empty_world.launch"> 
+		<arg name="world_name" value="$(find robo1)/worlds/empty_proj.world"/> 
+	</include>
+		
+	<param name= "robot_description" command="$(find xacro)/xacro --inorder $(find robo1)/urdf/integration.urdf.xacro " />
+    	<param name = "my_robot" value="carRobot2"/> 
+	<arg name ="init_pose" value="-x 0 -y 0 -z 0 -R 0 -P 0 -Y 0"/>
+    
+	<rosparam file="$(find robo1)/config/joint_names_robo1.yaml" command="load"/>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        	<param name="use_gui" value="True"/>
+    	</node>
+
+    	<node pkg="tf" type="static_transform_publisher" name="map_to_base" args="0 0 0 0 0 0 1 /map /dummy_base_link 10" />
+
+    	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    		output="screen" ns="/robo1" args="joint_state_controller driveR_controller driveL_controller" />
+
+    	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>	
+
+   	<node
+		name="spawn_model"
+		pkg="gazebo_ros"
+		type="spawn_model"
+		args="$(arg init_pose) -param robot_description -urdf -model my_robot"
+		output="screen"/>
+
+	<node
+		    name="fake_joint_calibration"
+		    pkg="rostopic"
+		    type="rostopic"
+		    args="pub /calibrated std_msgs/Bool true" />
+
+</launch>
