@@ -224,8 +224,8 @@
     name="camhold_joint"
     type="fixed">
     <origin
-      xyz="-0.148 0 0.029"
-      rpy="1.5708 0 0" />
+      xyz="-0.155 0.015 0.034"
+      rpy="3.14159 0 0" />
     <parent
       link="top_link" />
     <child

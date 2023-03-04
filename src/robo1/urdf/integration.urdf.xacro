@@ -3,6 +3,7 @@
 <robot name ="robo1" xmlns:xacro="http://wiki.ros.org/xacro">
 
 	<xacro:include filename="$(find robo1)/urdf/robo1.urdf"/>
+	<xacro:include filename="$(find robo1)/urdf/camera.urdf"/>
 
 	<gazebo>
 		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -11,6 +12,20 @@
 			<legacyModeNS>true</legacyModeNS>
 		</plugin>
 	</gazebo>
+
+	<joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="camhold_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
 
 </robot>	
 
