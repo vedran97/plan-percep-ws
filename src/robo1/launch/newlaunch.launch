@@ -2,12 +2,12 @@
 <launch> 
 
 	<include file= "$(find robo1)/launch/empty_world.launch"> 
-		<arg name="world_name" value="$(find robo1)/worlds/empty_proj.world"/> 
+		<arg name="world_name" value="$(find robo1)/worlds/maze.world"/> 
 	</include>
 		
 	<param name= "robot_description" command="$(find xacro)/xacro --inorder $(find robo1)/urdf/integration.urdf.xacro " />
     	<param name = "my_robot" value="carRobot2"/> 
-	<arg name ="init_pose" value="-x 0 -y 0 -z 0 -R 0 -P 0 -Y 0"/>
+	<arg name ="init_pose" value="-x 0.13 -y 0.09 -z 0 -R 0 -P 0 -Y 0"/>
     
 	<rosparam file="$(find robo1)/config/joint_names_robo1.yaml" command="load"/>
 
