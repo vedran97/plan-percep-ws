@@ -4,7 +4,7 @@ build_type="$1"
 package_name="$2"
 
 jobs=1
-parrallelPkgs=1
+parrallelPkgs=2
 memlimit=50
 
 DCMAKE_C_FLAGS="-Wall -Wextra -Wpedantic -Wno-unused-parameter"

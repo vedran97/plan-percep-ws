@@ -33,7 +33,8 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-__author__ = "mferguson@willowgarage.com (Michael Ferguson)"
+__author__ = "Vedant Ranade (vedantr1@umd.edu)"
+# Inspired from rosserial_python's serial_client node by "mferguson@willowgarage.com (Michael Ferguson)"
 
 
 
