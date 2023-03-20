@@ -24,7 +24,7 @@ catkin_package()
 catkin_python_setup()
 
 catkin_install_python(
-  PROGRAMS src/nodes/CurrentVelListener.py 
+  PROGRAMS src/nodes/CurrentVelListener.py src/nodes/TargetPublisher.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
