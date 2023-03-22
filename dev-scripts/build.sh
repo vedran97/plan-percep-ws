@@ -1,10 +1,12 @@
-#! /bin/sh
+#! /bin/bash
 
 build_type="$1"
 package_name="$2"
 
-jobs=1
-parrallelPkgs=2
+let parallel_workers=$(nproc)/2
+
+jobs=$parallel_workers
+parrallelPkgs=$parallel_workers
 memlimit=50
 
 DCMAKE_C_FLAGS="-Wall -Wextra -Wpedantic -Wno-unused-parameter"
