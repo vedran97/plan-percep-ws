@@ -69,7 +69,10 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "csignal": "cpp",
+        "codecvt": "cpp",
+        "future": "cpp"
     },
     "python.analysis.extraPaths": [
         "/workspaces/plan-percep-ws/devel/lib/python3/dist-packages",
