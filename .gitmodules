@@ -1,3 +1,6 @@
 [submodule "src/rosserial"]
 	path = src/rosserial
 	url = https://github.com/ros-drivers/rosserial.git
+[submodule "src/rpi-rt"]
+	path = src/rpi-rt
+	url = https://github.com/vedran97/rpi-rt
