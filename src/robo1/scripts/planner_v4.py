@@ -207,7 +207,7 @@ for i in range(len(xy_points)-1):
 xyt_points = np.column_stack((xy_points,ang))
 print(xyt_points)
 #%%
-max_W = 6 # rad/sec
+max_W = 10 # rad/sec
 timeStep = 0.02 #seconds
 timeWait = 0.5 # seconds
 
@@ -239,7 +239,7 @@ for i in range(len(xyt_points)-1):
     
 plt.figure(4)
 plt.plot(W_turn)
-#plt.show()
+plt.show()
 
 #%%
 np.savetxt("vel_traj.csv", W_turn,delimiter = ",")
