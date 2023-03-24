@@ -50,8 +50,8 @@ if __name__=="__main__":
     rospy.init_node("current_vel_monitor_node")
     rospy.loginfo("Subscribes to left and right wheel's current angular velocity(rad/sec) from Arduino and publishes it on a topic")
 
-    port_name = rospy.get_param('~port','/dev/ttyACM2')
-    baud = int(rospy.get_param('~baud','2000000'))
+    port_name = rospy.get_param('~port','/dev/ttyACM0')
+    baud = int(rospy.get_param('~baud','57600'))
 
     # for systems where pyserial yields errors in the fcntl.ioctl(self.fd, TIOCMBIS, \
     # TIOCM_DTR_str) line, which causes an IOError, when using simulated port
