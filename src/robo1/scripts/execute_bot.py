@@ -36,5 +36,5 @@ if __name__ == '__main__':
             drive_bot([Left,Right])
 
             # Sleep for a fixed amount of time to simulate a fixed time step
-            rospy.sleep(0.01)
+            rospy.sleep(0.02)
 
