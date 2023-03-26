@@ -24,11 +24,11 @@ csv_file_path = pkg_path + '/scripts/vel_traj.csv'
 # Read in data from CSV file
 with open(csv_file_path) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
-    next(csv_reader)  # Skip header row
+    #next(csv_reader)  # Skip header row
     rate = rospy.Rate(k)  # Set target publishing rate to k Hz
     dt = 1.0 / k  # Compute fixed time step
     for row in csv_reader:
-        x = float(row[0])
+        x = -float(row[0])
         y = float(row[1])
 
         # Publish X and Y values to appropriate topic
