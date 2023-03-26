@@ -233,7 +233,8 @@ for i in range(len(xyt_points)-1):
     
     # Moving
     dist = np.sqrt( (xyt_points[i+1,0]-xyt_points[i,0])**2 + (xyt_points[i+1,1]-xyt_points[i,1])**2)
-    
+    vel_traj_basic.append(["translate",0,dist])
+
     dT = (2*dist)/(L*max_W_go)
     W_turn_ = max_W_go*np.ones(int(np.round(dT/timeStep)))
     W_turn_ = np.column_stack((W_turn_,W_turn_))
@@ -247,3 +248,4 @@ plt.plot(W_turn)
 
 #%%
 np.savetxt("vel_traj.csv", W_turn,delimiter = ",")
+np.savetxt("vel_traj_basic.csv", vel_traj_basic,delimiter = ",",fmt="%s")
