@@ -1,10 +1,14 @@
-#! /bin/sh
+#! /bin/bash
+
+echo $(pwd)
 
 build_type="$1"
 package_name="$2"
 
-jobs=3
-parrallelPkgs=3
+let parallel_workers=$(nproc)/2
+
+jobs=$parallel_workers
+parrallelPkgs=$parallel_workers
 memlimit=50
 
 DCMAKE_C_FLAGS="-Wall -Wextra -Wpedantic -Wno-unused-parameter"
@@ -31,7 +35,9 @@ else
     DCMAKE_BUILD_TYPE="Debug"
 fi
 
-catkin build ${package_select} --jobs ${jobs} --parallel-packages ${parrallelPkgs} --mem-limit ${memlimit}% --cmake-args -DCMAKE_C_FLAGS=${DCMAKE_C_FLAGS} -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+catkin build ${package_select} --jobs ${jobs} --parallel-packages ${parrallelPkgs} --mem-limit ${memlimit}% --cmake-args -DCMAKE_C_FLAGS=${DCMAKE_C_FLAGS} -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+./dev-scripts/concat.sh
 
 echo "Script has finished executing"
 
