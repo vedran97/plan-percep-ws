@@ -241,7 +241,7 @@ for i in range(len(xyt_points)-1):
     
 plt.figure(4)
 plt.plot(W_turn)
-#plt.show()
+plt.show()
 
 #%%
 np.savetxt("vel_traj.csv", W_turn,delimiter = ",")
