@@ -23,7 +23,9 @@ def curr_vel_callback(data):
     # Add velocity values to current odometry values
     curr_odom.x = curr_odom.x + ((6.45/2)/2)* (vel.x + vel.y)*np.cos(curr_odom.theta)
     curr_odom.y = curr_odom.y + ((6.45/2)/2)* (vel.x + vel.y)*np.sin(curr_odom.theta)
-    curr_odom.theta = curr_odom.theta + math.remainder(((2*(6.45/2))/11)*((6.45/2)/11)*(vel.x - vel.y) , 2*math.pi)
+    curr_odom.theta = curr_odom.theta + ((6.45/2)/11)*(vel.x - vel.y)
+
+    curr_odom.theta = ((curr_odom.theta + math.pi)%(2*math.pi)) - math.pi
 
     # Publish updated Pose2D message to '/CURR_ODOM' topic
     curr_odom_publisher.publish(curr_odom)

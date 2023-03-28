@@ -206,6 +206,7 @@ for i in range(len(xy_points)-1):
     
 xyt_points = np.column_stack((xy_points,ang))
 print(xyt_points)
+np.savetxt("vel_coord.csv", xyt_points,delimiter = ",")
 #%%
 max_W_turn = 5 # rad/sec (9.25 rad/sec for (100,121) and )
 max_W_go = 9.6
