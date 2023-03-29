@@ -8,39 +8,101 @@
 
 import rospy
 from geometry_msgs.msg import Pose2D
+from std_msgs.msg import Int32
 import csv
+import numpy as np
 
-def drive_bot(vel_data,type_):
-    # Create a Pose message
-    pose_msg = Pose2D()
+curr_pose = Pose2D()
+target_pose = Pose2D()
+state = 0
 
-    # Set the linear and angular velocities based on the angular velocities of the left and right wheels
-    pose_msg.x = vel_data[0]
-    pose_msg.y = vel_data[1]
 
-    # Publish the Pose message to the cmd_vel topic
+# STATE is running variable, for keeping track of operations
+# -1 -> Next position coordinates given (this will be changed by some other node to 1)
+# 0  -> Home/start state
+# 1  -> Waiting for next position coordinates, reached last position
+# 2  -> Rotating 
+# 3  -> Done rotating, will start translation next
+# 4  -> Translating
+# 5  -> Done Translating, will start waiting for next coordinate
 
-    pub.publish(pose_msg)
 
+
+def curr_odom_callback(msg):
+    global curr_pose
+    curr_pose = msg
+
+# Callback function for the /NEXT_POS topic
+def next_pos_callback(msg):
+    global target_pose
+    target_pose = msg
+
+def state_callback(msg):
+    global state
+    state = msg.data
 
 if __name__ == '__main__':
     # Initialize the ROS node
-    rospy.init_node('turtlebot_driver')
+    rospy.init_node('pose_follower')
 
-    # Create a publisher to the cmd_vel topic
-    pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
+    # Subscribe
+    curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, curr_odom_callback)
+    next_pos_sub = rospy.Subscriber('/NEXT_POS', Pose2D, next_pos_callback)
+    state_sub = rospy.Subscriber('/STATE', Int32, state_callback)
 
-    # Load the angular velocities from the CSV file
-    with open('vel_coord.csv', 'r') as csvfile:
-        csv_reader = csv.reader(csvfile, delimiter=',')
-        for row in csv_reader:
+    # Set up a publisher for the /TARG_VEL topic
+    targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
+    state_pub = rospy.Publisher('/STATE', Int32, queue_size=10)
 
-            X = float(row[0])
-            Y = float(row[1])
-            THETA = float(row[2])
+    rate = rospy.Rate(50)
 
+    while not rospy.is_shutdown():
 
-            drive_bot([Left,Right])
+        if state == -1:
+            state_pub.publish(2)
+            continue
 
-            # Sleep for a fixed amount of time to simulate a fixed time step
-            rospy.sleep(0.02)
+        if state == 2:
+            if abs(curr_pose.theta - target_pose.theta) > 0.1:
+
+                pose = Pose2D()
+                pose.x = -5 * np.sign((curr_pose.theta - target_pose.theta))
+                pose.y = 5 * np.sign((curr_pose.theta - target_pose.theta))
+                pose.theta = 0
+
+                targ_vel_pub.publish(pose)
+            else:
+                pose = Pose2D()
+                pose.x = 0
+                pose.y = 0
+                pose.theta = 0
+                targ_vel_pub.publish(pose)
+
+                state_pub.publish(4)
+                rospy.sleep(1)
+
+        if state == 4:
+            dx = target_pose.x - curr_pose.x
+            dy = target_pose.y - curr_pose.y
+            distance = ((dx ** 2) + (dy ** 2)) ** 0.5
+
+            if abs(distance) > 1:
+
+                pose = Pose2D()
+                pose.x = 5
+                pose.y = 5
+                pose.theta = 0
+
+                targ_vel_pub.publish(pose)
+            else:
+                pose = Pose2D()
+                pose.x = 0
+                pose.y = 0
+                pose.theta = 0
+                targ_vel_pub.publish(pose)
+
+                state_pub.publish(1)
+                rospy.sleep(1)
+
+        # Sleep to maintain the loop rate
+        rate.sleep()
