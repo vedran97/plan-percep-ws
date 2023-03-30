@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 
-
-# for battery voltage 16.7V , left to right ratio of 1.21, at pwm 100,120, angular velocity = 9.6 radians per sec  9.52 reverse
-# for battery voltage 16.25V , left to right ratio of 1.21, at pwm 100,120, angular velocity = 9.25 radians per sec
-# for batt volt 16.7V left to right ratio  of 1.206 and additional turn ratio of 1.1, pwm 75,98  turning angular vel = 5 right turn
-# for batt volt 16.7V , pwm 85,90.45  turning angular vel = 5 left turn
-
+import csv
 import rospy
+from std_msgs.msg import Float64
+import rospkg
 from geometry_msgs.msg import Pose2D
 from std_msgs.msg import Int32
-import csv
 import numpy as np
+
 
 curr_pose = Pose2D()
 target_pose = Pose2D()
@@ -20,7 +17,7 @@ flag2 = False
 
 
 # STATE is running variable, for keeping track of operations
-# -1 -> Next position coordinates given (this will be changed by some other node to 1)
+# -1 -> Next position coordinates given (this will be changed by other node to 1)
 # 0  -> Home/start state
 # 1  -> Waiting for next position coordinates, reached last position
 # 2  -> Rotating 
@@ -73,7 +70,8 @@ def next_pos_callback(msg):
 
         seconds = rospy.get_time()
         while (rospy.get_time() - seconds) <4:
-            targ_vel_pub.publish(pose)
+            pub1.publish(pose.x)
+            pub2.publish(pose.y)
             flag2 = True
             state_pub.publish(5)
 
@@ -84,7 +82,8 @@ def runBot_turn( sign ):
     pose.y = 3 * sign
     pose.theta = 0
 
-    targ_vel_pub.publish(pose)
+    pub1.publish(pose.x)
+    pub2.publish(pose.y)
 
 def runBot_forward():
 
@@ -93,16 +92,22 @@ def runBot_forward():
     pose.y = 6
     pose.theta = 0
 
-    targ_vel_pub.publish(pose)
+    pub1.publish(pose.x)
+    pub2.publish(pose.y)
 
 
 if __name__ == '__main__':
     # Initialize the ROS node
     rospy.init_node('pose_follower')
 
-    # Set up a publishers for the /TARG_VEL topic and state
-    targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
+    # Set up a publisher for the /STATE topic
     state_pub = rospy.Publisher('/STATE', Int32, queue_size=10)
+
+    # Set up publishers for the two topics
+    pub1 = rospy.Publisher('/robo1/driveL_controller/command', Float64, queue_size=10)
+    pub2 = rospy.Publisher('/robo1/driveR_controller/command', Float64, queue_size=10)
+
+    # Subscribe
 
     while not rospy.is_shutdown():
         curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, curr_odom_callback)

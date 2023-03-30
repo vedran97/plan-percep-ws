@@ -3,6 +3,7 @@
 import rospy
 from std_msgs.msg import Int32
 from geometry_msgs.msg import Pose2D
+import rospkg
 import csv
 
 line_idx = 0
