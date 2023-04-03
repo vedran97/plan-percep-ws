@@ -18,7 +18,6 @@ curr_odom.theta = 0.0
 
 def curr_vel_callback(data):
     global timeGap
-
     vel = data
 
     # Some wierd rounding method by me
