@@ -37,8 +37,6 @@ def curr_vel_callback(data):
     # Publish updated Pose2D message to '/CURR_ODOM' topic
     curr_odom_publisher.publish(curr_odom)
 
-    velX_old = velX
-    velY_old = velY
 
 
 if __name__ == '__main__':

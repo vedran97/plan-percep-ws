@@ -9,7 +9,6 @@
 import rospy
 from geometry_msgs.msg import Pose2D
 from std_msgs.msg import Int32
-import csv
 import numpy as np
 
 curr_pose = Pose2D()

@@ -4,7 +4,9 @@ import rospy
 from std_msgs.msg import Int32
 from geometry_msgs.msg import Pose2D
 import csv
+import rospkg
 
+rospack = rospkg.RosPack()
 line_idx = 0
 state = 0
 
@@ -18,7 +20,9 @@ def state_callback(msg):
 
 
 # Construct path to CSV file
-csv_file_path = open('vel_coord.csv','r')
+
+csv_path = rospack.get_path('robo1') + '/scripts_planner/vel_coord.csv'
+csv_file_path = open(csv_path,'r')
 data = list(csv.reader(csv_file_path, delimiter=","))
 
 
