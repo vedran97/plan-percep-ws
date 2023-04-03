@@ -6,7 +6,7 @@ import numpy as np
 import math
 
 r = 6.45/2
-L = 11
+L = 19.2
 flag = True
 
 # global variable to store the current odometry values
@@ -18,18 +18,18 @@ curr_odom.theta = 0.0
 
 def curr_vel_callback(data):
     global timeGap
+    global curr_odom
 
-    vel = data
-
-    # Some wierd rounding method by me
-    velX = vel.x #round(vel.x*5)/5
-    velY = vel.y #round(vel.y*5)/5
+    ticks = data
 
     rate = rospy.get_time() - timeGap
 
+    velX = ticks.x / rate
+    velY = ticks.y / rate
+
     curr_odom.x = curr_odom.x + (((6.45/2)/2)* (velX + velY)*np.cos(curr_odom.theta))* rate
     curr_odom.y = curr_odom.y + (((6.45/2)/2)* (velX + velY)*np.sin(curr_odom.theta))* rate
-    curr_odom.theta = curr_odom.theta + (((6.45/2)/11)*(velX - velY))* rate
+    curr_odom.theta = curr_odom.theta + (((6.45/2)/19.2)*(velX - velY))* rate
 
     curr_odom.theta = np.arctan2(np.sin(curr_odom.theta),np.cos(curr_odom.theta))
 
@@ -37,10 +37,6 @@ def curr_vel_callback(data):
 
     # Publish updated Pose2D message to '/CURR_ODOM' topic
     curr_odom_publisher.publish(curr_odom)
-
-    velX_old = velX
-    velY_old = velY
-
 
 if __name__ == '__main__':
 
