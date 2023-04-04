@@ -23,8 +23,8 @@ def curr_vel_callback(data):
 
     rate = rospy.get_time() - timeGap
 
-    velX = ticks.x * (2 * 3.141596 / 495) / rate
-    velY = - ticks.y * (2 * 3.141596 / 495) / rate
+    velX = - ticks.x * (2 * 3.141596 / 495) / rate
+    velY = ticks.y * (2 * 3.141596 / 495) / rate
 
     timeGap = rospy.get_time()
 

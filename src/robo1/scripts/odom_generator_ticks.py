@@ -27,7 +27,7 @@ def curr_vel_callback(data):
 
     curr_odom.x = curr_odom.x + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*np.cos(curr_odom.theta))
     curr_odom.y = curr_odom.y + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*np.sin(curr_odom.theta))
-    curr_odom.theta = curr_odom.theta + (((6.45/2)/19.2)*(2*3.14159/495) * (velX - velY))
+    curr_odom.theta = curr_odom.theta + (((6.45/2)/19.2)*(2*3.14159/495) * (velY - velX))
 
     curr_odom.theta = np.arctan2(np.sin(curr_odom.theta),np.cos(curr_odom.theta))
 
