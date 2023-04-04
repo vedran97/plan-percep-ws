@@ -18,8 +18,11 @@ flagState = False
 flagTurn = True
 flagGo = False
 
-turnTicks = 0
-goTicks = 0
+turnTicks = 368
+goTicks = 1221
+
+rospy.init_node('pose_follower')
+delay = rospy.get_rostime()
 
 # STATE is running variable, for keeping track of operations
 # -1 -> Next position coordinates given (this will be changed by some other node to 1)
@@ -32,44 +35,56 @@ goTicks = 0
 
 
 def curr_ticks_callback(msg):
-    global curr_ticks
 
+    global delay
+    global flagState
+    if (rospy.get_rostime() - delay) < rospy.Duration.from_sec(2) or not flagState:
+        return
+
+    global curr_ticks
     global turnTicks
     global goTicks
-    global flagState
-
     global flagTurn
     global flagGo
 
-    print("State: ",flagState,"Turning: ",flagTurn,"Moving: ",flagGo,"\nTicks",
-          int(curr_ticks)," out of ",int(turnTicks),"/",int(goTicks)," [Turning / Moving]")
+    # print("State: ",flagState,"Turning: ",flagTurn,"Moving: ",flagGo,"\nTicks",
+    #       int(curr_ticks)," out of ",int(turnTicks),"/",int(goTicks)," [Turning / Moving]")
     
     curr_ticks = curr_ticks + (abs(msg.x) + abs(msg.y)) /2 
+    print(curr_ticks)
 
-    if flagState:
-        if flagTurn:
-            if curr_ticks < abs(turnTicks):
-                runBot_turn(np.sign(turnTicks))
-            else:
-                runBot_stop()
-                print("Angle done, error in ticks :",abs(abs(turnTicks)-curr_ticks))
-                curr_ticks = 0
-                flagTurn = False
-                flagGo = True
+    if flagTurn:
+        if curr_ticks < abs(turnTicks):
+            runBot_turn(np.sign(turnTicks))
+            return
+        else:
+            runBot_stop()
+            print("Angle done, error in ticks :",abs(abs(turnTicks)-curr_ticks))
 
-                rospy.sleep(1)
-        if flagGo:
-            if curr_ticks < goTicks:
-                runBot_forward()
-            else:
-                runBot_stop()
-                print("Linear done, error in ticks :",(goTicks-curr_ticks))
-                curr_ticks = 0
-                flagGo = False
-                flagTurn = True
+            flagTurn = False
+            flagGo = True
 
-                rospy.sleep(1)
+            curr_ticks = 0
+            delay = rospy.get_rostime()
+            
+            return
+        return
+    if flagGo:
+        if curr_ticks < goTicks:
+            runBot_forward()
+            return
+        else:
+            runBot_stop()
+            print("Linear done, error in ticks :",(goTicks-curr_ticks))
 
+            flagGo = False
+            flagTurn = True
+
+            curr_ticks = 0
+            delay = rospy.get_rostime()
+            return
+        return
+    return
 
                 
 # Callback function for the /NEXT_POS topic
@@ -101,7 +116,6 @@ def runBot_turn( sign ):
     pose.x = -3 * sign
     pose.y = 3 * sign
     pose.theta = 0
-
     targ_vel_pub.publish(pose)
 
 def runBot_stop():
@@ -109,22 +123,16 @@ def runBot_stop():
     pose.x = 0
     pose.y = 0
     pose.theta = 0
-
     targ_vel_pub.publish(pose)
-
+    
 def runBot_forward():
-
     pose = Pose2D()
     pose.x = 6
     pose.y = 6
     pose.theta = 0
-
     targ_vel_pub.publish(pose)
 
-
 if __name__ == '__main__':
-    # Initialize the ROS node
-    rospy.init_node('pose_follower')
 
     # Set up a publishers for the /TARG_VEL topic and state
     targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)

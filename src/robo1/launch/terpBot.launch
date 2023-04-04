@@ -34,7 +34,7 @@
 	<node name="CurrentVelListener" pkg="rosserial_terpbot" type="CurrentVelListener.py" />
   <node name="coordPub" pkg="robo1" type="coordPub.py" />
   <node name="odom_generator_ticks" pkg="robo1" type="odom_generator_ticks.py" />
-  <node name="execute_bot_ticks" pkg="robo1" type="execute_bot_ticks.py" />
+  <!--node name="execute_bot_ticks" pkg="robo1" type="execute_bot_ticks.py" /-->
   
 
   <!-- Spawn robot only in simulation -->
