@@ -14,12 +14,12 @@ import numpy as np
 curr_ticks = 0
 target_pose = Pose2D()
 state = 0
-flagState = False
+flagState = True
 flagTurn = True
 flagGo = False
 
-turnTicks = 0
-goTicks = 0
+turnTicks = 368
+goTicks = 1221
 
 # STATE is running variable, for keeping track of operations
 # -1 -> Next position coordinates given (this will be changed by some other node to 1)
@@ -41,36 +41,46 @@ def curr_ticks_callback(msg):
     global flagTurn
     global flagGo
 
-    print("State: ",flagState,"Turning: ",flagTurn,"Moving: ",flagGo,"\nTicks",
-          int(curr_ticks)," out of ",int(turnTicks),"/",int(goTicks)," [Turning / Moving]")
+    # print("State: ",flagState,"Turning: ",flagTurn,"Moving: ",flagGo,"\nTicks",
+    #       int(curr_ticks)," out of ",int(turnTicks),"/",int(goTicks)," [Turning / Moving]")
     
     curr_ticks = curr_ticks + (abs(msg.x) + abs(msg.y)) /2 
+    print(curr_ticks)
 
     if flagState:
         if flagTurn:
             if curr_ticks < abs(turnTicks):
+                #print("Turning ",curr_ticks,' / ',turnTicks)
                 runBot_turn(np.sign(turnTicks))
+                return
             else:
                 runBot_stop()
                 print("Angle done, error in ticks :",abs(abs(turnTicks)-curr_ticks))
-                curr_ticks = 0
                 flagTurn = False
                 flagGo = True
 
                 rospy.sleep(1)
+                curr_ticks = 0
+                return
+            return
         if flagGo:
             if curr_ticks < goTicks:
+                #print("Going ",curr_ticks,' / ',goTicks)
                 runBot_forward()
+                return
             else:
                 runBot_stop()
                 print("Linear done, error in ticks :",(goTicks-curr_ticks))
-                curr_ticks = 0
+
                 flagGo = False
                 flagTurn = True
 
                 rospy.sleep(1)
-
-
+                curr_ticks = 0
+                return
+            return
+        return
+    return
                 
 # Callback function for the /NEXT_POS topic
 def next_pos_callback(msg):
@@ -130,7 +140,7 @@ if __name__ == '__main__':
     targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
     state_pub = rospy.Publisher('/STATE', Int32, queue_size=10)
 
-    next_pos_sub = rospy.Subscriber('/NEXT_POS', Pose2D, next_pos_callback)
+    #next_pos_sub = rospy.Subscriber('/NEXT_POS', Pose2D, next_pos_callback)
     curr_odom_sub = rospy.Subscriber('/CURR_VEL', Pose2D, curr_ticks_callback)
     
 
