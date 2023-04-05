@@ -43,6 +43,15 @@
 4. > ```sudo bash ./robot-scripts/install-ros.bash $(pwd) ```
 5. > ```sudo  bash ./robot-scripts/dep.bash  ```
 
+# Generating custom msgs
+
+1. Add the message file in terpbot_msgs/msg ,edit the CMAKELISTS.txt of this package accordingly
+2. Build
+3. Source
+4. execute this : ```rosrun rosserial_client make_libraries ./ terpbot_msgs```
+5. This builds headers for all the message types which are recognized by rosmsg command, and all these files are generated in ./ros_lib folder,relative to this workspace
+6. Copy the newly generated terpbot_msgs directory from ./ros_lib, and paste it in Arduino IDE's rosserial library install folder/src/
+
 
 
 
