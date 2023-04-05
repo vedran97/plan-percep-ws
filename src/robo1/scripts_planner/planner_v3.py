@@ -30,7 +30,7 @@ goalState = (225,105,0) #tuple(map(int, goal.split(",")))
 rpm = (30*0.1047198,60*0.1047198,90*0.1047198) #tuple(map(int, rpm.split(",")))
 
 c = 5 + 19 # clearance + R (robot radius)
-dt = 0.4
+dt = 0.6
 
 r = 6.45/2
 L = 11
@@ -198,6 +198,7 @@ plt.imshow(mapN,cmap='Greys')
 plt.scatter(3*xy_points_orig[:,0], 900-3*xy_points_orig[:,1], c='g',s=2)
 plt.scatter(3*xy_points[:,0], 900-3*xy_points[:,1], c='r',s=4)
 xy_points = np.delete(xy_points, (2), axis=1)
+plt.savefig("map_path.jpg")
 
 ang = [np.deg2rad(startState[2])]
 for i in range(len(xy_points)-1):
@@ -213,29 +214,35 @@ timeWait = 0.5 # seconds
 
 max_Wbot = (2*r/L)*max_W
 max_dW_bot = (2*r/L)*max_dW
-acc_max = r*max_dW
 
 W_turn = np.array([0,0])
 time = 0
 
-for i in range(len(xyt_points)-10):
+for i in range(len(xyt_points)-1):
     # Turning
     angle_turn = xyt_points[i+1,2]-xyt_points[i,2]
-    dT = np.sqrt(abs(angle_turn)/max_dW_bot)
+    dT = np.sqrt(4*abs(angle_turn)/max_dW_bot)
     
     W_turn_ = np.concatenate((max_dW_bot*np.arange(0,dT/2,timeStep),max_dW_bot*np.arange(dT/2,0,-timeStep)))
-    W_turn_ = np.sign(angle_turn)*np.column_stack((W_turn_,-W_turn_))
+    W_turn_ = (L/(2*r))*np.sign(angle_turn)*np.column_stack((-W_turn_,W_turn_))
     W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
     
     W_turn = np.vstack((W_turn,W_turn_))
     
     # Moving
-    dist = np.sqrt( (xyt_points[i+1,0]-xyt_points[i,0])**2 + (xyt_points[i+1,1]-xyt_points[i,1])**2)
-    dT = max (np.sqrt(4*dist/acc_max), (dist/(acc_max/r))+((acc_max/r)/acc_max))
     
-    W_turn1 = np.concatenate(((acc_max/r)*np.arange(0,dT/2,timeStep),(acc_max/r)*np.arange(dT/2,0,-timeStep)))
-    W_turn2 = (acc_max/r)*np.ones(np.shape(W_turn1))
-    W_turn_ = np.minimum(W_turn1,W_turn2)
+    dist = np.sqrt( (xyt_points[i+1,0]-xyt_points[i,0])**2 + (xyt_points[i+1,1]-xyt_points[i,1])**2)
+    
+    if dist < (L/2)*(max_W/max_dW):
+        dT = 2*np.sqrt(2*dist/(L*max_dW))
+        W_turn_ = np.concatenate((np.arange(0,dT/2,timeStep),np.arange(dT/2,0,-timeStep)))
+        W_turn_ = W_turn_ * max_dW
+    else:
+        dT = (dist*2)/(L*max_W) + (max_W/max_dW)
+        W_turn1 = np.concatenate((max_dW*np.arange(0,dT/2,timeStep),max_dW*np.arange(dT/2,0,-timeStep)))
+        W_turn2 = max_W*np.ones(np.shape(W_turn1))
+        W_turn_ = np.minimum(W_turn1,W_turn2)
+    
     W_turn_ = np.column_stack((W_turn_,W_turn_))
     W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
     

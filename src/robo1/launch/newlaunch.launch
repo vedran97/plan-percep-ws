@@ -2,7 +2,7 @@
 <launch> 
 
 	<include file= "$(find robo1)/launch/empty_world.launch"> 
-		<arg name="world_name" value="$(find robo1)/worlds/maze.world"/> 
+		<!--arg name="world_name" value="$(find robo1)/worlds/maze.world"/--> 
 	</include>
 		
 	<param name= "robot_description" command="$(find xacro)/xacro --inorder $(find robo1)/urdf/integration.urdf.xacro " />

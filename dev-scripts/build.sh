@@ -7,8 +7,8 @@ package_name="$2"
 
 let parallel_workers=$(nproc)/2
 
-jobs=$parallel_workers
-parrallelPkgs=$parallel_workers
+jobs=1
+parrallelPkgs=1
 memlimit=50
 
 DCMAKE_C_FLAGS="-Wall -Wextra -Wpedantic -Wno-unused-parameter"

@@ -206,11 +206,15 @@ for i in range(len(xy_points)-1):
     
 xyt_points = np.column_stack((xy_points,ang))
 print(xyt_points)
+np.savetxt("vel_coord.csv", xyt_points,delimiter = ",")
 #%%
-max_W = 10 # rad/sec
+max_W_turn = 5 # rad/sec (9.25 rad/sec for (100,121) and )
+max_W_go = 9.6
+
 timeStep = 0.02 #seconds
 timeWait = 0.5 # seconds
 
+vel_traj_basic = []
 
 W_turn = np.array([0,0])
 time = 0
@@ -219,19 +223,21 @@ for i in range(len(xyt_points)-1):
 
     # Turning
     angle_turn = xyt_points[i+1,2]-xyt_points[i,2]
+    vel_traj_basic.append(["rotate",angle_turn,0])
     
-    dT = (abs(angle_turn)*L)/(2*r*max_W)
+    dT = (abs(angle_turn)*L)/(2*r*max_W_turn)
 
-    W_turn_ = max_W*np.ones(int(np.round(dT/timeStep)))
+    W_turn_ = max_W_turn*np.ones(int(np.round(dT/timeStep)))
     W_turn_ = np.sign(angle_turn)*np.column_stack((-W_turn_,W_turn_))
     W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
     W_turn = np.vstack((W_turn,W_turn_))
     
     # Moving
     dist = np.sqrt( (xyt_points[i+1,0]-xyt_points[i,0])**2 + (xyt_points[i+1,1]-xyt_points[i,1])**2)
-    
-    dT = (2*dist)/(L*max_W)
-    W_turn_ = max_W*np.ones(int(np.round(dT/timeStep)))
+    vel_traj_basic.append(["translate",0,dist])
+
+    dT = (2*dist)/(L*max_W_go)
+    W_turn_ = max_W_go*np.ones(int(np.round(dT/timeStep)))
     W_turn_ = np.column_stack((W_turn_,W_turn_))
     W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
     W_turn = np.vstack((W_turn,W_turn_))
@@ -239,7 +245,8 @@ for i in range(len(xyt_points)-1):
     
 plt.figure(4)
 plt.plot(W_turn)
-plt.show()
+#plt.show()
 
 #%%
 np.savetxt("vel_traj.csv", W_turn,delimiter = ",")
+np.savetxt("vel_traj_basic.csv", vel_traj_basic,delimiter = ",",fmt="%s")
