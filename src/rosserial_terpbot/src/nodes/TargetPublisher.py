@@ -21,7 +21,7 @@ CONTROL_FREQ = 50
 TICKS_PER_REV= 495
 DOUBLE_PI = 2*np.pi
 DIA_WHEEL = 64.5/1000 #(converting it to meter)
-MAX_RPM = 80
+MAX_RPM = 140
 VMAX = (MAX_RPM/60)*DOUBLE_PI*(DIA_WHEEL/2)
 
 print("\r\nVMAX:{}".format(VMAX))
@@ -95,10 +95,10 @@ rate = rospy.Rate(CONTROL_FREQ)
 # TRANSLATION GAINS:
 left_KU = 32.5
 left_TU = 0.1481
-left_kd_coeff = 0.085
+left_kd_coeff = 0.075
 
-right_KU = 38
-right_TU = 0.1481
+right_KU = 35
+right_TU = 0.20
 right_kd_coeff = 0.085
 
 leftGain = Gains()
