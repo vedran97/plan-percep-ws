@@ -1,0 +1,35 @@
+import rospy
+import cv2
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+
+# Initialize the ROS node
+rospy.init_node('image_processing_node')
+
+# Create a CV bridge object
+cv_bridge = CvBridge()
+
+# Define a function to process the image
+def process_image(image_msg):
+    # Convert the ROS Image message to a CV image
+    cv_image = cv_bridge.imgmsg_to_cv2(image_msg, desired_encoding='bgr8')
+    
+    # Perform some image processing on the CV image
+    # For example, let's apply a grayscale filter
+    gray_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+    
+    # Display the processed image
+    cv2.imshow('Processed Image', gray_image)
+    cv2.waitKey(1)
+
+# Subscribe to the Raspberry Pi camera topic
+rospy.Subscriber('/camera/image_raw', Image, process_image)
+
+# Start the main ROS loop
+rospy.spin()
+
+
+
+export ROS_MASTER_URI=http://10.104.122.171:11311
+export ROS_IP=172.17.0.1
+export ROS_HOSTNAME=172.17.0.1
