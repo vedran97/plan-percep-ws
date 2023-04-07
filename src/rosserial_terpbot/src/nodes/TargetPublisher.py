@@ -12,7 +12,7 @@ PUB_TOPIC = 'TARG_VEL'
 GAINS_TOPIC = 'GAINS'
 
 rospy.init_node('TARGET_PUBLISHER')
-pose_publisher = rospy.Publisher(PUB_TOPIC, Pose2D, queue_size=10,tcp_nodelay=True)
+pose_publisher = rospy.Publisher(PUB_TOPIC, Pose2D, queue_size=10)
 gains_publisher = rospy.Publisher(GAINS_TOPIC, Gains, queue_size=10)
 rospy.loginfo("Publishes target and gains to arduino")
 
@@ -101,8 +101,21 @@ right_KU = 35
 right_TU = 0.20
 right_kd_coeff = 0.085
 
-leftGain = Gains(0.6*LEFT_KU,1.2*LEFT_KU/LEFT_TU,LEFT_KD_COEFF*LEFT_KU*LEFT_TU,100.0,True)
-rightGain = Gains(0.6*RIGHT_KU,1.2*RIGHT_KU/LEFT_TU,RIGHT_KD_COEFF*RIGHT_KU*RIGHT_TU,100.0,False)
+leftGain = Gains()
+
+leftGain.kp = 0.6*left_KU
+leftGain.ki = 1.2*left_KU/left_TU
+leftGain.kd = left_kd_coeff*left_KU*left_TU
+leftGain.i_clamp = 100.0
+leftGain.isleft = True
+
+
+rightGain = Gains()
+rightGain.kp =  0.6*right_KU
+rightGain.ki = 1.2*right_KU/left_TU
+rightGain.kd = right_kd_coeff*right_KU*right_TU
+rightGain.i_clamp = 100.0
+rightGain.isleft = False
 
 # '{kp: 30.0, ki: 0.05, kd: 0.1, i_clamp: 100.0, isleft: false}
 
@@ -119,28 +132,20 @@ while not rospy.is_shutdown():
         gains_publisher.publish(rightGain)
         rate.sleep()
 
-    rospy.loginfo("Finished sending gains")
 
-    rospy.loginfo("Enabling motor controllers")
+    rospy.loginfo("Finished sending gains")
     pose_msg.x = 0
     pose_msg.y = 0
     pose_msg.theta = 1
-
-    for i in range(10):
-        pose_publisher.publish(pose_msg)
-        rate.sleep()
-    rospy.loginfo("Finished enabling motor controllers")
-
-    rospy.loginfo("Going to start sending waypoints")
+    pose_publisher.publish(pose_msg)
+    sleep(1)
     for wp in wayPoints.wayPoints:
         pose_msg.x = wp
         pose_msg.y = +wp
         pose_msg.theta = 1
         pose_publisher.publish(pose_msg)
         rate.sleep()
-    rospy.loginfo("sent all waypoints")
-    
-    rospy.loginfo("Disabling motor controllers")
+    print("\r\nSTOPPING THE TRAJGEN NOW\r\n")
     for i in range(20):
         pose_msg.theta = 0
         pose_publisher.publish(pose_msg)

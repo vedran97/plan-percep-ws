@@ -5,7 +5,8 @@
 #include <fcntl.h>
 #include <cstring>
 #include <unistd.h>
-
+#include "ros/ros.h"
+#include "geometry_msgs/Pose2D.h"
 using namespace std;
 
 
@@ -103,16 +104,41 @@ class CurrentTickRate:public CustomMsg{
 };
 
 
-int main() {
+int main(int argc, char **argv) {
+    auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+    if (uart0_filestream == -1)
+    {
+      //ERROR - CAN'T OPEN SERIAL PORT
+      printf("Error - Unable to open UART.  Ensure it is not in use by another application\n");
+    }
+    struct termios options;
+    tcgetattr(uart0_filestream, &options);
+    options.c_cflag = B1000000 | CS8 | CLOCAL | CREAD;		//<Set baud rate
+    options.c_iflag = IGNPAR;
+    options.c_oflag = 0;
+    options.c_lflag = 0;
+    tcflush(uart0_filestream, TCIFLUSH);
+    tcsetattr(uart0_filestream, TCSANOW, &options);
+
+    ros::init(argc, argv, "publisher_node");
+    ros::NodeHandle nh;
+    ros::Publisher curr_vel_pub = nh.advertise<geometry_msgs::Pose2D>("CURR_VEL", 1000);
+    geometry_msgs::Pose2D curr_vel_msg;
+
     string line;
     ifstream tty("/dev/ttyACM0");
     auto currRate = CurrentTickRate();
     if (tty.is_open()) {
-        while (getline(tty, line)) {
+      cout << "tty is open" << endl;
+        while (getline(tty, line)&&ros::ok()) {
             currRate.deserialize((unsigned char*)line.c_str());
-            cout << line.length() << endl;
-            cout << currRate.leftTickRate << endl;
-            cout << currRate.rightTickRate << endl;
+
+            curr_vel_msg.x = currRate.leftTickRate;  
+            curr_vel_msg.y = currRate.rightTickRate;  
+            curr_vel_msg.theta = 0.0;  
+            curr_vel_pub.publish(curr_vel_msg);
+            ros::spinOnce();
+
         }
         tty.close();
     }

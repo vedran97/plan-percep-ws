@@ -10,6 +10,8 @@ add_compile_options(-std=c++14)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   rosserial_python
+  roscpp
+  geometry_msgs
 )
 
 catkin_package()
