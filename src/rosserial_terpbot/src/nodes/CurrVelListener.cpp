@@ -7,8 +7,6 @@
 #include <unistd.h>
 #include "ros/ros.h"
 #include "geometry_msgs/Pose2D.h"
-using namespace std;
-
 
 class CustomMsg
 {
@@ -71,7 +69,7 @@ class CurrentTickRate:public CustomMsg{
   virtual uint8_t deserialize(unsigned char *inbuffer) override{
     uint8_t offset = 0;
     offset+=2;
-    if (! inbuffer[1] ==  tags[Tags::CURRENT]){
+    if ((inbuffer[1] !=  tags[Tags::CURRENT])){
         return 0;
     }
     union {
@@ -106,14 +104,17 @@ class CurrentTickRate:public CustomMsg{
 
 int main(int argc, char **argv) {
     auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+
     if (uart0_filestream == -1)
     {
       //ERROR - CAN'T OPEN SERIAL PORT
       printf("Error - Unable to open UART.  Ensure it is not in use by another application\n");
+      return -1;
     }
+
     struct termios options;
     tcgetattr(uart0_filestream, &options);
-    options.c_cflag = B1000000 | CS8 | CLOCAL | CREAD;		//<Set baud rate
+    options.c_cflag = B2000000 | CS8 | CLOCAL | CREAD;		//<Set baud rate
     options.c_iflag = IGNPAR;
     options.c_oflag = 0;
     options.c_lflag = 0;
@@ -123,16 +124,17 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "publisher_node");
     ros::NodeHandle nh;
     ros::Publisher curr_vel_pub = nh.advertise<geometry_msgs::Pose2D>("CURR_VEL", 1000);
+
     geometry_msgs::Pose2D curr_vel_msg;
 
-    string line;
-    ifstream tty("/dev/ttyACM0");
+    std::string line;
+    std::ifstream tty("/dev/ttyACM0");
     auto currRate = CurrentTickRate();
+
     if (tty.is_open()) {
-      cout << "tty is open" << endl;
+      std::cout << "tty is open" << std::endl;
         while (getline(tty, line)&&ros::ok()) {
             currRate.deserialize((unsigned char*)line.c_str());
-
             curr_vel_msg.x = currRate.leftTickRate;  
             curr_vel_msg.y = currRate.rightTickRate;  
             curr_vel_msg.theta = 0.0;  
@@ -141,6 +143,9 @@ int main(int argc, char **argv) {
 
         }
         tty.close();
+        close(uart0_filestream);
+    }else{
+      close(uart0_filestream);
     }
     return 0;
 }
