@@ -16,7 +16,7 @@
 #include <rpi-rt/rt.hpp>
 
 static const constexpr int NO_OF_WAYPOINTS = 350;
-static const constexpr float CONTROL_FREQ = 50;
+static const constexpr float CONTROL_FREQ = 75;
 static const constexpr float TICKS_PER_REV= 495;
 static const constexpr float DIA_WHEEL = 64.5/1000; // #(converting it to meter);
 static const constexpr float MAX_RPM = 140;
@@ -46,7 +46,7 @@ class Trajectory{
         float loopRate = CONTROL_FREQ;
         auto timeIncrement = 1/loopRate;
         auto xInit = 0.0;  
-        auto xFinal = 1.0; //#// 1 rotation of the wheel //0.20263272615
+        auto xFinal = 1.00; //#// 1 rotation of the wheel //0.20263272615
         this->totalTime = getT(xInit,xFinal);
         int i=0;
         while (true){
@@ -125,7 +125,7 @@ int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream){
         target.rightMotorTarget = waypt;
         target.theta = 1;
         publishToUart(uart0_filestream,outbuf,target);
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        std::this_thread::sleep_for(std::chrono::milliseconds(13));
     }
 
     /**
@@ -154,7 +154,7 @@ static const constexpr float left_TU = 0.1481;
 static const constexpr float left_kd_coeff = 0.075;
 
 static const constexpr float right_KU = 35;
-static const constexpr float right_TU = 0.20;
+static const constexpr float right_TU = 0.1481;
 static const constexpr float right_kd_coeff = 0.085;
 
 static const Trajectory trajectory;
@@ -163,13 +163,13 @@ void initGains(terpbot::msgs::Gains& leftGain,terpbot::msgs::Gains& rightGain){
     leftGain.kp = 0.6*left_KU;
     leftGain.ki = 1.2*left_KU/left_TU;
     leftGain.kd = left_kd_coeff*left_KU*left_TU;
-    leftGain.iSat = 100.0;
+    leftGain.iSat = 200.0;
     leftGain.isLeft = true;
 
     rightGain.kp =  0.6*right_KU;
-    rightGain.ki = 1.2*right_KU/left_TU;
+    rightGain.ki = 1.2*right_KU/right_TU;
     rightGain.kd = right_kd_coeff*right_KU*right_TU;
-    rightGain.iSat = 100.0;
+    rightGain.iSat = 200.0;
     rightGain.isLeft = false;
 }
 
