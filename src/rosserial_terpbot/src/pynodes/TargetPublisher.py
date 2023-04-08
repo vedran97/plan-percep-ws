@@ -123,7 +123,7 @@ while not rospy.is_shutdown():
     rospy.loginfo("Sending Gains:")
     rospy.loginfo("Left Motor Gains:\r\n{}".format(leftGain))
     rospy.loginfo("Right Motor Gains:\r\n{}".format(rightGain))
-
+    rospy.loginfo("WAYPOINT TIME:\r\n{}".format(wayPoints.totalTime))
     for i in range(20):
         gains_publisher.publish(leftGain)
         rate.sleep()
