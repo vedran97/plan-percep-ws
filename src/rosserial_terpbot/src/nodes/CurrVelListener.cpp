@@ -8,9 +8,11 @@
 #include "ros/ros.h"
 #include "geometry_msgs/Pose2D.h"
 #include <rosserial_terpbot/MessageParser.h>
-
+#include <rpi-rt/rt.hpp>
 
 int main(int argc, char **argv) {
+    rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU3, 99, 100);
+    rt.applyAffinity();
     auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
 
     if (uart0_filestream == -1)

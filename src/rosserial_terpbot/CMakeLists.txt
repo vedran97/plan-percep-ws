@@ -107,8 +107,8 @@ catkin_python_setup()
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
  INCLUDE_DIRS include/${PROJECT_NAME}
- LIBRARIES rosserial_terpbot
- CATKIN_DEPENDS rospy rosserial_python rpi-rt
+ LIBRARIES rosserial_terpbot rpi-rt
+ #CATKIN_DEPENDS rospy rosserial_python rpi-rt
 #  DEPENDS system_lib
 )
 
@@ -152,12 +152,10 @@ add_dependencies(Target_Publisher_Node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${cat
 target_link_libraries(Curr_Vel_node
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
-  rpi-rt
 )
 target_link_libraries(Target_Publisher_Node
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
-  rpi-rt
 )
 
 #############

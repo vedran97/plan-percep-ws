@@ -13,6 +13,7 @@
 #include "ros/ros.h"
 #include "geometry_msgs/Pose2D.h"
 #include <rosserial_terpbot/MessageParser.h>
+#include <rpi-rt/rt.hpp>
 
 static const constexpr int NO_OF_WAYPOINTS = 350;
 static const constexpr float CONTROL_FREQ = 50;
@@ -184,6 +185,9 @@ void setupSerialPort(const int& uart0_filestream){
 }
 
 int main(int argc, char **argv){
+    rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
+    rt.applyAffinity();
+    
     ros::init(argc, argv, "publisher_node");
     ros::NodeHandle nh;
     ros::Publisher target_pub = nh.advertise<geometry_msgs::Pose2D>("TARG_VEL", 1000);
