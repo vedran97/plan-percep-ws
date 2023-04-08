@@ -54,6 +54,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>rospy</depend>
   <depend>rosserial_python</depend>
+  <depend>rpi-rt</depend>
   <exec_depend>rosserial_msgs</exec_depend>
   <exec_depend>diagnostic_msgs</exec_depend>
   <exec_depend>python3-serial</exec_depend>

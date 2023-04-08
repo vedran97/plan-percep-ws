@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(rosserial_terpbot)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++2a -O3 -Wall -Wextra)
+add_compile_options(-std=c++14 -O3 -Wall -Wextra)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rosserial_python
   roscpp
   geometry_msgs
+  rpi-rt
 )
 
 ## System dependencies are found with CMake's conventions
@@ -107,7 +108,7 @@ catkin_python_setup()
 catkin_package(
  INCLUDE_DIRS include/${PROJECT_NAME}
  LIBRARIES rosserial_terpbot
- CATKIN_DEPENDS rospy rosserial_python
+ CATKIN_DEPENDS rospy rosserial_python rpi-rt
 #  DEPENDS system_lib
 )
 
@@ -151,10 +152,12 @@ add_dependencies(Target_Publisher_Node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${cat
 target_link_libraries(Curr_Vel_node
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
+  rpi-rt
 )
 target_link_libraries(Target_Publisher_Node
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}
+  rpi-rt
 )
 
 #############

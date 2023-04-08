@@ -11,7 +11,7 @@
 
 
 int main(int argc, char **argv) {
-    auto uart0_filestream = ::open("/dev/ttyACM3", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+    auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
 
     if (uart0_filestream == -1)
     {
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     geometry_msgs::Pose2D curr_vel_msg;
 
     std::string line;
-    std::ifstream tty("/dev/ttyACM3");
+    std::ifstream tty("/dev/ttyACM0");
 
     auto currRate = terpbot::msgs::CurrentTickRate();
 

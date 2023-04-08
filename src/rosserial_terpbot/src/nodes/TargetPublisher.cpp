@@ -80,14 +80,30 @@ inline int publishToUart(int& uart0_filestream, uint8_t* outbuf , T& input){
     }
     return 0;
 }
-
-int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream,ros::Publisher& target_pub){
+int sendGains(int& uart0_filestream,terpbot::msgs::Gains& leftGain,terpbot::msgs::Gains& rightGain){
+    /**
+    Left Motor Gains
+    */
+    uint8_t outbuf[50];
+    for(int i=0;i<5;i++){
+        publishToUart(uart0_filestream,outbuf,leftGain);
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+    /**
+    Right Motor Gains
+    */
+    for(int i=0;i<5;i++){
+        publishToUart(uart0_filestream,outbuf,rightGain);
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+    return 0;
+}
+int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream){
     std::cout<<"No of waypoints:"<<(int)trajectory.wayPoints.size()<<std::endl;
     std::cout<<"Time:"<<trajectory.totalTime<<std::endl;
 
     auto target = terpbot::msgs::Target();
 
-    geometry_msgs::Pose2D targ_vel_msg;
     uint8_t outbuf[50];
     /**
     * Ensure controller has started
@@ -108,10 +124,6 @@ int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream,ros::Publi
         target.rightMotorTarget = waypt;
         target.theta = 1;
         publishToUart(uart0_filestream,outbuf,target);
-        targ_vel_msg.x = target.leftMotorTarget;
-        targ_vel_msg.y =target.rightMotorTarget;  
-        target_pub.publish(targ_vel_msg);
-        ros::spinOnce();
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 
@@ -128,22 +140,39 @@ int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream,ros::Publi
     return 0;
 }
 
+// ## ROTATION GAINS:
+// # left_KU = 35
+// # left_TU = 0.1481
+// # left_kd_coeff = 0.085
+
+// # right_KU = 42
+// # right_TU = 0.1481
+// # right_kd_coeff = 0.085
+static const constexpr float left_KU = 32.5;
+static const constexpr float left_TU = 0.1481;
+static const constexpr float left_kd_coeff = 0.075;
+
+static const constexpr float right_KU = 35;
+static const constexpr float right_TU = 0.20;
+static const constexpr float right_kd_coeff = 0.085;
+
 static const Trajectory trajectory;
 
-int main(int argc, char **argv){
-    ros::init(argc, argv, "publisher_node");
-    ros::NodeHandle nh;
-    ros::Publisher target_pub = nh.advertise<geometry_msgs::Pose2D>("TARG_VEL", 1000);
+void initGains(terpbot::msgs::Gains& leftGain,terpbot::msgs::Gains& rightGain){
+    leftGain.kp = 0.6*left_KU;
+    leftGain.ki = 1.2*left_KU/left_TU;
+    leftGain.kd = left_kd_coeff*left_KU*left_TU;
+    leftGain.iSat = 100.0;
+    leftGain.isLeft = true;
 
-    auto uart0_filestream = ::open("/dev/ttyACM3", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+    rightGain.kp =  0.6*right_KU;
+    rightGain.ki = 1.2*right_KU/left_TU;
+    rightGain.kd = right_kd_coeff*right_KU*right_TU;
+    rightGain.iSat = 100.0;
+    rightGain.isLeft = false;
+}
 
-    if (uart0_filestream == -1)
-    {
-      //ERROR - CAN'T OPEN SERIAL PORT
-      printf("Error - Unable to open UART.  Ensure it is not in use by another application\n");
-      return -1;
-    }
-
+void setupSerialPort(const int& uart0_filestream){
     struct termios options;
     tcgetattr(uart0_filestream, &options);
     options.c_cflag = B2000000 | CS8 | CLOCAL | CREAD;		//<Set baud rate
@@ -152,8 +181,27 @@ int main(int argc, char **argv){
     options.c_lflag = 0;
     tcflush(uart0_filestream, TCIFLUSH);
     tcsetattr(uart0_filestream, TCSANOW, &options);
+}
 
-    sendTrajectory(trajectory,uart0_filestream,target_pub);
+int main(int argc, char **argv){
+    ros::init(argc, argv, "publisher_node");
+    ros::NodeHandle nh;
+    ros::Publisher target_pub = nh.advertise<geometry_msgs::Pose2D>("TARG_VEL", 1000);
+
+    auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+
+    if (uart0_filestream == -1)
+    {
+      //ERROR - CAN'T OPEN SERIAL PORT
+      printf("Error - Unable to open UART.  Ensure it is not in use by another application\n");
+      return -1;
+    }
+    terpbot::msgs::Gains leftGain;
+    terpbot::msgs::Gains rightGain;
+    setupSerialPort(uart0_filestream);
+    initGains(leftGain,rightGain);
+    sendGains(uart0_filestream,leftGain,rightGain);
+    sendTrajectory(trajectory,uart0_filestream);
     ::close(uart0_filestream);
     return 0;
 }
