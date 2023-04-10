@@ -187,6 +187,7 @@ void setupSerialPort(const int& uart0_filestream){
 int main(int argc, char **argv){
     rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
     rt.applyAffinity();
+    rt.applyPriority();
     
     ros::init(argc, argv, "publisher_node");
     ros::NodeHandle nh;
