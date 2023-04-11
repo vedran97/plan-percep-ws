@@ -27,7 +27,7 @@ import scipy.interpolate as interpolate
 # inputs
 startState = (45,225,0) #tuple(map(int, start.split(",")))
 goalState = (225,105,0) #tuple(map(int, goal.split(",")))
-rpm = (30*0.1047198,60*0.1047198,90*0.1047198) #tuple(map(int, rpm.split(",")))
+rpm = (15*0.1047198,30*0.1047198,45*0.1047198) #tuple(map(int, rpm.split(",")))
 
 c = 5 + 19 # clearance + R (robot radius)
 dt = 0.6
@@ -170,6 +170,8 @@ backTrack.reverse()
 
 #%%
 xy_points = np.array(backTrack)
+xy_points_test = xy_points - xy_points[0]
+np.savetxt("vel_coord.csv", xy_points_test,delimiter = ",")
 xy_points_orig = np.array(backTrack)
 
 def pointSplitter(p1,p2):
@@ -206,7 +208,7 @@ for i in range(len(xy_points)-1):
     
 xyt_points = np.column_stack((xy_points,ang))
 print(xyt_points)
-np.savetxt("vel_coord.csv", xyt_points,delimiter = ",")
+
 #%%
 max_W_turn = 5 # rad/sec (9.25 rad/sec for (100,121) and )
 max_W_go = 9.6
