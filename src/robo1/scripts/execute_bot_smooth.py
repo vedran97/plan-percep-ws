@@ -1,66 +1,61 @@
 #!/usr/bin/env python3
 
-
-# for battery voltage 16.7V , left to right ratio of 1.21, at pwm 100,120, angular velocity = 9.6 radians per sec  9.52 reverse
-# for battery voltage 16.25V , left to right ratio of 1.21, at pwm 100,120, angular velocity = 9.25 radians per sec
-# for batt volt 16.7V left to right ratio  of 1.206 and additional turn ratio of 1.1, pwm 75,98  turning angular vel = 5 right turn
-# for batt volt 16.7V , pwm 85,90.45  turning angular vel = 5 left turn
-
 import rospy
 from geometry_msgs.msg import Pose2D
 from std_msgs.msg import Int32
 import numpy as np
+import rospkg
+import csv
+from std_msgs.msg import Float32MultiArray
 
-curr_ticks = 0
-target_pose = Pose2D()
-state = 0
+# Construct path to CSV file
+rospack = rospkg.RosPack()
+csv_path = rospack.get_path('robo1') + '/scripts_planner/vel_coord.csv'
+csv_file_path = open(csv_path,'r')
+data = list(csv.reader(csv_file_path, delimiter=","))
 
+line_idx = 0
 r = 6.45/2
 L = 19.2
 
-flagState = False
+global_planner = True
 
 rospy.init_node('pose_follower')
 
-# STATE is running variable, for keeping track of operations
-# -1 -> Next position coordinates given (this will be changed by some other node to 1)
-# 0  -> Home/start state
-# 1  -> Waiting for next position coordinates, reached last position
-# 2  -> Rotating 
-# 3  -> Done rotating, will start translation next
-# 4  -> Translating
-# 5  -> Done Translating, will start waiting for next coordinate
-
-
-def curr_odom_callback(msg):
+def global_planner(msg):
+    global global_planner
     global target_pose
+    global line_idx
+
+    if not global_planner:
+        local_planner(msg)
+        return
+    
+    target_pose = data[line_idx]
+    if ((target_pose[1] - msg.y)**2 + (target_pose[0] - msg.x)**2)**0.5 < 1:
+        line_idx = line_idx + 1
 
     curr_heading = msg.theta
-    need_heading = np.arctan2(target_pose.y - msg.y , target_pose.x - msg.x)
+    need_heading = np.arctan2(target_pose[1] - msg.y , target_pose[0] - msg.x)
 
+    publish_this( 10 , 0.5*(need_heading - curr_heading) )
+
+    
+
+def local_planner(msg):
+    publish_this(0,0)
+
+def publish_this(vel,ang_vel):
     targ_vel = Pose2D()
-    targ_vel.x = 4
-    targ_vel.y = 0.5 * (need_heading - curr_heading)
-
+    targ_vel.x = vel
+    targ_vel.y = ang_vel
     targ_vel_pub.publish(targ_vel)
-                
-# Callback function for the /NEXT_POS topic
-def next_pos_callback(msg):
-    global target_pose
-    global flagState
-
-    if not flagState:
-        target_pose = msg
-
-        flagState = True
 
 if __name__ == '__main__':
 
     # Set up a publishers for the /TARG_VEL topic and state
     targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
-    state_pub = rospy.Publisher('/STATE', Int32, queue_size=10)
 
-    next_pos_sub = rospy.Subscriber('/NEXT_POS', Pose2D, next_pos_callback)
-    curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, curr_odom_callback)
+    curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, global_planner)
 
     rospy.spin()
