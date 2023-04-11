@@ -14,7 +14,9 @@
 #include "geometry_msgs/Pose2D.h"
 #include <rosserial_terpbot/MessageParser.h>
 #include <rpi-rt/rt.hpp>
+#include <signal.h>
 
+#define USE_LOCAL_TRAJECTORY 0
 static const constexpr int NO_OF_WAYPOINTS = 350;
 static const constexpr float CONTROL_FREQ = 75;
 static const constexpr float TICKS_PER_REV= 495;
@@ -99,7 +101,7 @@ int sendGains(int& uart0_filestream,terpbot::msgs::Gains& leftGain,terpbot::msgs
     }
     return 0;
 }
-int sendTrajectory(const Trajectory& trajectory,int& uart0_filestream){
+int sendLocalTrajectory(const Trajectory& trajectory,int& uart0_filestream){
     std::cout<<"No of waypoints:"<<(int)trajectory.wayPoints.size()<<std::endl;
     std::cout<<"Time:"<<trajectory.totalTime<<std::endl;
 
@@ -184,16 +186,46 @@ void setupSerialPort(const int& uart0_filestream){
     tcsetattr(uart0_filestream, TCSANOW, &options);
 }
 
-int main(int argc, char **argv){
-    rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
-    rt.applyAffinity();
-    rt.applyPriority();
-    
-    ros::init(argc, argv, "publisher_node");
-    ros::NodeHandle nh;
-    ros::Publisher target_pub = nh.advertise<geometry_msgs::Pose2D>("TARG_VEL", 1000);
+int uart0_filestream;
+uint8_t outbuf[50];
+terpbot::msgs::Target target;
 
-    auto uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+static void sendPoint(const terpbot::msgs::Target& targ,int& uart0_filestream){
+    publishToUart(uart0_filestream,outbuf,targ);
+}
+
+static inline void rot2wheel(float vel,float ang_vel){
+    auto r = 6.45/2.0;
+    auto L = 19.2;
+    target.leftMotorTarget = 0.5* ( (2*vel/r) + (L*ang_vel/r))*(TICKS_PER_REV/DOUBLE_PI)*(1/CONTROL_FREQ);
+    target.rightMotorTarget = 0.5* ( (2*vel/r) - (L*ang_vel/r))*(TICKS_PER_REV/DOUBLE_PI)*(1/CONTROL_FREQ);
+}
+
+void targetCB(const geometry_msgs::Pose2D::ConstPtr& msg)
+{
+    rot2wheel(msg->x,msg->y);
+    sendPoint(target,uart0_filestream);
+}
+
+void sigint_handler(int sig)
+{
+   ros::shutdown();
+}
+
+int main(int argc, char **argv){
+    #if USE_LOCAL_TRAJECTORY
+        rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
+        rt.applyAffinity();
+        rt.applyPriority();
+    #endif  
+
+    signal(SIGINT, sigint_handler);
+
+    ros::init(argc, argv, "target_sender");
+    ros::NodeHandle nh;
+    ros::Subscriber sub = nh.subscribe("TARG_VEL", 10, targetCB);
+
+    uart0_filestream = ::open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
 
     if (uart0_filestream == -1)
     {
@@ -206,7 +238,21 @@ int main(int argc, char **argv){
     setupSerialPort(uart0_filestream);
     initGains(leftGain,rightGain);
     sendGains(uart0_filestream,leftGain,rightGain);
-    sendTrajectory(trajectory,uart0_filestream);
+    #if USE_LOCAL_TRAJECTORY
+        sendLocalTrajectory(trajectory,uart0_filestream);
+    #endif
+    #if !USE_LOCAL_TRAJECTORY
+        std::thread ros_thread([&]() {
+            rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
+            rt.applyAffinity();
+            rt.applyPriority();
+            while (ros::ok()) {
+                ros::spinOnce();
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            }
+        });
+        ros_thread.join();
+    #endif
     ::close(uart0_filestream);
     return 0;
 }
