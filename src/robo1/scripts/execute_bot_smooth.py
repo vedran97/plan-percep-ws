@@ -47,7 +47,7 @@ def global_planner(msg):
 
     vel = 20 if np.cos(angle_diff) > 0 else 0
 
-    publish_this( vel , -1.5* angle_diff)
+    publish_this( vel , -2* angle_diff)
 
     
 

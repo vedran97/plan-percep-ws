@@ -27,10 +27,10 @@ import scipy.interpolate as interpolate
 # inputs
 startState = (45,225,0) #tuple(map(int, start.split(",")))
 goalState = (225,105,0) #tuple(map(int, goal.split(",")))
-rpm = (15*0.1047198,30*0.1047198,45*0.1047198) #tuple(map(int, rpm.split(",")))
+rpm = (15*0.1047198,17.5*0.1047198,20*0.1047198) #tuple(map(int, rpm.split(",")))
 
 c = 5 + 19 # clearance + R (robot radius)
-dt = 0.6
+dt = 2
 
 r = 6.45/2
 L = 11
