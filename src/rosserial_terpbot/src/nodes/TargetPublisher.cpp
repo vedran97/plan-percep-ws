@@ -153,7 +153,7 @@ static const constexpr float left_KU = 32.5;
 static const constexpr float left_TU = 0.1481;
 static const constexpr float left_kd_coeff = 0.075;
 
-static const constexpr float right_KU = 35;
+static const constexpr float right_KU = 39;
 static const constexpr float right_TU = 0.1481;
 static const constexpr float right_kd_coeff = 0.085;
 
