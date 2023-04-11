@@ -155,12 +155,47 @@ static const constexpr float left_KU = 32.5;
 static const constexpr float left_TU = 0.1481;
 static const constexpr float left_kd_coeff = 0.075;
 
-static const constexpr float right_KU = 39;
+static const constexpr float right_KU = 36;
 static const constexpr float right_TU = 0.1481;
-static const constexpr float right_kd_coeff = 0.085;
+static const constexpr float right_kd_coeff = 0.075;
 
 static const Trajectory trajectory;
 
+int uart0_filestream;
+uint8_t outbuf[50];
+terpbot::msgs::Target target;
+
+void enable_controller(){
+    auto target = terpbot::msgs::Target();
+
+    uint8_t outbuf[50];
+    /**
+    * Ensure controller has started
+    */
+    for(int i=0;i<5;i++){
+        target.leftMotorTarget = 0;
+        target.rightMotorTarget = 0;
+        target.theta = 1;
+        publishToUart(uart0_filestream,outbuf,target);
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+}
+
+void disable_controller(){
+    auto target = terpbot::msgs::Target();
+
+    uint8_t outbuf[50];
+    /**
+    * Ensure controller has stopped
+    */
+    for(int i=0;i<5;i++){
+        target.leftMotorTarget = 0;
+        target.rightMotorTarget = 0;
+        target.theta = 0;
+        publishToUart(uart0_filestream,outbuf,target);
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+}
 void initGains(terpbot::msgs::Gains& leftGain,terpbot::msgs::Gains& rightGain){
     leftGain.kp = 0.6*left_KU;
     leftGain.ki = 1.2*left_KU/left_TU;
@@ -186,9 +221,7 @@ void setupSerialPort(const int& uart0_filestream){
     tcsetattr(uart0_filestream, TCSANOW, &options);
 }
 
-int uart0_filestream;
-uint8_t outbuf[50];
-terpbot::msgs::Target target;
+
 
 static void sendPoint(const terpbot::msgs::Target& targ,int& uart0_filestream){
     publishToUart(uart0_filestream,outbuf,targ);
@@ -199,6 +232,7 @@ static inline void rot2wheel(float vel,float ang_vel){
     auto L = 19.2;
     target.leftMotorTarget = 0.5* ( (2*vel/r) + (L*ang_vel/r))*(TICKS_PER_REV/DOUBLE_PI)*(1/CONTROL_FREQ);
     target.rightMotorTarget = 0.5* ( (2*vel/r) - (L*ang_vel/r))*(TICKS_PER_REV/DOUBLE_PI)*(1/CONTROL_FREQ);
+    target.theta = 1.0;
 }
 
 void targetCB(const geometry_msgs::Pose2D::ConstPtr& msg)
@@ -242,6 +276,7 @@ int main(int argc, char **argv){
         sendLocalTrajectory(trajectory,uart0_filestream);
     #endif
     #if !USE_LOCAL_TRAJECTORY
+        enable_controller();
         std::thread ros_thread([&]() {
             rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
             rt.applyAffinity();
