@@ -31,15 +31,23 @@ def global_planner(msg):
         local_planner(msg)
         return
     
+    if line_idx > len(data)-1:
+        publish_this(0,0)
+        print("reached!")
+        return
+    
     target_pose = np.float32(data[line_idx])
-    if ((target_pose[1] - msg.y)**2 + (target_pose[0] - msg.x)**2)**0.5 < 1:
+    if ((target_pose[1] - msg.y)**2 + (target_pose[0] - msg.x)**2)**0.5 < 4:
         line_idx = line_idx + 1
-        print("temp goal reached!")
+        print("temp goal ", line_idx, " reached!")
 
     curr_heading = msg.theta
     need_heading = np.arctan2(target_pose[1] - msg.y , target_pose[0] - msg.x)
+    angle_diff = (need_heading - curr_heading)
 
-    publish_this( 10 , -0.1*(need_heading - curr_heading) )
+    vel = 20 if np.cos(angle_diff) > 0 else 0
+
+    publish_this( vel , -1.5* angle_diff)
 
     
 
