@@ -12,7 +12,8 @@ from std_msgs.msg import Float32MultiArray
 rospack = rospkg.RosPack()
 csv_path = rospack.get_path('robo1') + '/scripts_planner/vel_coord.csv'
 csv_file_path = open(csv_path,'r')
-data = list(csv.reader(csv_file_path, delimiter=","))
+data_raw = np.array(list(csv.reader(csv_file_path, delimiter=",")),dtype=float)
+data = data_raw - data_raw[0]
 
 line_idx = 0
 r = 6.45/2

@@ -170,8 +170,7 @@ backTrack.reverse()
 
 #%%
 xy_points = np.array(backTrack)
-xy_points_test = xy_points - xy_points[0]
-np.savetxt("vel_coord.csv", xy_points_test,delimiter = ",")
+np.savetxt("vel_coord.csv", xy_points,delimiter = ",")
 xy_points_orig = np.array(backTrack)
 
 def pointSplitter(p1,p2):
