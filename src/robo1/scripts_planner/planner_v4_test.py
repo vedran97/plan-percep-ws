@@ -29,7 +29,7 @@ startState = (1,150,0) #tuple(map(int, start.split(",")))
 goalState = (399,50,0) #tuple(map(int, goal.split(",")))
 rpm = (15*0.1047198,17.5*0.1047198,20*0.1047198) #tuple(map(int, rpm.split(",")))
 
-c = 5 + 19 # clearance + R (robot radius)
+c = 3 + 19 # clearance + R (robot radius)
 dt = 2
 
 r = 6.45/2
