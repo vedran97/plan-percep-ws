@@ -19,9 +19,6 @@ import cv2
 import matplotlib.pyplot as plt
 from sys import exit
 
-from scipy.interpolate import interp1d
-import scipy.interpolate as interpolate
-
 #%%
 
 # inputs
@@ -70,9 +67,6 @@ def checkFeasibility(node):
         return False
 #%%
 nodeList={}
-
-# shifter = [(0,rpm[0]),(rpm[0],0),(rpm[0],rpm[0]),(0,rpm[1]),
-#            (rpm[1],0),(rpm[1],rpm[1]),(rpm[1],rpm[0]),(rpm[0],rpm[1])]
 
 shifter = [(rpm[0],rpm[1]),(rpm[1],rpm[0]),(rpm[1],rpm[1]),(rpm[0],rpm[2]),
             (rpm[2],rpm[0]),(rpm[2],rpm[2]),(rpm[2],rpm[1]),(rpm[1],rpm[2])]
