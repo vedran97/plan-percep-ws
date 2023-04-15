@@ -5,7 +5,9 @@ def nothing(x):
     pass
 
 # Load the image
-img = cv2.imread('image3.png')
+img = cv2.imread('src/perception_stack/image2.png')
+
+print(img.shape)
 
 # Create a window for the trackbars
 cv2.namedWindow('Trackbars')
@@ -16,7 +18,7 @@ cv2.createTrackbar('LS', 'Trackbars', 0, 255, nothing)
 cv2.createTrackbar('LV', 'Trackbars', 0, 255, nothing)
 cv2.createTrackbar('UH', 'Trackbars', 255, 255, nothing)
 cv2.createTrackbar('US', 'Trackbars', 255, 255, nothing)
-cv2.createTrackbar('UV', 'Trackbars', 255, 255, nothing)
+# cv2.createTrackbar('UV', 'Trackbars', 255, 255, nothing)
 
 while True:
     # Convert BGR to HSV
@@ -43,9 +45,8 @@ while True:
     # Display the original image and the masked image
     cv2.imshow('Original', img)
     cv2.imshow('Fluorescent Orange Only', res)
-
-    # Wait for any key to be pressed and close all windows if 'q' is pressed
     key = cv2.waitKey(1) & 0xFF
+
     if key == ord('q'):
         break
 
