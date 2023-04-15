@@ -25,11 +25,11 @@ import scipy.interpolate as interpolate
 #%%
 
 # inputs
-startState = (45,225,0) #tuple(map(int, start.split(",")))
-goalState = (225,105,0) #tuple(map(int, goal.split(",")))
+startState = (1,150,0) #tuple(map(int, start.split(",")))
+goalState = (399,50,0) #tuple(map(int, goal.split(",")))
 rpm = (15*0.1047198,17.5*0.1047198,20*0.1047198) #tuple(map(int, rpm.split(",")))
 
-c = 5 + 19 # clearance + R (robot radius)
+c = 3 + 19 # clearance + R (robot radius)
 dt = 2
 
 r = 6.45/2
@@ -37,7 +37,7 @@ L = 11
 
 #%%
 ## reading map
-map_raw = cv2.bitwise_not(cv2.imread('map.jpg',cv2.IMREAD_GRAYSCALE))
+map_raw = cv2.bitwise_not(cv2.imread('map.png',cv2.IMREAD_GRAYSCALE))
 plt.figure(1)
 plt.imshow(map_raw)
 
@@ -46,12 +46,12 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (6*c+1, 6*c+1))
 mapN = cv2.dilate(map_raw, kernel)
 
 # walls
-mapN[:,0:3*c] = 255
-mapN[:,-3*c:] = 255
-mapN[0:3*c,:] = 255
-mapN[-3*c:,:] = 255
+# mapN[:,0:3*c] = 255
+# mapN[:,-3*c:] = 255
+# mapN[0:3*c,:] = 255
+# mapN[-3*c:,:] = 255
 
-cv2.imwrite("map_bloated.jpg",cv2.bitwise_not(cv2.resize(mapN,(900,900))))
+cv2.imwrite("map_bloated.jpg",cv2.bitwise_not(mapN))
 
 plt.figure(2)
 plt.imshow(mapN)
@@ -60,7 +60,7 @@ plt.imshow(mapN)
 # Checker if a node falls in the obstacle space
 def checkFeasibility(node):
     try:
-        a = mapN[np.shape(mapN)[1]-int(round(3*node[1])),int(round(3*node[0]))]
+        a = mapN[np.shape(mapN)[0]-int(round(3*node[1])),int(round(3*node[0]))]
     except:
         return False
     
@@ -172,82 +172,10 @@ backTrack.reverse()
 xy_points = np.array(backTrack)
 np.savetxt("vel_coord.csv", xy_points,delimiter = ",")
 xy_points_orig = np.array(backTrack)
-
-def pointSplitter(p1,p2):
-    X = np.rint(np.linspace(p1[0], p2[0],num=30))
-    Y = np.rint(np.linspace(p1[1], p2[1],num=30))
-    P = np.column_stack((X,Y))
-    
-    for i in P:
-        if not checkFeasibility(i):
-            return False
-    return True
-
-i = 0
-while True:  
-    if pointSplitter(xy_points[i],xy_points[i+2]):
-            xy_points = np.delete(xy_points, (i+1), axis=0)
-    else:
-        i=i+1    
-    if i >= len(xy_points)-2:
-        break
-    
-    
           
 plt.figure(3)
 plt.imshow(mapN,cmap='Greys')
-plt.scatter(3*xy_points_orig[:,0], 900-3*xy_points_orig[:,1], c='g',s=2)
-plt.scatter(3*xy_points[:,0], 900-3*xy_points[:,1], c='r',s=4)
+plt.scatter(3*xy_points_orig[:,0], mapN.shape[0]-3*xy_points_orig[:,1], c='g',s=2)
+plt.scatter(3*xy_points[:,0], mapN.shape[0]-3*xy_points[:,1], c='r',s=4)
 xy_points = np.delete(xy_points, (2), axis=1)
 plt.savefig("map_path.jpg")
-
-ang = [np.deg2rad(startState[2])]
-for i in range(len(xy_points)-1):
-    ang.append(np.arctan2(xy_points[i+1][1]-xy_points[i][1],xy_points[i+1][0]-xy_points[i][0]))
-    
-xyt_points = np.column_stack((xy_points,ang))
-print(xyt_points)
-
-#%%
-max_W_turn = 5 # rad/sec (9.25 rad/sec for (100,121) and )
-max_W_go = 9.6
-
-timeStep = 0.02 #seconds
-timeWait = 0.5 # seconds
-
-vel_traj_basic = []
-
-W_turn = np.array([0,0])
-time = 0
-
-for i in range(len(xyt_points)-1):
-
-    # Turning
-    angle_turn = xyt_points[i+1,2]-xyt_points[i,2]
-    vel_traj_basic.append(["rotate",angle_turn,0])
-    
-    dT = (abs(angle_turn)*L)/(2*r*max_W_turn)
-
-    W_turn_ = max_W_turn*np.ones(int(np.round(dT/timeStep)))
-    W_turn_ = np.sign(angle_turn)*np.column_stack((-W_turn_,W_turn_))
-    W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
-    W_turn = np.vstack((W_turn,W_turn_))
-    
-    # Moving
-    dist = np.sqrt( (xyt_points[i+1,0]-xyt_points[i,0])**2 + (xyt_points[i+1,1]-xyt_points[i,1])**2)
-    vel_traj_basic.append(["translate",0,dist])
-
-    dT = (2*dist)/(L*max_W_go)
-    W_turn_ = max_W_go*np.ones(int(np.round(dT/timeStep)))
-    W_turn_ = np.column_stack((W_turn_,W_turn_))
-    W_turn_ = np.vstack((W_turn_,np.tile([0,0], ( round(timeWait/timeStep) ,1)  )))
-    W_turn = np.vstack((W_turn,W_turn_))
-
-    
-plt.figure(4)
-plt.plot(W_turn)
-#plt.show()
-
-#%%
-np.savetxt("vel_traj.csv", W_turn,delimiter = ",")
-np.savetxt("vel_traj_basic.csv", vel_traj_basic,delimiter = ",",fmt="%s")

@@ -5,7 +5,7 @@ from geometry_msgs.msg import Pose2D
 import numpy as np
 import math
 
-r = 6.45/2
+r = 64.5/(1000*2)
 L = 11
 flag = True
 
