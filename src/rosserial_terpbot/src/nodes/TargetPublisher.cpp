@@ -280,7 +280,7 @@ int main(int argc, char **argv){
         std::thread ros_thread([&]() {
             rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU4, 99, 100);
             rt.applyAffinity();
-            rt.applyPriority();
+            // rt.applyPriority();
             while (ros::ok()) {
                 ros::spinOnce();
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
