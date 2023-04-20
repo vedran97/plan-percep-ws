@@ -26,8 +26,8 @@
     name="base_to_dummy_joint"
     type="fixed">
     <origin
-      xyz="0 0 0.1"
-      rpy="-1.5707963267 0 -1.57079" />
+      xyz="0 0 0.035"
+      rpy="-1.5707963267 0 -3.14159" />
     <parent
       link="dummy_base_link"  />
     <child

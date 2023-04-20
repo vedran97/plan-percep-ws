@@ -7,7 +7,7 @@
 		
 	<param name= "robot_description" command="$(find xacro)/xacro --inorder $(find robo1)/urdf/integration.urdf.xacro " />
     	<param name = "my_robot" value="carRobot2"/> 
-	<arg name ="init_pose" value="-x 0 -y 0 -z 0 -R 0 -P 0 -Y -1.5707963267"/>
+	<arg name ="init_pose" value="-x 0 -y 0 -z 0 -R 0 -P 0 -Y 0"/>
     
 	<rosparam file="$(find robo1)/config/joint_names_robo1.yaml" command="load"/>
 
@@ -15,7 +15,7 @@
         	<param name="use_gui" value="True"/>
     	</node>
 
-    	<node pkg="tf" type="static_transform_publisher" name="map_to_base" args="0 0 0 0 0 0 1 /map /dummy_base_link 10" />
+    	<!--node pkg="tf" type="static_transform_publisher" name="map_to_base" args="0 0 0 0 0 0 1 /map /dummy_base_link 10" /-->
 
     	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     		output="screen" ns="/robo1" args="joint_state_controller driveR_controller driveL_controller" />

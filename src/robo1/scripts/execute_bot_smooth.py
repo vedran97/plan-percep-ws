@@ -130,9 +130,9 @@ def global_planner(msg):
     need_heading = np.arctan2(target_pose[1] - msg.y , target_pose[0] - msg.x)
     angle_diff = (need_heading - curr_heading)
 
-    vel = 17 if np.cos(angle_diff) > 0 else 0
+    vel = 5 if np.cos(angle_diff) > 0 else 0
 
-    publish_this( vel , -1.2* angle_diff)
+    publish_this( vel , -0.7* angle_diff)
 
 
 ###############################################################################  
