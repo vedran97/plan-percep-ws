@@ -4,3 +4,6 @@
 [submodule "src/rpi-rt"]
 	path = src/rpi-rt
 	url = https://github.com/vedran97/rpi-rt
+[submodule "src/yolov5"]
+	path = src/yolov5
+	url = https://github.com/ultralytics/yolov5
