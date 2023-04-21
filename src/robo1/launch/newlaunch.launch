@@ -20,7 +20,8 @@
     	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     		output="screen" ns="/robo1" args="joint_state_controller driveR_controller driveL_controller" />
 
-    	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>	
+    	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+    	
 
    	<node
 		name="spawn_model"
@@ -34,5 +35,7 @@
 		    pkg="rostopic"
 		    type="rostopic"
 		    args="pub /calibrated std_msgs/Bool true" />
+		    
+    <node name="allInOne_sim2real" pkg="robo1" type="allInOne_sim2real.py" />	
 
 </launch>

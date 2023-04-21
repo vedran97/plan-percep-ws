@@ -119,10 +119,9 @@ def handle_robot_pose(msg):
 curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, handle_robot_pose)
 
 pub1 = rospy.Publisher('/map_disp', OccupancyGrid, queue_size=1, latch=True)
-pub1.publish(occupancy_grid)
-
 marker_pub = rospy.Publisher('point_marker', MarkerArray, queue_size=10)
-marker_pub.publish(marker_array_msg)
 
-# pub2 = rospy.Publisher('/posestamped', PoseStamped, queue_size=10)
-rospy.spin()
+while not rospy.is_shutdown():
+    pub1.publish(occupancy_grid)
+    marker_pub.publish(marker_array_msg)
+    rospy.sleep(1)
