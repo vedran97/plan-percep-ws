@@ -7,6 +7,7 @@ Panels:
         - /RobotModel1/Status1
         - /MarkerArray1
         - /Axes1
+        - /Marker1
       Splitter Ratio: 0.5
     Tree Height: 719
   - Class: rviz/Selection
@@ -55,82 +56,18 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
-      Enabled: true
+      Enabled: false
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        arduino_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        battery_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camhold_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        castor1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        castor2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        dummy_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        motorL_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        motorR_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rpi_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        top_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheelL_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheelR_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
-      Value: true
+      Value: false
       Visual Enabled: true
     - Alpha: 0.699999988079071
       Class: rviz/Map
@@ -153,11 +90,19 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz/Axes
       Enabled: true
-      Length: 9.999999747378752e-05
+      Length: 0.10000000149011612
       Name: Axes
-      Radius: 9.999999747378752e-05
+      Radius: 0.10000000149011612
       Reference Frame: dummy_base_link
       Show Trail: true
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /visualization_marker
+      Name: Marker
+      Namespaces:
+        "": true
+      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
