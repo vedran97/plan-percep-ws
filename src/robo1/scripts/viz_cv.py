@@ -14,6 +14,7 @@ import cv2
 import rospkg
 from nav_msgs.msg import OccupancyGrid
 from std_msgs.msg import Header
+from std_msgs.msg import Float64MultiArray
 
 from nav_msgs.msg import OccupancyGrid, MapMetaData
 from geometry_msgs.msg import Pose, Point, Quaternion
@@ -85,7 +86,6 @@ for i, p in enumerate(data_raw - start_point):
 
 def handle_robot_pose(msg):
     global last_pose
-    marker_pub.publish(marker_array_msg)
 
     if last_pose is None or last_pose.x != msg.x or last_pose.y != msg.y or last_pose.theta != msg.theta:
         br = tf2_ros.TransformBroadcaster()
@@ -116,12 +116,44 @@ def handle_robot_pose(msg):
         
         last_pose = msg
 
-curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, handle_robot_pose)
+def obst_callback(msg):
+
+
+    x = msg.x
+    y = msg.y
+
+    marker = Marker()
+    marker.header.frame_id = "world_frame"
+    marker.header.stamp = rospy.Time.now()
+    marker.type = Marker.CYLINDER
+    marker.action = Marker.ADD
+    marker.pose.position.x = y / 100
+    marker.pose.position.y = -x / 100
+    marker.pose.position.z = 0.0
+    marker.pose.orientation.x = 0.0
+    marker.pose.orientation.y = 0.0
+    marker.pose.orientation.z = 0.0
+    marker.pose.orientation.w = 1.0
+    marker.scale.x = 0.1
+    marker.scale.y = 0.1
+    marker.scale.z = 0.3
+    marker.color.a = 1.0
+    marker.color.r = 1.0
+    marker.color.g = 0.6
+    marker.color.b = 0.0
+
+    # Publish the marker
+    marker_pub_cone.publish(marker)
+
 
 pub1 = rospy.Publisher('/map_disp', OccupancyGrid, queue_size=1, latch=True)
-marker_pub = rospy.Publisher('point_marker', MarkerArray, queue_size=10)
+marker_pub = rospy.Publisher('point_marker', MarkerArray, queue_size=1, latch=True)
+marker_pub_cone = rospy.Publisher('visualization_marker', Marker, queue_size=1, latch = True)
 
-while not rospy.is_shutdown():
-    pub1.publish(occupancy_grid)
-    marker_pub.publish(marker_array_msg)
-    rospy.sleep(1)
+obstacle_sub = rospy.Subscriber('/positions', Pose2D, obst_callback)
+curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, handle_robot_pose)
+
+pub1.publish(occupancy_grid)
+marker_pub.publish(marker_array_msg)
+
+rospy.spin()
