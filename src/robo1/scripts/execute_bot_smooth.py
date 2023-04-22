@@ -3,7 +3,7 @@
 import rospy
 from geometry_msgs.msg import Pose2D
 from std_msgs.msg import Int32
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float32MultiArray
 import numpy as np
 import rospkg
 import csv
@@ -130,21 +130,22 @@ def global_planner(msg):
     need_heading = np.arctan2(target_pose[1] - msg.y , target_pose[0] - msg.x)
     angle_diff = (need_heading - curr_heading)
 
-    vel = 5 if np.cos(angle_diff) > 0 else 0
+    vel = 12 if np.cos(angle_diff) > 0 else 0
 
-    publish_this( vel , -0.7* angle_diff)
+    publish_this( vel , -1.0* angle_diff)
 
 
 ###############################################################################  
 # local planner
 def local_planner(msg):
+
     global init_local
     global detObs
     global targObs
     global global_planner
     global line_idx
 
-    odom = [msg.x,msg.y]
+    odom = [msg.x , msg.y , msg.theta]
 
     if init_local:
         detObs = obsticle(obst)
@@ -162,6 +163,7 @@ def local_planner(msg):
         need_heading = np.arctan2(forceNet[1],forceNet[0])
         curr_heading = msg.theta
         angle_diff = (need_heading - curr_heading)
+        print(angle_diff)
 
         vel = 10 if np.cos(angle_diff) > 0 else 0
         publish_this( vel , -1.5* angle_diff)
@@ -187,7 +189,7 @@ def obst_callback(msg):
     global global_planner
     global init_local
 
-    obst = msg
+    obst = [msg.x , msg.y, msg.theta]
     global_planner = False
     init_local = True
 
@@ -198,6 +200,6 @@ if __name__ == '__main__':
 
     curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, global_planner)
 
-    obstacle_sub = rospy.Subscriber('/positions', Float64MultiArray, obst_callback)
+    obstacle_sub = rospy.Subscriber('/positions', Pose2D, obst_callback)
 
     rospy.spin()

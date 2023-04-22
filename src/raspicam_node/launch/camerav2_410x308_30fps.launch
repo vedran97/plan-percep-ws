@@ -1,4 +1,14 @@
 <launch>
+
+    <param
+    name="robot_description"
+    textfile="$(find robo1)/urdf/robo1.urdf" />
+
+    <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+
   <arg name="enable_raw" default="false"/>
   <arg name="enable_imv" default="false"/>
   <arg name="camera_id" default="0"/>
