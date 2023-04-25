@@ -79,6 +79,10 @@ int main(int argc, char** argv) {
 
 #include "mmal_cxx_helper.h"
 
+#include <thread> // for std::this_thread::sleep_for
+#include <chrono> // for chrono
+#include <signal.h>
+
 static constexpr int IMG_BUFFER_SIZE = 10 * 1024 * 1024;  // 10 MB
 
 // Video format information
@@ -1305,8 +1309,12 @@ void reconfigure_callback(raspicam_node::CameraConfig& config, uint32_t level, R
 
   ROS_DEBUG("Reconfigure done");
 }
-
+void sigint_handler(int sig)
+{
+   ros::shutdown();
+}
 int main(int argc, char** argv) {
+  signal(SIGINT, sigint_handler);
   ros::init(argc, argv, "raspicam_node");
   ros::NodeHandle nh_params("~");
 
@@ -1375,7 +1383,11 @@ int main(int argc, char** argv) {
   server.setCallback(f);
 
   start_capture(state_srv);
-  ros::spin();
+  while(ros::ok())
+  {
+    ros::spinOnce();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5));
+  }
   close_cam(state_srv);
   ros::shutdown();
 }

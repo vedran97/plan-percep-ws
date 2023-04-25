@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
 project(raspicam_node)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=undefined")
 
 set(CMAKE_CXX_STANDARD 14) # use C++14
 set(CMAKE_EXE_LINKER_FLAGS "-Wl,--no-as-needed")  # https://github.com/raspberrypi/userland/issues/178

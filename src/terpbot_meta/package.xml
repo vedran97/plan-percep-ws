@@ -50,8 +50,6 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>rosserial</exec_depend>
-  <exec_depend>rqt</exec_depend>
-  <exec_depend>rqt_common_plugins</exec_depend>
   <exec_depend>terpbot_msgs</exec_depend>
   <exec_depend>rosserial_terpbot</exec_depend>
 
