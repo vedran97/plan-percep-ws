@@ -9,6 +9,7 @@ import rospkg
 import csv
 from std_msgs.msg import Float32MultiArray
 import cv2
+import copy
 
 # Construct path to CSV file
 rospack = rospkg.RosPack()
@@ -134,50 +135,52 @@ def global_planner(msg):
 
 ###############################################################################  
 # local planner
-runner = 0
 
 def local_planner(msg):
+
+    if not init_local:
+        return
 
     global init_local
     global detObs
     global targObs
     global global_planner
     global line_idx
-    global runner
+    global data
 
-    if runner % 10 != 0:
-        runner = runner + 1
-        return
-    runner = runner + 1
+    i = 1
 
-    odom = [msg.x , msg.y , msg.theta]
+    odom = data[line_idx + 1]
 
-    if init_local:
-        detObs = obsticle(obst)
-        targObs = targetFinder(odom,obst,data)
-        init_local =  False
+    detObs = obsticle(obst)
+    targObs = targetFinder(odom,obst,data)
+    odomList = []
     
-    if min(np.sum(np.square(targObs - np.array(odom)[:-1]),axis=1)) > 10:
+    while min(np.sum(np.square(targObs - np.array(odom)[:-1]),axis=1)) > 6:
 
         force1 = forceCalc(-0.3,odom,detObs)
         force2 = forceCalc(-0.13,odom,mapObs)
-        force3 = forceCalc(70  ,odom,targObs)
+        force3 = forceCalc(30  ,odom,targObs)
 
         forceNet = force1 + force2 + force3
 
-        need_heading = np.arctan2(forceNet[1],forceNet[0])
-        curr_heading = msg.theta
-        angle_diff = (need_heading - curr_heading)
-        print(angle_diff)
+        odom[0] = odom[0] + 2*forceNet[0]
+        odom[1] = odom[1] + 2*forceNet[1]
+        
+        odom_ = copy.copy(odom)
+        if i%5 == 0:
+            odomList.append(odom_)
+        i = i + 1
 
-        vel = 5 if np.cos(angle_diff) > 0 else 0
-        publish_this( vel , -0.4* angle_diff)
+    dist = (np.sum((data - np.array(odom))**2, axis=1))**0.5
+    line_idx_end = int(np.argmin(dist) + 1)
+    data = np.delete(data, slice(line_idx,line_idx_end-1),0)
 
-    else:
-        dist = (np.sum((data - np.array(odom))**2, axis=1))**0.5
-        line_idx = int(np.argmin(dist) + 1)
+    odomList = np.array(odomList)
+    data = np.insert(data,line_idx,odomList,axis=0)
 
-        global_planner = True
+    global_planner = True
+    init_local = False
 
 
 ###############################################################################
