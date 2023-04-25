@@ -27,11 +27,11 @@
     type="fixed">
     <origin
       xyz="0 0 0.035"
-      rpy="-1.5707963267 0 -3.14159" />
+      rpy="-1.5707963267 0 -1.5707963267" />
     <parent
       link="dummy_base_link"  />
     <child
-      link="base_link"  />>
+      link="base_link"  />
   </joint>
   
   <link
@@ -326,7 +326,7 @@
   </link>
   <joint
     name="wheelR_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 0.073 0"
       rpy="1.9007 0 -1.5708" />
@@ -430,7 +430,7 @@
   </link>
   <joint
     name="wheelL_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 0.073 0"
       rpy="-1.3561 0 -1.5708" />

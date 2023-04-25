@@ -1,4 +1,9 @@
 FROM ros:noetic
+# FROM osrf/ros:noetic-desktop-focal
+
+# ENV NVIDIA_VISIBLE_DEVICES=all
+# ENV NVIDIA_DRIVER_CAPABILITIES=all
+# ENV NVIDIA_REQUIRE_CUDA "cuda>=10.6"
 
 ARG USERNAME=vedant
 ARG USER_UID=1000
