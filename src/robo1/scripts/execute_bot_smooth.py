@@ -20,10 +20,7 @@ data = data_raw - data_raw[0]
 # Import map and dot-ify it
 map_path = rospack.get_path('robo1') + '/scripts_planner/map_bloated.jpg'
 map_ = cv2.bitwise_not(cv2.imread(map_path,cv2.IMREAD_GRAYSCALE))
-tile = np.zeros((5,5))
-tile[-1,-1] = 1
-tile = np.tile(tile,(map_.shape[0]//tile.shape[0] ,map_.shape[1]//tile.shape[1] ))
-map_ = map_ * tile
+map_ = cv2.Canny(map_, 100, 200) 
 
 # List of obsticles from map
 map_x = np.tile( np.linspace(0,map_.shape[1]/3,num=map_.shape[1]) , (map_.shape[0],1)) - data_raw[0][0]
@@ -95,7 +92,7 @@ def dirxPlotter(force,odom):
 line_idx = 0
 r = 6.45/2
 L = 19.2
-obst_radius = 6 + 19
+obst_radius = 10 + 19
 obst = None
 detObs = None
 targObs = None
@@ -137,6 +134,8 @@ def global_planner(msg):
 
 ###############################################################################  
 # local planner
+runner = 0
+
 def local_planner(msg):
 
     global init_local
@@ -144,6 +143,12 @@ def local_planner(msg):
     global targObs
     global global_planner
     global line_idx
+    global runner
+
+    if runner % 10 != 0:
+        runner = runner + 1
+        return
+    runner = runner + 1
 
     odom = [msg.x , msg.y , msg.theta]
 
@@ -152,11 +157,11 @@ def local_planner(msg):
         targObs = targetFinder(odom,obst,data)
         init_local =  False
     
-    if min(np.sum(np.square(targObs - np.array(odom)[:-1]),axis=1)) > 5:
+    if min(np.sum(np.square(targObs - np.array(odom)[:-1]),axis=1)) > 10:
 
         force1 = forceCalc(-0.3,odom,detObs)
-        force2 = forceCalc(-0.2,odom,mapObs)
-        force3 = forceCalc(50  ,odom,targObs)
+        force2 = forceCalc(-0.13,odom,mapObs)
+        force3 = forceCalc(70  ,odom,targObs)
 
         forceNet = force1 + force2 + force3
 
@@ -165,14 +170,14 @@ def local_planner(msg):
         angle_diff = (need_heading - curr_heading)
         print(angle_diff)
 
-        vel = 10 if np.cos(angle_diff) > 0 else 0
-        publish_this( vel , -1.5* angle_diff)
+        vel = 5 if np.cos(angle_diff) > 0 else 0
+        publish_this( vel , -0.4* angle_diff)
 
     else:
         dist = (np.sum((data - np.array(odom))**2, axis=1))**0.5
         line_idx = int(np.argmin(dist) + 1)
 
-        global_planner = False
+        global_planner = True
 
 
 ###############################################################################
