@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+import time
 from geometry_msgs.msg import Pose2D
 from std_msgs.msg import Int32
 from std_msgs.msg import Float32MultiArray
@@ -10,6 +11,8 @@ import csv
 from std_msgs.msg import Float32MultiArray
 import cv2
 import copy
+from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import Pose, Point, Quaternion
 
 # Construct path to CSV file
 rospack = rospkg.RosPack()
@@ -140,6 +143,8 @@ def local_planner(msg):
 
     if not init_local:
         return
+    
+    start_time = time.time()
 
     global init_local
     global detObs
@@ -182,6 +187,40 @@ def local_planner(msg):
     global_planner = True
     init_local = False
 
+    publish_new_path(odomList)
+
+    print("--- Local Planner executed in %s seconds ---" % (time.time() - start_time))
+
+###### Supporting Functions
+
+def publish_new_path(odomL):
+    marker_msg = Marker()
+    marker_msg.ns = "point_ns"
+    marker_msg.type = Marker.LINE_STRIP
+    marker_msg.action = Marker.ADD
+    marker_msg.pose.orientation.w = 1.0
+    marker_msg.scale.x = 0.01
+    marker_msg.color.a = 1.0
+    marker_msg.color.r = 0.0
+    marker_msg.color.g = 0.0
+    marker_msg.color.b = 1.0
+
+    marker_array_msg = MarkerArray()
+
+    for i, p in enumerate(odomL - data_raw[0]):
+        point_msg = Point()
+        point_msg.x = - p[1] / 100
+        point_msg.y = p[0] / 100
+        point_msg.z = 0
+        
+        marker_msg.header.frame_id = "world_frame"
+        marker_msg.header.stamp = rospy.Time.now()
+        
+        marker_msg.points.append(point_msg)
+        marker_msg.id = i
+        marker_array_msg.markers.append(marker_msg)
+    
+    newPath_marker_pub.publish(marker_array_msg)
 
 ###############################################################################
 
@@ -205,6 +244,7 @@ if __name__ == '__main__':
 
     # Set up a publishers for the /TARG_VEL topic and state
     targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
+    newPath_marker_pub = rospy.Publisher('local_marker', MarkerArray, queue_size=1, latch=True)
 
     curr_odom_sub = rospy.Subscriber('/CURR_ODOM', Pose2D, global_planner)
 
