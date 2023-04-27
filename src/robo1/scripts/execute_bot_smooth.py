@@ -187,7 +187,7 @@ def local_planner(msg):
     global_planner = True
     init_local = False
 
-    publish_new_path(odomList)
+    publish_new_path(data[(line_idx-1):(line_idx + odomList.shape[0] + 1) , :])
 
     print("--- Local Planner executed in %s seconds ---" % (time.time() - start_time))
 
