@@ -72,7 +72,9 @@
         "bit": "cpp",
         "csignal": "cpp",
         "codecvt": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "*.ipp": "cpp",
+        "forward_list": "cpp"
     },
     "python.analysis.extraPaths": [
         "/workspaces/plan-percep-ws/devel/lib/python3/dist-packages",

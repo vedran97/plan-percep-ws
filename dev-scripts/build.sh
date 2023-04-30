@@ -7,8 +7,16 @@ package_name="$2"
 
 let parallel_workers=$(nproc)/2
 
-jobs=1
-parrallelPkgs=1
+if [[ $(uname -m) == "aarch64" ]]; then
+  # Raspberry Pi
+  jobs=1
+  parrallelPkgs=1
+else
+  # PC
+  jobs=$parallel_workers
+  parrallelPkgs=$parallel_workers
+fi
+
 memlimit=50
 
 DCMAKE_C_FLAGS="-Wall -Wextra -Wpedantic -Wno-unused-parameter"
