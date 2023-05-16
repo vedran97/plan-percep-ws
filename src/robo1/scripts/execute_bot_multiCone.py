@@ -15,41 +15,6 @@ from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Pose, Point, Quaternion
 
 
-###############################################################################
-
-# Function to calculate force at any position
-def forceCalc(Q,PointSet):
-    
-    R = np.sum(np.square(PointSet),axis=1)**1.5
-    R = np.hstack((R[:,np.newaxis],R[:,np.newaxis]))
-    F = Q * np.divide( PointSet , R)
-    F = np.sum(F,axis=0)
-    
-    return F
-
-# Function to get point list
-def circlify(obst):
-    detObs_x = obst[0] + obst_radius*np.cos(np.linspace(0, 2*np.pi,150))
-    detObs_y = obst[1] + obst_radius*np.sin(np.linspace(0, 2*np.pi,150))
-    detObs = np.hstack( (detObs_x[:,np.newaxis],detObs_y[:,np.newaxis]) )
-    
-    return detObs
-
-# Function to convert x,y to pixels (to plot)
-def coord2pixel(point,mapN):
-    pixel = (int(3*point[0]), mapN.shape[0]-int(3*point[1]))
-    return pixel
-def pixel2point(pixel,mapN):
-    point = (pixel[0]/3 , (pixel[1]-mapN.shape[0])/3)
-    return point
-# Function to get force vector end point on image (for plotting)
-def dirxPlotter(force,odom):
-    scale = np.sqrt(np.sum(force**2))
-    force = force/np.sqrt(np.sum(force**2))
-    end_point = ( int(coord2pixel(odom + data_raw[0],map_)[0]+ scale*1000*force[0]),
-                 int(coord2pixel(odom + data_raw[0],map_)[1]- scale*1000*force[1]) )
-    
-    return end_point
 
 ###############################################################################
 # Global variables
@@ -79,26 +44,17 @@ def goal_callback(msg):
     global goal
     goal = [msg.x , msg.y]
 
+    angle_diff = np.arctan2( msg.y , msg.x )
+    vel = 20 if np.cos(angle_diff) > 0 else 0
+
+    if msg.theta != 0:
+        publish_this( vel , 1.2* angle_diff)
+    else:
+        publish_this( 0,0 )
+    
     draw_goal(msg)
     return
 ###############################################################################  
-# local planner
-
-def local_planner():
-    global obst
-    global goal
-
-    forceList = []
-
-    for i in obst:
-        forceList.append( forceCalc ( -0.3 , circlify(i) ))
-    forceList.append( forceCalc ( 10 , circlify(goal) ))
-
-    forceList = np.array(forceList)
-    Force = np.sum(forceList , axis = 0)
-    
-    angle = np.arctan2(Force[2],Force[1])
-
 
 ###### Supporting Functions
 
@@ -123,7 +79,7 @@ def draw_obst(obstList):
     for i, p in enumerate(obstList):
         point_msg = Point()
         point_msg.x = p[0] / 100
-        point_msg.y = p[1] / 100
+        point_msg.y = -p[1] / 100
         point_msg.z = 0
         
         marker_msg.header.frame_id = "dummy_base_link"
@@ -153,7 +109,7 @@ def draw_goal(msg):
     marker.pose.orientation.w = 1.0
     marker.scale.x = 0.1
     marker.scale.y = 0.1
-    marker.scale.z = 0.3
+    marker.scale.z = 0.6
     marker.color.a = 1.0
     marker.color.r = 0.0
     marker.color.g = 1.0
