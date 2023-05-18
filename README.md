@@ -52,17 +52,3 @@
 5. This builds headers for all the message types which are recognized by rosmsg command, and all these files are generated in ./ros_lib folder,relative to this workspace
 6. Copy the newly generated terpbot_msgs directory from ./ros_lib, and paste it in Arduino IDE's rosserial library install folder/src/
 
-# Command to send Gains:
- All ITRS are for left motor as of now
-1. ITR1
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 20.0, ki: 0.0, kd: 0.0, i_clamp: 0.0, isleft: true}' ```
-2. ITR2
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 30.0, ki: 0.0, kd: 0.0, i_clamp: 0.0, isleft: true}' ```
-3. ITR3 works decent under no load
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 30.0, ki: 0.0, kd: 0.0, i_clamp: 0.0, isleft: true}' ```
-4. ITR
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 32.5, ki: 0.0, kd: 0.0, i_clamp: 0.0, isleft: true}' ```
-
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 50.0, ki: 0.01, kd: 0.0, i_clamp: 100.0, isleft: true}' ```
-
-```rostopic pub -r 10 /GAINS terpbot_msgs/Gains '{kp: 30.0, ki: 0.05, kd: 0.1, i_clamp: 100.0, isleft: false}' ```
