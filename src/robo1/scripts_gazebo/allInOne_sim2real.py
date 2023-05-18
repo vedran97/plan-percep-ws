@@ -15,7 +15,7 @@ L = 19.2
 
 def model_states_callback(msg):
     global curr_x, curr_y
-    idx = msg.name.index("my_robot")
+    idx = msg.name.index("robo1")
 
     orientation = msg.pose[idx].orientation
     rotation_matrix = tf.transformations.quaternion_matrix([orientation.x,orientation.y,orientation.z,orientation.w])

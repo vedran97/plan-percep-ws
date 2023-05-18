@@ -141,17 +141,17 @@ def global_planner(msg):
 
 def local_planner(msg):
 
-    if not init_local:
-        return
-    
-    start_time = time.time()
-
     global init_local
     global detObs
     global targObs
     global global_planner
     global line_idx
     global data
+
+    if not init_local:
+        return
+    
+    start_time = time.time()
 
     i = 1
 
