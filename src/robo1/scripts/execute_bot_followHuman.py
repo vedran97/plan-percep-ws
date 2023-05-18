@@ -26,15 +26,19 @@ obst_radius = 10 + 19
 obst = None
 goal = None
 
+stopFlag = False
+
 global_planner = True
 init_local = True
 
 rospy.init_node('pose_follower')
 
+timeNow = rospy.Time.now()
 ###############################################################################
 
 def obst_callback(msg):
     global obst
+
     obst = np.array(msg).reshape(-1,2)
 
     draw_obst(obst)
@@ -42,21 +46,36 @@ def obst_callback(msg):
 
 def goal_callback(msg):
     global goal
+    global stopFlag
+    global timeNow
+
+    if stopFlag:
+        if rospy.Time.now() - timeNow > rospy.Duration.from_sec(1):
+            stopFlag = False
+            return
+        else:
+            return
+
     goal = [msg.x , msg.y]
 
     angle_diff = np.arctan2( msg.y , msg.x )
-    vel = 20 if np.cos(angle_diff) > 0 else 0
+    vel = 15 if np.cos(angle_diff) > 0 else 0
 
     if msg.theta != 0:
-        publish_this( vel , 1.2* angle_diff)
+        publish_this( vel , -1.2* angle_diff)
+        pass
     else:
+        stopFlag = True
+        timeNow = rospy.Time.now()
         publish_this( 0,0 )
     
     draw_goal(msg)
     return
+
 ###############################################################################  
 
 ###### Supporting Functions
+
 
 def draw_obst(obstList):
     marker_msg = Marker()
@@ -102,19 +121,19 @@ def draw_goal(msg):
     marker.action = Marker.ADD
     marker.pose.position.x = -y / 100
     marker.pose.position.y = x / 100
-    marker.pose.position.z = 0.0
+    marker.pose.position.z = 0.2
     marker.pose.orientation.x = 0.0
     marker.pose.orientation.y = 0.0
     marker.pose.orientation.z = 0.0
     marker.pose.orientation.w = 1.0
     marker.scale.x = 0.1
     marker.scale.y = 0.1
-    marker.scale.z = 0.6
+    marker.scale.z = 0.4
     marker.color.a = 1.0
     marker.color.r = 0.0
     marker.color.g = 1.0
     marker.color.b = 0.0
-    marker.lifetime.secs = 1
+    marker.lifetime.secs = 0
 
     goal_marker_pub.publish(marker)
 
@@ -131,7 +150,7 @@ if __name__ == '__main__':
 
     # Set up a publishers for the /TARG_VEL topic and state
     targ_vel_pub = rospy.Publisher('/TARG_VEL', Pose2D, queue_size=10)
-    goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1, latch=True)
+    goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1, latch=False)
     obst_marker_pub = rospy.Publisher('/obst_marker', MarkerArray, queue_size=1, latch=True)
 
     goal_sub = rospy.Subscriber('/goal_cone', Pose2D, goal_callback)
