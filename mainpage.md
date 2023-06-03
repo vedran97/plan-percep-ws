@@ -1,8 +1,10 @@
-# README for setting up the  workspace:
+# Welcome to the Main Page!:
+
+# Link for steps to setup the workspace:
 
 [Click here!](./README.md)
 
-# Sub Modules
+# Sub Modules (These are the packages whose documentation is included in the website):
 
 * <a href="rpi-rt/index.html">rpi-rt</a>
 * <a href="rosserial_terpbot/index.html">rosserial_terpbot</a>
