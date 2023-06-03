@@ -4,5 +4,5 @@
 
 # Sub Modules
 
-* <a href="../src/rpi-rt/docs/index.html">rpi-rt</a>
-* <a href="../src/rosserial_terpbot/docs/index.html">rosserial_terpbot</a>
+* <a href="rpi-rt/index.html">rpi-rt</a>
+* <a href="rosserial_terpbot/index.html">rosserial_terpbot</a>
