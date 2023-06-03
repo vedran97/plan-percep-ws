@@ -23,16 +23,17 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "plan-percep-ws", "index.html", [
-    [ "README for the workspace:", "index.html", [
-      [ "Sub Modules", "index.html#autotoc_md1", null ]
+    [ "README for setting up the  workspace:", "index.html", [
+      [ "Sub Modules", "index.html#autotoc_md1", null ],
+      [ "How the documentation pipeline works:", "index.html#autotoc_md2", null ]
     ] ],
     [ "Workspace Level Readme:", "md_README.html", [
-      [ "Intent of the repository :", "md_README.html#autotoc_md3", null ],
-      [ "Initial Setup for Development on PC/Laptop:", "md_README.html#autotoc_md4", [
-        [ "VS Code tasks:", "md_README.html#autotoc_md5", null ],
-        [ "Setting up ROS-Dependencies :", "md_README.html#autotoc_md6", null ]
+      [ "Intent of the repository :", "md_README.html#autotoc_md4", null ],
+      [ "Initial Setup for Development on PC/Laptop:", "md_README.html#autotoc_md5", [
+        [ "VS Code tasks:", "md_README.html#autotoc_md6", null ],
+        [ "Setting up ROS-Dependencies :", "md_README.html#autotoc_md7", null ]
       ] ],
-      [ "Setup Raspberry PI for development and code build:", "md_README.html#autotoc_md7", null ]
+      [ "Setup Raspberry PI for development and code build:", "md_README.html#autotoc_md8", null ]
     ] ]
   ] ]
 ];

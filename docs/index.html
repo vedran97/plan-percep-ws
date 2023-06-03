@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>plan-percep-ws: README for the workspace:</title>
+<title>plan-percep-ws: README for setting up the  workspace:</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">README for the workspace: </div>  </div>
+<div class="title">README for setting up the workspace: </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="el" href="md_README.html">Click here!</a></p>
@@ -92,8 +92,21 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 Sub Modules</h1>
 <ul>
 <li><a href="rpi-rt/index.html">rpi-rt</a></li>
-<li><a href="rosserial_terpbot/index.html">rosserial_terpbot</a> </li>
+<li><a href="rosserial_terpbot/index.html">rosserial_terpbot</a></li>
 </ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+How the documentation pipeline works:</h1>
+<ol type="1">
+<li>Packages in this repo are assumed to manage their own documentation.</li>
+<li>The documentation for each package is generated using doxygen.</li>
+<li>To generate this documentation, please roscd to the package and run <code>doxygen Doxyfile</code> ,if a Doxyfile exists.</li>
+<li>All the packages are assumed to have the HTML documentation generated in the <code>docs</code> folder of the package, and not in <code>docs/html</code> of the package.</li>
+<li>Run <code>python3 combine_docs.py</code> to copy all the documentation from the <code>docs</code> folder of each package to the <code>docs</code> folder of the workspace. In the docs folder of the workspace, each package's documentation is stored in a folder with the package name.</li>
+<li>For any packages with documentation which you want to include in the final website, please add the package name and link to it's index.html file in the Sub Modules section of this file. Basic syntax is as follows: <code>* &lt;a href="package_name/index.html"&gt;package_name&lt;/a&gt;</code></li>
+<li>Once this is done, run <code>doxygen Doxyfile</code> in the workspace folder to generate the documentation for the workspace.</li>
+<li>Git Push the changes to the docs branch of the repo, this triggers a rebuild of the website.</li>
+<li>Disclaimer : The combine_docs.py script has been taken from chatgpt. </li>
+</ol>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
