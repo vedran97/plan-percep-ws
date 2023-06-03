@@ -1,0 +1,145 @@
+\hypertarget{CurrVelListener_8cpp}{}\doxysection{src/nodes/\+Curr\+Vel\+Listener.cpp File Reference}
+\label{CurrVelListener_8cpp}\index{src/nodes/CurrVelListener.cpp@{src/nodes/CurrVelListener.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Pose2\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rosserial\+\_\+terpbot/\+Message\+Parser.\+h$>$}\newline
+{\ttfamily \#include $<$rpi-\/rt/rt.\+hpp$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for Curr\+Vel\+Listener.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CurrVelListener_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{CurrVelListener_8cpp_a7f95eba7cc6eda9f5aeacdeefe605f67}{filter\+Velocity}} (const float raw, float \&filter)
+\item 
+void \mbox{\hyperlink{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901}{publish\+Odom}} (geometry\+\_\+msgs\+::\+Pose2D \&data, ros\+::\+Publisher \&curr\+\_\+odom\+\_\+publisher)
+\item 
+int \mbox{\hyperlink{CurrVelListener_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}{left\+Ticks}} = 0
+\item 
+float \mbox{\hyperlink{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}{right\+Ticks}} = 0
+\item 
+static const constexpr float \mbox{\hyperlink{CurrVelListener_8cpp_a4dabc3cdfa974a53a35b58ac4497d3c5}{alpha}} = 0.\+7
+\item 
+geometry\+\_\+msgs\+::\+Pose2D \mbox{\hyperlink{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}{curr\+\_\+odom}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{CurrVelListener_8cpp_a7f95eba7cc6eda9f5aeacdeefe605f67}\label{CurrVelListener_8cpp_a7f95eba7cc6eda9f5aeacdeefe605f67}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!filterVelocity@{filterVelocity}}
+\index{filterVelocity@{filterVelocity}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{filterVelocity()}{filterVelocity()}}
+{\footnotesize\ttfamily static float filter\+Velocity (\begin{DoxyParamCaption}\item[{const float}]{raw,  }\item[{float \&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 16 of file Curr\+Vel\+Listener.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CurrVelListener_8cpp_a7f95eba7cc6eda9f5aeacdeefe605f67_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{CurrVelListener_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{CurrVelListener_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!main@{main}}
+\index{main@{main}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 36 of file Curr\+Vel\+Listener.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CurrVelListener_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901}\label{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!publishOdom@{publishOdom}}
+\index{publishOdom@{publishOdom}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{publishOdom()}{publishOdom()}}
+{\footnotesize\ttfamily void publish\+Odom (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Pose2D \&}]{data,  }\item[{ros\+::\+Publisher \&}]{curr\+\_\+odom\+\_\+publisher }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file Curr\+Vel\+Listener.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{CurrVelListener_8cpp_a4dabc3cdfa974a53a35b58ac4497d3c5}\label{CurrVelListener_8cpp_a4dabc3cdfa974a53a35b58ac4497d3c5}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!alpha@{alpha}}
+\index{alpha@{alpha}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily const constexpr float alpha = 0.\+7\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 15 of file Curr\+Vel\+Listener.\+cpp.
+
+\mbox{\Hypertarget{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}\label{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!curr\_odom@{curr\_odom}}
+\index{curr\_odom@{curr\_odom}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{curr\_odom}{curr\_odom}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose2D curr\+\_\+odom}
+
+
+
+Definition at line 19 of file Curr\+Vel\+Listener.\+cpp.
+
+\mbox{\Hypertarget{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}\label{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!leftTicks@{leftTicks}}
+\index{leftTicks@{leftTicks}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{leftTicks}{leftTicks}}
+{\footnotesize\ttfamily float left\+Ticks = 0}
+
+
+
+Definition at line 13 of file Curr\+Vel\+Listener.\+cpp.
+
+\mbox{\Hypertarget{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}\label{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}} 
+\index{CurrVelListener.cpp@{CurrVelListener.cpp}!rightTicks@{rightTicks}}
+\index{rightTicks@{rightTicks}!CurrVelListener.cpp@{CurrVelListener.cpp}}
+\doxysubsubsection{\texorpdfstring{rightTicks}{rightTicks}}
+{\footnotesize\ttfamily float right\+Ticks = 0}
+
+
+
+Definition at line 14 of file Curr\+Vel\+Listener.\+cpp.
+
