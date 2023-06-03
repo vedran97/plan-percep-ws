@@ -1,6 +1,6 @@
 import os
 import shutil
-
+## Direct output from chatgpt
 def create_doxygen_website(workspace_path, output_path):
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_path):
@@ -27,6 +27,8 @@ def create_doxygen_website(workspace_path, output_path):
             if os.path.exists(index_html_path):
                 # Copy the entire contents of the package's Doxygen output to the combined website
                 package_output_path = os.path.join(output_path, package)
+                if os.path.exists(package_output_path):
+                    shutil.rmtree(package_output_path)
                 shutil.copytree(os.path.join(package_path, 'docs'), package_output_path)
 
                 # Update the links in the copied index.html to point to the correct paths
