@@ -1,0 +1,629 @@
+\hypertarget{TargetPublisher_8cpp}{}\doxysection{src/nodes/\+Target\+Publisher.cpp File Reference}
+\label{TargetPublisher_8cpp}\index{src/nodes/TargetPublisher.cpp@{src/nodes/TargetPublisher.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Pose2\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rosserial\+\_\+terpbot/\+Message\+Parser.\+h$>$}\newline
+{\ttfamily \#include $<$rpi-\/rt/rt.\+hpp$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+Include dependency graph for Target\+Publisher.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classTrajectory}{Trajectory}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{TargetPublisher_8cpp_a7534f8628a2adf0c2d1cf2817cf47e42}{U\+S\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+R\+A\+J\+E\+C\+T\+O\+RY}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b}{convert\+Linear\+To\+R\+PS}} (const float \&linear\+Velocity)
+\item 
+static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a69e5957211ff4ffa4ed80f7bf2a8cd30}{convert\+R\+P\+S\+To\+Linear}} (const float \&R\+PS)
+\item 
+static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626}{get\+X\+Linear\+Velocity}} (const float \&t, const float \&T)
+\item 
+static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6}{getT}} (const float \&x\+Initial, const float \&x\+Final)
+\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e}{publish\+To\+U\+A\+RT}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}}, int data\+\_\+length)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd}{publish\+To\+Uart}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}}, T \&input)
+\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7}{send\+Gains}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, terpbot\+::msgs\+::\+Gains \&left\+Gain, terpbot\+::msgs\+::\+Gains \&right\+Gain)
+\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693}{send\+Local\+Trajectory}} (const \mbox{\hyperlink{classTrajectory}{Trajectory}} \&\mbox{\hyperlink{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}{trajectory}}, int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907}{enable\+\_\+controller}} ()
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}{disable\+\_\+controller}} ()
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8}{init\+Gains}} (terpbot\+::msgs\+::\+Gains \&left\+Gain, terpbot\+::msgs\+::\+Gains \&right\+Gain)
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c}{setup\+Serial\+Port}} (const int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
+\item 
+static void \mbox{\hyperlink{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da}{send\+Point}} (const terpbot\+::msgs\+::\+Target \&targ, int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
+\item 
+static void \mbox{\hyperlink{TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b}{rot2wheel}} (float vel, float ang\+\_\+vel)
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651}{target\+CB}} (const geometry\+\_\+msgs\+::\+Pose2\+D\+::\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1}{sigint\+\_\+handler}} (int sig)
+\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const constexpr int \mbox{\hyperlink{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}{N\+O\+\_\+\+O\+F\+\_\+\+W\+A\+Y\+P\+O\+I\+N\+TS}} = 350
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a223242b810b83dfa45310239c5b2c33d}{C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+R\+EQ}} = 75
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}{T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+EV}} = 495
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}{D\+I\+A\+\_\+\+W\+H\+E\+EL}} = 64.\+5/1000
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}{M\+A\+X\+\_\+\+R\+PM}} = 140
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}{D\+O\+U\+B\+L\+E\+\_\+\+PI}} = 2$\ast$M\+\_\+\+PI
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}{V\+M\+AX}} = ((float)\mbox{\hyperlink{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}{M\+A\+X\+\_\+\+R\+PM}}/60)$\ast$\mbox{\hyperlink{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}{D\+O\+U\+B\+L\+E\+\_\+\+PI}}$\ast$(\mbox{\hyperlink{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}{D\+I\+A\+\_\+\+W\+H\+E\+EL}}/2)
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}{left\+\_\+\+KU}} = 32.\+5
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}{left\+\_\+\+TU}} = 0.\+1481
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}{left\+\_\+kd\+\_\+coeff}} = 0.\+075
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}{right\+\_\+\+KU}} = 36
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}{right\+\_\+\+TU}} = 0.\+1481
+\item 
+static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}{right\+\_\+kd\+\_\+coeff}} = 0.\+075
+\item 
+static const \mbox{\hyperlink{classTrajectory}{Trajectory}} \mbox{\hyperlink{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}{trajectory}}
+\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}} \mbox{[}50\mbox{]}
+\item 
+terpbot\+::msgs\+::\+Target \mbox{\hyperlink{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}{target}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a7534f8628a2adf0c2d1cf2817cf47e42}\label{TargetPublisher_8cpp_a7534f8628a2adf0c2d1cf2817cf47e42}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!USE\_LOCAL\_TRAJECTORY@{USE\_LOCAL\_TRAJECTORY}}
+\index{USE\_LOCAL\_TRAJECTORY@{USE\_LOCAL\_TRAJECTORY}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{USE\_LOCAL\_TRAJECTORY}{USE\_LOCAL\_TRAJECTORY}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+R\+A\+J\+E\+C\+T\+O\+RY~0}
+
+
+
+Definition at line 19 of file Target\+Publisher.\+cpp.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b}\label{TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!convertLinearToRPS@{convertLinearToRPS}}
+\index{convertLinearToRPS@{convertLinearToRPS}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{convertLinearToRPS()}{convertLinearToRPS()}}
+{\footnotesize\ttfamily static constexpr float convert\+Linear\+To\+R\+PS (\begin{DoxyParamCaption}\item[{const float \&}]{linear\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 28 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a69e5957211ff4ffa4ed80f7bf2a8cd30}\label{TargetPublisher_8cpp_a69e5957211ff4ffa4ed80f7bf2a8cd30}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!convertRPSToLinear@{convertRPSToLinear}}
+\index{convertRPSToLinear@{convertRPSToLinear}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{convertRPSToLinear()}{convertRPSToLinear()}}
+{\footnotesize\ttfamily static constexpr float convert\+R\+P\+S\+To\+Linear (\begin{DoxyParamCaption}\item[{const float \&}]{R\+PS }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 31 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}\label{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!disable\_controller@{disable\_controller}}
+\index{disable\_controller@{disable\_controller}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{disable\_controller()}{disable\_controller()}}
+{\footnotesize\ttfamily void disable\+\_\+controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ensure controller has stopped
+
+Definition at line 184 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907}\label{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!enable\_controller@{enable\_controller}}
+\index{enable\_controller@{enable\_controller}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{enable\_controller()}{enable\_controller()}}
+{\footnotesize\ttfamily void enable\+\_\+controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ensure controller has started
+
+Definition at line 168 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6}\label{TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!getT@{getT}}
+\index{getT@{getT}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{getT()}{getT()}}
+{\footnotesize\ttfamily static constexpr float getT (\begin{DoxyParamCaption}\item[{const float \&}]{x\+Initial,  }\item[{const float \&}]{x\+Final }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 37 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626}\label{TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!getXLinearVelocity@{getXLinearVelocity}}
+\index{getXLinearVelocity@{getXLinearVelocity}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{getXLinearVelocity()}{getXLinearVelocity()}}
+{\footnotesize\ttfamily static constexpr float get\+X\+Linear\+Velocity (\begin{DoxyParamCaption}\item[{const float \&}]{t,  }\item[{const float \&}]{T }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 34 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8}\label{TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!initGains@{initGains}}
+\index{initGains@{initGains}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{initGains()}{initGains()}}
+{\footnotesize\ttfamily void init\+Gains (\begin{DoxyParamCaption}\item[{terpbot\+::msgs\+::\+Gains \&}]{left\+Gain,  }\item[{terpbot\+::msgs\+::\+Gains \&}]{right\+Gain }\end{DoxyParamCaption})}
+
+
+
+Definition at line 199 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!main@{main}}
+\index{main@{main}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 249 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e}\label{TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!publishToUART@{publishToUART}}
+\index{publishToUART@{publishToUART}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{publishToUART()}{publishToUART()}}
+{\footnotesize\ttfamily int publish\+To\+U\+A\+RT (\begin{DoxyParamCaption}\item[{int \&}]{uart0\+\_\+filestream,  }\item[{uint8\+\_\+t $\ast$}]{outbuf,  }\item[{int}]{data\+\_\+length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 69 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd}\label{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!publishToUart@{publishToUart}}
+\index{publishToUart@{publishToUart}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{publishToUart()}{publishToUart()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int publish\+To\+Uart (\begin{DoxyParamCaption}\item[{int \&}]{uart0\+\_\+filestream,  }\item[{uint8\+\_\+t $\ast$}]{outbuf,  }\item[{T \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 74 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b}\label{TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!rot2wheel@{rot2wheel}}
+\index{rot2wheel@{rot2wheel}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{rot2wheel()}{rot2wheel()}}
+{\footnotesize\ttfamily static void rot2wheel (\begin{DoxyParamCaption}\item[{float}]{vel,  }\item[{float}]{ang\+\_\+vel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 230 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7}\label{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!sendGains@{sendGains}}
+\index{sendGains@{sendGains}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{sendGains()}{sendGains()}}
+{\footnotesize\ttfamily int send\+Gains (\begin{DoxyParamCaption}\item[{int \&}]{uart0\+\_\+filestream,  }\item[{terpbot\+::msgs\+::\+Gains \&}]{left\+Gain,  }\item[{terpbot\+::msgs\+::\+Gains \&}]{right\+Gain }\end{DoxyParamCaption})}
+
+Left Motor Gains
+
+Right Motor Gains
+
+Definition at line 86 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693}\label{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!sendLocalTrajectory@{sendLocalTrajectory}}
+\index{sendLocalTrajectory@{sendLocalTrajectory}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{sendLocalTrajectory()}{sendLocalTrajectory()}}
+{\footnotesize\ttfamily int send\+Local\+Trajectory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTrajectory}{Trajectory}} \&}]{trajectory,  }\item[{int \&}]{uart0\+\_\+filestream }\end{DoxyParamCaption})}
+
+Ensure controller has started
+
+Start sending trajectories
+
+Ensure controller has stopped
+
+Definition at line 104 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da}\label{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!sendPoint@{sendPoint}}
+\index{sendPoint@{sendPoint}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{sendPoint()}{sendPoint()}}
+{\footnotesize\ttfamily static void send\+Point (\begin{DoxyParamCaption}\item[{const terpbot\+::msgs\+::\+Target \&}]{targ,  }\item[{int \&}]{uart0\+\_\+filestream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 226 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c}\label{TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!setupSerialPort@{setupSerialPort}}
+\index{setupSerialPort@{setupSerialPort}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{setupSerialPort()}{setupSerialPort()}}
+{\footnotesize\ttfamily void setup\+Serial\+Port (\begin{DoxyParamCaption}\item[{const int \&}]{uart0\+\_\+filestream }\end{DoxyParamCaption})}
+
+
+
+Definition at line 213 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1}\label{TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!sigint\_handler@{sigint\_handler}}
+\index{sigint\_handler@{sigint\_handler}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{sigint\_handler()}{sigint\_handler()}}
+{\footnotesize\ttfamily void sigint\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+Definition at line 244 of file Target\+Publisher.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651}\label{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!targetCB@{targetCB}}
+\index{targetCB@{targetCB}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{targetCB()}{targetCB()}}
+{\footnotesize\ttfamily void target\+CB (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose2\+D\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 238 of file Target\+Publisher.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{TargetPublisher_8cpp_a223242b810b83dfa45310239c5b2c33d}\label{TargetPublisher_8cpp_a223242b810b83dfa45310239c5b2c33d}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!CONTROL\_FREQ@{CONTROL\_FREQ}}
+\index{CONTROL\_FREQ@{CONTROL\_FREQ}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{CONTROL\_FREQ}{CONTROL\_FREQ}}
+{\footnotesize\ttfamily const constexpr float C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+R\+EQ = 75\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 21 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}\label{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!DIA\_WHEEL@{DIA\_WHEEL}}
+\index{DIA\_WHEEL@{DIA\_WHEEL}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{DIA\_WHEEL}{DIA\_WHEEL}}
+{\footnotesize\ttfamily const constexpr float D\+I\+A\+\_\+\+W\+H\+E\+EL = 64.\+5/1000\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 23 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}\label{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!DOUBLE\_PI@{DOUBLE\_PI}}
+\index{DOUBLE\_PI@{DOUBLE\_PI}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{DOUBLE\_PI}{DOUBLE\_PI}}
+{\footnotesize\ttfamily const constexpr float D\+O\+U\+B\+L\+E\+\_\+\+PI = 2$\ast$M\+\_\+\+PI\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 25 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}\label{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_kd\_coeff@{left\_kd\_coeff}}
+\index{left\_kd\_coeff@{left\_kd\_coeff}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{left\_kd\_coeff}{left\_kd\_coeff}}
+{\footnotesize\ttfamily const constexpr float left\+\_\+kd\+\_\+coeff = 0.\+075\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 156 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}\label{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_KU@{left\_KU}}
+\index{left\_KU@{left\_KU}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{left\_KU}{left\_KU}}
+{\footnotesize\ttfamily const constexpr float left\+\_\+\+KU = 32.\+5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 154 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}\label{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_TU@{left\_TU}}
+\index{left\_TU@{left\_TU}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{left\_TU}{left\_TU}}
+{\footnotesize\ttfamily const constexpr float left\+\_\+\+TU = 0.\+1481\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 155 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}\label{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!MAX\_RPM@{MAX\_RPM}}
+\index{MAX\_RPM@{MAX\_RPM}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_RPM}{MAX\_RPM}}
+{\footnotesize\ttfamily const constexpr float M\+A\+X\+\_\+\+R\+PM = 140\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 24 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}\label{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!NO\_OF\_WAYPOINTS@{NO\_OF\_WAYPOINTS}}
+\index{NO\_OF\_WAYPOINTS@{NO\_OF\_WAYPOINTS}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{NO\_OF\_WAYPOINTS}{NO\_OF\_WAYPOINTS}}
+{\footnotesize\ttfamily const constexpr int N\+O\+\_\+\+O\+F\+\_\+\+W\+A\+Y\+P\+O\+I\+N\+TS = 350\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 20 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}\label{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!outbuf@{outbuf}}
+\index{outbuf@{outbuf}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{outbuf}{outbuf}}
+{\footnotesize\ttfamily uint8\+\_\+t outbuf\mbox{[}50\mbox{]}}
+
+
+
+Definition at line 165 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}\label{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_kd\_coeff@{right\_kd\_coeff}}
+\index{right\_kd\_coeff@{right\_kd\_coeff}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{right\_kd\_coeff}{right\_kd\_coeff}}
+{\footnotesize\ttfamily const constexpr float right\+\_\+kd\+\_\+coeff = 0.\+075\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 160 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}\label{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_KU@{right\_KU}}
+\index{right\_KU@{right\_KU}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{right\_KU}{right\_KU}}
+{\footnotesize\ttfamily const constexpr float right\+\_\+\+KU = 36\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 158 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}\label{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_TU@{right\_TU}}
+\index{right\_TU@{right\_TU}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{right\_TU}{right\_TU}}
+{\footnotesize\ttfamily const constexpr float right\+\_\+\+TU = 0.\+1481\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 159 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}\label{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!target@{target}}
+\index{target@{target}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily terpbot\+::msgs\+::\+Target target}
+
+
+
+Definition at line 166 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}\label{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!TICKS\_PER\_REV@{TICKS\_PER\_REV}}
+\index{TICKS\_PER\_REV@{TICKS\_PER\_REV}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{TICKS\_PER\_REV}{TICKS\_PER\_REV}}
+{\footnotesize\ttfamily const constexpr float T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+EV = 495\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 22 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}\label{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!trajectory@{trajectory}}
+\index{trajectory@{trajectory}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{trajectory}{trajectory}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classTrajectory}{Trajectory}} trajectory\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 162 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}\label{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!uart0\_filestream@{uart0\_filestream}}
+\index{uart0\_filestream@{uart0\_filestream}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{uart0\_filestream}{uart0\_filestream}}
+{\footnotesize\ttfamily int uart0\+\_\+filestream}
+
+
+
+Definition at line 164 of file Target\+Publisher.\+cpp.
+
+\mbox{\Hypertarget{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}\label{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}} 
+\index{TargetPublisher.cpp@{TargetPublisher.cpp}!VMAX@{VMAX}}
+\index{VMAX@{VMAX}!TargetPublisher.cpp@{TargetPublisher.cpp}}
+\doxysubsubsection{\texorpdfstring{VMAX}{VMAX}}
+{\footnotesize\ttfamily const constexpr float V\+M\+AX = ((float)\mbox{\hyperlink{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}{M\+A\+X\+\_\+\+R\+PM}}/60)$\ast$\mbox{\hyperlink{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}{D\+O\+U\+B\+L\+E\+\_\+\+PI}}$\ast$(\mbox{\hyperlink{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}{D\+I\+A\+\_\+\+W\+H\+E\+EL}}/2)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line 26 of file Target\+Publisher.\+cpp.
+

@@ -1,6 +1,19 @@
-\mbox{\hyperlink{md_README}{Click here!}}\hypertarget{index_autotoc_md1}{}\doxysection{Sub Modules}\label{index_autotoc_md1}
+\hypertarget{index_autotoc_md1}{}\doxysection{Link for steps to setup the workspace\+:}\label{index_autotoc_md1}
+\mbox{\hyperlink{md_README}{Click here!}}\hypertarget{index_autotoc_md2}{}\doxysection{Sub Modules (\+These are the packages whose documentation is included in the website)\+:}\label{index_autotoc_md2}
 
 \begin{DoxyItemize}
-\item \href{../src/rpi-rt/docs/index.html}{\texttt{ rpi-\/rt}}
-\item \href{../src/rosserial_terpbot/docs/index.html}{\texttt{ rosserial\+\_\+terpbot}} 
-\end{DoxyItemize}
+\item \href{rpi-rt/index.html}{\texttt{ rpi-\/rt}}
+\item \href{rosserial_terpbot/index.html}{\texttt{ rosserial\+\_\+terpbot}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{How the documentation pipeline works\+:}\label{index_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item Packages in this repo are assumed to manage their own documentation.
+\item The documentation for each package is generated using doxygen.
+\item To generate this documentation, please roscd to the package and run {\ttfamily doxygen Doxyfile} ,if a Doxyfile exists.
+\item All the packages are assumed to have the H\+T\+ML documentation generated in the {\ttfamily docs} folder of the package, and not in {\ttfamily docs/html} of the package.
+\item Run {\ttfamily python3 combine\+\_\+docs.\+py} to copy all the documentation from the {\ttfamily docs} folder of each package to the {\ttfamily docs} folder of the workspace. In the docs folder of the workspace, each package\textquotesingle{}s documentation is stored in a folder with the package name.
+\item For any packages with documentation which you want to include in the final website, please add the package name and link to it\textquotesingle{}s index.\+html file in the Sub Modules section of this file. Basic syntax is as follows\+: {\ttfamily $\ast$ $<$a href=\char`\"{}package\+\_\+name/index.\+html\char`\"{}$>$package\+\_\+name$<$/a$>$}
+\item Once this is done, run {\ttfamily doxygen Doxyfile} in the workspace folder to generate the documentation for the workspace.
+\item Git Push the changes to the docs branch of the repo, this triggers a rebuild of the website.
+\item Disclaimer \+: The combine\+\_\+docs.\+py script has been taken from chatgpt. 
+\end{DoxyEnumerate}

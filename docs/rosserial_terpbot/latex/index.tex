@@ -1,0 +1,13 @@
+
+\begin{DoxyEnumerate}
+\item Curr\+\_\+\+Vel\+\_\+node \+: This node opens a serial tty port and publishes velocity information on the topic /\+C\+U\+R\+R\+\_\+\+V\+EL and wheel odometry info on /\+C\+U\+R\+R\+\_\+\+O\+D\+OM. This runs in an isolated core of the R\+PI for real time performance.
+\item Target\+\_\+\+Publisher\+\_\+\+Node\+: This node subscribes to /\+T\+A\+R\+G\+\_\+\+V\+EL topic, and in the callback, publishes the target velocity to an serial tty port talking to the arduino. This runs in an isolated core of the R\+PI for real time performance.
+\item Both of these nodes are written in C++, any other nodes present have been deprecated.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md1}{}\doxysection{Instructions to start publishing trajectories\+:}\label{index_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item In the workspace $>$ execute {\ttfamily sudo ./cpuset.sh}
+\item Start roscore in 1 terminal
+\item In another terminal\+: {\ttfamily rosrun rosserial\+\_\+terpbot Curr\+\_\+\+Vel\+\_\+node}
+\item In another terminal\+: {\ttfamily rosrun rosserial\+\_\+terpbot Target\+\_\+\+Publisher\+\_\+\+Node} 
+\end{DoxyEnumerate}
