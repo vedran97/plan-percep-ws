@@ -1,6 +1,8 @@
+# Workspace Level Readme:
+
 # Intent of the repository : 
 
-1. To be a container for and workspace for various packages that will be created for ENPM661 ENPM673 semester projects
+1. To be a container and workspace for various packages that will be created for ENPM661 ENPM673 semester projects: for the terpbot project.
 
 # Initial Setup for Development on PC/Laptop:
 
@@ -20,21 +22,21 @@
 11. When the container is built for the first time, a error will popup saying "Failed to enable ROS Extension" , just choose the reload window option
 10. Set up ROS dependencies using the following section
 
-# VS Code tasks:
+## VS Code tasks:
 
-0. How to use this? Ans: Open this directory as a container(or not) and press "Ctrl+Shift+B" to get a drop down list of available tasks.<br>Like this: <br> ![Tasks](./docs/tasks.png)
+0. How to use this? Ans: Open this directory as a container(or not) and press "Ctrl+Shift+B" to get a drop down list of available tasks.<br>Like this: <br> ![Tasks](./assets/tasks.png)
 1. "ROS:Build a Package" task -> This task lets you build a selected few, or all packages. CMake parrallelism limits have been added to prevent crashing during builds.
-    1. Choose a build config:<br>![Build-Config](./docs/buildmode.png)
-    2. Choose a package name:<br>![Package-Name](./docs/pkgname.png)
+    1. Choose a build config:<br>![Build-Config](./assets/buildmode.png)
+    2. Choose a package name:<br>![Package-Name](./assets/pkgname.png)
 <br>choosing no package name, will build all packages in this directory
 2. "ROS:Install ROS dependencies" task -> This task lets you install ros-deps which are mentioned in any package's package.xml file, which is included in this workspace.
 3. "ROS: Clean" task -> This task cleans the workspace off all build artifacts
 
-# Setting up ROS-Dependencies :
+## Setting up ROS-Dependencies :
 
 1. Run the VSCode task "ROS:Install ROS dependencies"
 
-# Initial Setup for Development on Raspberry PI:
+# Setup Raspberry PI for development and code build:
 
 1. Setup github ssh on RPI.
 2. Clone this repository using:
@@ -42,13 +44,4 @@
 3. > ```cd plan-percep-ws```
 4. > ```sudo bash ./robot-scripts/install-ros.bash $(pwd) ```
 5. > ```sudo  bash ./robot-scripts/dep.bash  ```
-
-# Generating custom msgs
-
-1. Add the message file in terpbot_msgs/msg ,edit the CMAKELISTS.txt of this package accordingly
-2. Build
-3. Source
-4. execute this : ```rosrun rosserial_client make_libraries ./ terpbot_msgs```
-5. This builds headers for all the message types which are recognized by rosmsg command, and all these files are generated in ./ros_lib folder,relative to this workspace
-6. Copy the newly generated terpbot_msgs directory from ./ros_lib, and paste it in Arduino IDE's rosserial library install folder/src/
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>rosserial_terpbot</name>
-  <version>0.1.1</version>
+  <version>1.0.0</version>
   <description>The rosserial_terpbot package.
   This package is designed to subscribe to values from arduino and then publishing them to a topic called "CURR_VEL".
   Similarly, it has a node to publish the a target vel to "TARG_VEL"
