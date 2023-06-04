@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['this_20package_20contains_20the_20following_20nodes_3a_95',['This package contains the following nodes:',['../index.html',1,'']]]
+  ['package_20level_20readme_3a_93',['Package level readme:',['../index.html',1,'']]]
 ];

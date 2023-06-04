@@ -191,13 +191,6 @@
       <arglist>(int argc, char **argv)</arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static const constexpr int</type>
-      <name>NO_OF_WAYPOINTS</name>
-      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
-      <anchor>ad547c854aeeed34c544e76640a5d1e18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
       <type>static const constexpr float</type>
       <name>CONTROL_FREQ</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
@@ -237,6 +230,34 @@
       <name>VMAX</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
       <anchor>acd7cd9e132a8d0c0b68269de081a83e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const Trajectory</type>
+      <name>trajectory</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>a58344b48a668567cdaf1dcb077cb0437</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>uart0_filestream</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>a011caa8b8018db295b3db7cb04860521</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint8_t</type>
+      <name>outbuf</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>abf2a642d6dc8d598aa48d8b9af0c6b0e</anchor>
+      <arglist>[50]</arglist>
+    </member>
+    <member kind="variable">
+      <type>terpbot::msgs::Target</type>
+      <name>target</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>aff9c3a670568c37393aa33b56eb30949</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -282,31 +303,45 @@
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static const Trajectory</type>
-      <name>trajectory</name>
+      <type>static const constexpr float</type>
+      <name>left_KU</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
-      <anchor>a58344b48a668567cdaf1dcb077cb0437</anchor>
+      <anchor>a3f84b50f95764d476e40f099d09db8ad</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>uart0_filestream</name>
+    <member kind="variable" static="yes">
+      <type>static const constexpr float</type>
+      <name>left_TU</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
-      <anchor>a011caa8b8018db295b3db7cb04860521</anchor>
+      <anchor>a7370eda00100b5750c57167b7aeba054</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>uint8_t</type>
-      <name>outbuf</name>
+    <member kind="variable" static="yes">
+      <type>static const constexpr float</type>
+      <name>left_kd_coeff</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
-      <anchor>abf2a642d6dc8d598aa48d8b9af0c6b0e</anchor>
-      <arglist>[50]</arglist>
+      <anchor>a895fc4952adc149843b08ae70ed47086</anchor>
+      <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>terpbot::msgs::Target</type>
-      <name>target</name>
+    <member kind="variable" static="yes">
+      <type>static const constexpr float</type>
+      <name>right_KU</name>
       <anchorfile>TargetPublisher_8cpp.html</anchorfile>
-      <anchor>aff9c3a670568c37393aa33b56eb30949</anchor>
+      <anchor>a2bfece145ba507d2da80eb491c380aa6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const constexpr float</type>
+      <name>right_TU</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>ae6d94b41d024102732f7657881838b20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const constexpr float</type>
+      <name>right_kd_coeff</name>
+      <anchorfile>TargetPublisher_8cpp.html</anchorfile>
+      <anchor>a977ff9dbe087ca252ddf38aa7438fde6</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -344,7 +379,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>This package contains the following nodes:</title>
+    <title>Package level readme:</title>
     <filename>index</filename>
   </compound>
 </tagfile>

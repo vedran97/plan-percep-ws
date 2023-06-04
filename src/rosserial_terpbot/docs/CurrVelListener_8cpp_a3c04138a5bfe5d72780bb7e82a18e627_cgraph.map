@@ -1,5 +1,5 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,60,32"/>
-<area shape="rect" id="node2" href="$CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901" title=" " alt="" coords="108,5,216,32"/>
-<area shape="rect" id="node3" href="$CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title=" " alt="" coords="264,5,371,32"/>
+<area shape="rect" id="node1" title="Main function." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node2" href="$CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901" title="Publishes the current odometry data to a ros topic." alt="" coords="108,5,216,32"/>
+<area shape="rect" id="node3" href="$CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title="Filter Velocity." alt="" coords="264,5,371,32"/>
 </map>

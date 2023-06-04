@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('TargetPublisher_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b50dc725db71458029b22868a9250dc9.html">nodes</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -124,87 +140,126 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrajectory.html">Trajectory</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parabolic trajectory class.  <a href="classTrajectory.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a7534f8628a2adf0c2d1cf2817cf47e42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a7534f8628a2adf0c2d1cf2817cf47e42">USE_LOCAL_TRAJECTORY</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a7534f8628a2adf0c2d1cf2817cf47e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to generate a local trajectory and send it to the controller.  <a href="TargetPublisher_8cpp.html#a7534f8628a2adf0c2d1cf2817cf47e42">More...</a><br /></td></tr>
 <tr class="separator:a7534f8628a2adf0c2d1cf2817cf47e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a57f05ffacf2851f97f108c13ffaae85b"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a57f05ffacf2851f97f108c13ffaae85b">convertLinearToRPS</a> (const float &amp;linearVelocity)</td></tr>
+<tr class="memdesc:a57f05ffacf2851f97f108c13ffaae85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts linear velocity to Radians per second.  <a href="TargetPublisher_8cpp.html#a57f05ffacf2851f97f108c13ffaae85b">More...</a><br /></td></tr>
 <tr class="separator:a57f05ffacf2851f97f108c13ffaae85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69e5957211ff4ffa4ed80f7bf2a8cd30"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a69e5957211ff4ffa4ed80f7bf2a8cd30">convertRPSToLinear</a> (const float &amp;RPS)</td></tr>
+<tr class="memdesc:a69e5957211ff4ffa4ed80f7bf2a8cd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts angular velocity to linear velocity.  <a href="TargetPublisher_8cpp.html#a69e5957211ff4ffa4ed80f7bf2a8cd30">More...</a><br /></td></tr>
 <tr class="separator:a69e5957211ff4ffa4ed80f7bf2a8cd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb2d8596a890633a8d33de6a7c526626"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#abb2d8596a890633a8d33de6a7c526626">getXLinearVelocity</a> (const float &amp;t, const float &amp;T)</td></tr>
+<tr class="memdesc:abb2d8596a890633a8d33de6a7c526626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parabolic velocity profile.  <a href="TargetPublisher_8cpp.html#abb2d8596a890633a8d33de6a7c526626">More...</a><br /></td></tr>
 <tr class="separator:abb2d8596a890633a8d33de6a7c526626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29b7792f93c86d79870c176349c0d0a6"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a29b7792f93c86d79870c176349c0d0a6">getT</a> (const float &amp;xInitial, const float &amp;xFinal)</td></tr>
+<tr class="memdesc:a29b7792f93c86d79870c176349c0d0a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total time of the trajectory.  <a href="TargetPublisher_8cpp.html#a29b7792f93c86d79870c176349c0d0a6">More...</a><br /></td></tr>
 <tr class="separator:a29b7792f93c86d79870c176349c0d0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0df06aaae3df659fef76b19d813e6e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e">publishToUART</a> (int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, uint8_t *<a class="el" href="TargetPublisher_8cpp.html#abf2a642d6dc8d598aa48d8b9af0c6b0e">outbuf</a>, int data_length)</td></tr>
+<tr class="memdesc:a3b0df06aaae3df659fef76b19d813e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes data in outbuf of length data_length to the uart port.  <a href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e">More...</a><br /></td></tr>
 <tr class="separator:a3b0df06aaae3df659fef76b19d813e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a479aecaedadf078d409ae752aae7a5bd"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a479aecaedadf078d409ae752aae7a5bd"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd">publishToUart</a> (int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, uint8_t *<a class="el" href="TargetPublisher_8cpp.html#abf2a642d6dc8d598aa48d8b9af0c6b0e">outbuf</a>, T &amp;input)</td></tr>
+<tr class="memdesc:a479aecaedadf078d409ae752aae7a5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the input data and publishes it to the uart port.  <a href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd">More...</a><br /></td></tr>
 <tr class="separator:a479aecaedadf078d409ae752aae7a5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a368e0cadfe160639a1f0f7a3b22e4bf7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7">sendGains</a> (int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, terpbot::msgs::Gains &amp;leftGain, terpbot::msgs::Gains &amp;rightGain)</td></tr>
+<tr class="memdesc:a368e0cadfe160639a1f0f7a3b22e4bf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the gains to the controller.  <a href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7">More...</a><br /></td></tr>
 <tr class="separator:a368e0cadfe160639a1f0f7a3b22e4bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad011ec3f7565c9327abd840122c80693"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693">sendLocalTrajectory</a> (const <a class="el" href="classTrajectory.html">Trajectory</a> &amp;<a class="el" href="TargetPublisher_8cpp.html#a58344b48a668567cdaf1dcb077cb0437">trajectory</a>, int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>)</td></tr>
+<tr class="memdesc:ad011ec3f7565c9327abd840122c80693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the local trajectory to the controller.  <a href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693">More...</a><br /></td></tr>
 <tr class="separator:ad011ec3f7565c9327abd840122c80693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8b5665cf07eac3ce3d299ec8090e907"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907">enable_controller</a> ()</td></tr>
+<tr class="memdesc:ab8b5665cf07eac3ce3d299ec8090e907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the control action.  <a href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907">More...</a><br /></td></tr>
 <tr class="separator:ab8b5665cf07eac3ce3d299ec8090e907"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999dc66d2a9313e9fbe55150daf2d83c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c">disable_controller</a> ()</td></tr>
+<tr class="memdesc:a999dc66d2a9313e9fbe55150daf2d83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the control action.  <a href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c">More...</a><br /></td></tr>
 <tr class="separator:a999dc66d2a9313e9fbe55150daf2d83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8cbbf1297838da3cc659aff72aec8d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8">initGains</a> (terpbot::msgs::Gains &amp;leftGain, terpbot::msgs::Gains &amp;rightGain)</td></tr>
+<tr class="memdesc:ae8cbbf1297838da3cc659aff72aec8d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the gains.  <a href="TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8">More...</a><br /></td></tr>
 <tr class="separator:ae8cbbf1297838da3cc659aff72aec8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ffaee91d7b0d823a2b3edf5d10a8c7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c">setupSerialPort</a> (const int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>)</td></tr>
+<tr class="memdesc:a6ffaee91d7b0d823a2b3edf5d10a8c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the serial port.  <a href="TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c">More...</a><br /></td></tr>
 <tr class="separator:a6ffaee91d7b0d823a2b3edf5d10a8c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06dcf744fffc2be61691109a3d6748da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da">sendPoint</a> (const terpbot::msgs::Target &amp;targ, int &amp;<a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>)</td></tr>
+<tr class="memdesc:a06dcf744fffc2be61691109a3d6748da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the target and publishes it to the uart port.  <a href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da">More...</a><br /></td></tr>
 <tr class="separator:a06dcf744fffc2be61691109a3d6748da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a967ee82b42ba01f107cc13926530d08b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b">rot2wheel</a> (float vel, float ang_vel)</td></tr>
+<tr class="memdesc:a967ee82b42ba01f107cc13926530d08b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts linear and angular velocity to wheel tickrate.  <a href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b">More...</a><br /></td></tr>
 <tr class="separator:a967ee82b42ba01f107cc13926530d08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1fe1e89ec8a678408d81fa1090d8651"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651">targetCB</a> (const geometry_msgs::Pose2D::ConstPtr &amp;msg)</td></tr>
+<tr class="memdesc:aa1fe1e89ec8a678408d81fa1090d8651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for the target velocity subscriber.  <a href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651">More...</a><br /></td></tr>
 <tr class="separator:aa1fe1e89ec8a678408d81fa1090d8651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258e3b580e688a0cf46e4258525aeaf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1">sigint_handler</a> (int sig)</td></tr>
+<tr class="memdesc:a258e3b580e688a0cf46e4258525aeaf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal handler for SIGINT.  <a href="TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1">More...</a><br /></td></tr>
 <tr class="separator:a258e3b580e688a0cf46e4258525aeaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function.  <a href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ad547c854aeeed34c544e76640a5d1e18"><td class="memItemLeft" align="right" valign="top">static const constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ad547c854aeeed34c544e76640a5d1e18">NO_OF_WAYPOINTS</a> = 350</td></tr>
-<tr class="separator:ad547c854aeeed34c544e76640a5d1e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223242b810b83dfa45310239c5b2c33d"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a223242b810b83dfa45310239c5b2c33d">CONTROL_FREQ</a> = 75</td></tr>
+<tr class="memdesc:a223242b810b83dfa45310239c5b2c33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control freq in Hz.  <a href="TargetPublisher_8cpp.html#a223242b810b83dfa45310239c5b2c33d">More...</a><br /></td></tr>
 <tr class="separator:a223242b810b83dfa45310239c5b2c33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82ce6f0d7def7fa07876d957b996007"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#aa82ce6f0d7def7fa07876d957b996007">TICKS_PER_REV</a> = 495</td></tr>
+<tr class="memdesc:aa82ce6f0d7def7fa07876d957b996007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ticks per revolution of the wheel.  <a href="TargetPublisher_8cpp.html#aa82ce6f0d7def7fa07876d957b996007">More...</a><br /></td></tr>
 <tr class="separator:aa82ce6f0d7def7fa07876d957b996007"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51ca90c8f05a1e746a3befc458926ea8"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a51ca90c8f05a1e746a3befc458926ea8">DIA_WHEEL</a> = 64.5/1000</td></tr>
+<tr class="memdesc:a51ca90c8f05a1e746a3befc458926ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diameter of the wheel in meters.  <a href="TargetPublisher_8cpp.html#a51ca90c8f05a1e746a3befc458926ea8">More...</a><br /></td></tr>
 <tr class="separator:a51ca90c8f05a1e746a3befc458926ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a0647cf6b6d4d3c80c1485b3796ee78"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a4a0647cf6b6d4d3c80c1485b3796ee78">MAX_RPM</a> = 140</td></tr>
+<tr class="memdesc:a4a0647cf6b6d4d3c80c1485b3796ee78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum RPM of the wheel.  <a href="TargetPublisher_8cpp.html#a4a0647cf6b6d4d3c80c1485b3796ee78">More...</a><br /></td></tr>
 <tr class="separator:a4a0647cf6b6d4d3c80c1485b3796ee78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd4a84848857c5da1d92647c43eb76fb"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#acd4a84848857c5da1d92647c43eb76fb">DOUBLE_PI</a> = 2*M_PI</td></tr>
+<tr class="memdesc:acd4a84848857c5da1d92647c43eb76fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">2*PI  <a href="TargetPublisher_8cpp.html#acd4a84848857c5da1d92647c43eb76fb">More...</a><br /></td></tr>
 <tr class="separator:acd4a84848857c5da1d92647c43eb76fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd7cd9e132a8d0c0b68269de081a83e9"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#acd7cd9e132a8d0c0b68269de081a83e9">VMAX</a> = ((float)<a class="el" href="TargetPublisher_8cpp.html#a4a0647cf6b6d4d3c80c1485b3796ee78">MAX_RPM</a>/60)*<a class="el" href="TargetPublisher_8cpp.html#acd4a84848857c5da1d92647c43eb76fb">DOUBLE_PI</a>*(<a class="el" href="TargetPublisher_8cpp.html#a51ca90c8f05a1e746a3befc458926ea8">DIA_WHEEL</a>/2)</td></tr>
+<tr class="memdesc:acd7cd9e132a8d0c0b68269de081a83e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum linear velocity of the wheel in m/s.  <a href="TargetPublisher_8cpp.html#acd7cd9e132a8d0c0b68269de081a83e9">More...</a><br /></td></tr>
 <tr class="separator:acd7cd9e132a8d0c0b68269de081a83e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f84b50f95764d476e40f099d09db8ad"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a3f84b50f95764d476e40f099d09db8ad">left_KU</a> = 32.5</td></tr>
-<tr class="separator:a3f84b50f95764d476e40f099d09db8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7370eda00100b5750c57167b7aeba054"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a7370eda00100b5750c57167b7aeba054">left_TU</a> = 0.1481</td></tr>
-<tr class="separator:a7370eda00100b5750c57167b7aeba054"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a895fc4952adc149843b08ae70ed47086"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a895fc4952adc149843b08ae70ed47086">left_kd_coeff</a> = 0.075</td></tr>
-<tr class="separator:a895fc4952adc149843b08ae70ed47086"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bfece145ba507d2da80eb491c380aa6"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a2bfece145ba507d2da80eb491c380aa6">right_KU</a> = 36</td></tr>
-<tr class="separator:a2bfece145ba507d2da80eb491c380aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6d94b41d024102732f7657881838b20"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ae6d94b41d024102732f7657881838b20">right_TU</a> = 0.1481</td></tr>
-<tr class="separator:ae6d94b41d024102732f7657881838b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a977ff9dbe087ca252ddf38aa7438fde6"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a977ff9dbe087ca252ddf38aa7438fde6">right_kd_coeff</a> = 0.075</td></tr>
-<tr class="separator:a977ff9dbe087ca252ddf38aa7438fde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58344b48a668567cdaf1dcb077cb0437"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classTrajectory.html">Trajectory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a58344b48a668567cdaf1dcb077cb0437">trajectory</a></td></tr>
+<tr class="memdesc:a58344b48a668567cdaf1dcb077cb0437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local trajectory object.  <a href="TargetPublisher_8cpp.html#a58344b48a668567cdaf1dcb077cb0437">More...</a><br /></td></tr>
 <tr class="separator:a58344b48a668567cdaf1dcb077cb0437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a011caa8b8018db295b3db7cb04860521"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a></td></tr>
+<tr class="memdesc:a011caa8b8018db295b3db7cb04860521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uart filestream FD.  <a href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">More...</a><br /></td></tr>
 <tr class="separator:a011caa8b8018db295b3db7cb04860521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf2a642d6dc8d598aa48d8b9af0c6b0e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#abf2a642d6dc8d598aa48d8b9af0c6b0e">outbuf</a> [50]</td></tr>
+<tr class="memdesc:abf2a642d6dc8d598aa48d8b9af0c6b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer to store the serialized data.  <a href="TargetPublisher_8cpp.html#abf2a642d6dc8d598aa48d8b9af0c6b0e">More...</a><br /></td></tr>
 <tr class="separator:abf2a642d6dc8d598aa48d8b9af0c6b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff9c3a670568c37393aa33b56eb30949"><td class="memItemLeft" align="right" valign="top">terpbot::msgs::Target&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#aff9c3a670568c37393aa33b56eb30949">target</a></td></tr>
+<tr class="memdesc:aff9c3a670568c37393aa33b56eb30949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to store target as wheel tickrate.  <a href="TargetPublisher_8cpp.html#aff9c3a670568c37393aa33b56eb30949">More...</a><br /></td></tr>
 <tr class="separator:aff9c3a670568c37393aa33b56eb30949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Left motor gains</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Left Motor Controller Gain variables </p>
+</div></td></tr>
+<tr class="memitem:a3f84b50f95764d476e40f099d09db8ad"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a3f84b50f95764d476e40f099d09db8ad">left_KU</a> = 32.5</td></tr>
+<tr class="memdesc:a3f84b50f95764d476e40f099d09db8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Left Ku.  <a href="TargetPublisher_8cpp.html#a3f84b50f95764d476e40f099d09db8ad">More...</a><br /></td></tr>
+<tr class="separator:a3f84b50f95764d476e40f099d09db8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7370eda00100b5750c57167b7aeba054"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a7370eda00100b5750c57167b7aeba054">left_TU</a> = 0.1481</td></tr>
+<tr class="memdesc:a7370eda00100b5750c57167b7aeba054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Left Tu.  <a href="TargetPublisher_8cpp.html#a7370eda00100b5750c57167b7aeba054">More...</a><br /></td></tr>
+<tr class="separator:a7370eda00100b5750c57167b7aeba054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a895fc4952adc149843b08ae70ed47086"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a895fc4952adc149843b08ae70ed47086">left_kd_coeff</a> = 0.075</td></tr>
+<tr class="memdesc:a895fc4952adc149843b08ae70ed47086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Left Kd coeff.  <a href="TargetPublisher_8cpp.html#a895fc4952adc149843b08ae70ed47086">More...</a><br /></td></tr>
+<tr class="separator:a895fc4952adc149843b08ae70ed47086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Right Motor gains</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Right Motor Controller Gain variables </p>
+</div></td></tr>
+<tr class="memitem:a2bfece145ba507d2da80eb491c380aa6"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a2bfece145ba507d2da80eb491c380aa6">right_KU</a> = 36</td></tr>
+<tr class="memdesc:a2bfece145ba507d2da80eb491c380aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Right Ku.  <a href="TargetPublisher_8cpp.html#a2bfece145ba507d2da80eb491c380aa6">More...</a><br /></td></tr>
+<tr class="separator:a2bfece145ba507d2da80eb491c380aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d94b41d024102732f7657881838b20"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#ae6d94b41d024102732f7657881838b20">right_TU</a> = 0.1481</td></tr>
+<tr class="memdesc:ae6d94b41d024102732f7657881838b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Right Tu.  <a href="TargetPublisher_8cpp.html#ae6d94b41d024102732f7657881838b20">More...</a><br /></td></tr>
+<tr class="separator:ae6d94b41d024102732f7657881838b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977ff9dbe087ca252ddf38aa7438fde6"><td class="memItemLeft" align="right" valign="top">static const constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TargetPublisher_8cpp.html#a977ff9dbe087ca252ddf38aa7438fde6">right_kd_coeff</a> = 0.075</td></tr>
+<tr class="memdesc:a977ff9dbe087ca252ddf38aa7438fde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Right Kd coeff.  <a href="TargetPublisher_8cpp.html#a977ff9dbe087ca252ddf38aa7438fde6">More...</a><br /></td></tr>
+<tr class="separator:a977ff9dbe087ca252ddf38aa7438fde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a7534f8628a2adf0c2d1cf2817cf47e42"></a>
@@ -219,7 +274,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00019">19</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Macro to generate a local trajectory and send it to the controller. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00020">20</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,7 +305,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00028">28</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Converts linear velocity to Radians per second. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">linearVelocity</td><td>m/s </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Angular vel in Radians per second </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00038">38</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -256,8 +322,8 @@ Variables</h2></td></tr>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b_icgraph" id="TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b_icgraph">
-<area shape="rect" title=" " alt="" coords="212,5,363,32"/>
-<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title=" " alt="" coords="5,5,164,32"/>
+<area shape="rect" title="Converts linear velocity to Radians per second." alt="" coords="212,5,363,32"/>
+<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title="Constructs a trajectory." alt="" coords="5,5,164,32"/>
 </map>
 </div>
 
@@ -287,7 +353,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00031">31</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Converts angular velocity to linear velocity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">RPS</td><td>radians per sec </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>linear velocity in m/s </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00044">44</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,9 +380,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Disables the control action. </p>
 <p>Ensure controller has stopped</p>
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00184">184</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00235">235</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -315,9 +392,9 @@ Variables</h2></td></tr>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c_cgraph" id="TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,144,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="192,5,303,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="351,5,469,32"/>
+<area shape="rect" title="Disables the control action." alt="" coords="5,5,144,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="192,5,303,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="351,5,469,32"/>
 </map>
 </div>
 
@@ -337,9 +414,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Enables the control action. </p>
 <p>Ensure controller has started</p>
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00168">168</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00218">218</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -347,9 +426,9 @@ Variables</h2></td></tr>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_cgraph" id="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,140,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="188,5,299,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="347,5,465,32"/>
+<area shape="rect" title="Enables the control action." alt="" coords="5,5,140,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="188,5,299,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="347,5,465,32"/>
 </map>
 </div>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -359,8 +438,8 @@ Variables</h2></td></tr>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_icgraph" id="TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,243,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Enables the control action." alt="" coords="108,5,243,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -400,7 +479,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00037">37</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Returns the total time of the trajectory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xInitial</td><td>initial position of the trajectory </td></tr>
+    <tr><td class="paramname">xFinal</td><td>final position of the trajectory </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00057">57</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
@@ -408,8 +496,8 @@ Variables</h2></td></tr>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6_icgraph" id="TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6_icgraph">
-<area shape="rect" title=" " alt="" coords="212,5,263,32"/>
-<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title=" " alt="" coords="5,5,164,32"/>
+<area shape="rect" title="Returns the total time of the trajectory." alt="" coords="212,5,263,32"/>
+<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title="Constructs a trajectory." alt="" coords="5,5,164,32"/>
 </map>
 </div>
 
@@ -449,7 +537,17 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00034">34</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Parabolic velocity profile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>time in the trajectory </td></tr>
+    <tr><td class="paramname">T</td><td>total time of the trajectory </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>linear velocity in m/s </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00051">51</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
@@ -457,8 +555,8 @@ Variables</h2></td></tr>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626_icgraph" id="TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626_icgraph">
-<area shape="rect" title=" " alt="" coords="212,5,357,32"/>
-<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title=" " alt="" coords="5,5,164,32"/>
+<area shape="rect" title="Parabolic velocity profile." alt="" coords="212,5,357,32"/>
+<area shape="rect" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089" title="Constructs a trajectory." alt="" coords="5,5,164,32"/>
 </map>
 </div>
 
@@ -490,7 +588,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00199">199</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Initializes the gains. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00252">252</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
@@ -498,8 +598,8 @@ Variables</h2></td></tr>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8_icgraph" id="TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,188,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Initializes the gains." alt="" coords="108,5,188,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -531,7 +631,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00249">249</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Main function. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00311">311</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
@@ -539,18 +641,18 @@ Variables</h2></td></tr>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" id="TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph">
-<area shape="rect" title=" " alt="" coords="5,143,60,170"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title=" " alt="" coords="286,16,421,43"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8" title=" " alt="" coords="129,42,209,68"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title=" " alt="" coords="308,92,399,119"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title=" " alt="" coords="277,143,429,170"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c" title=" " alt="" coords="108,194,229,220"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1" title=" " alt="" coords="111,244,226,271"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="129,295,208,322"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="477,118,588,144"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="636,118,755,144"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title=" " alt="" coords="310,244,397,271"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title=" " alt="" coords="310,295,397,322"/>
+<area shape="rect" title="Main function." alt="" coords="5,143,60,170"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title="Enables the control action." alt="" coords="286,16,421,43"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8" title="Initializes the gains." alt="" coords="129,42,209,68"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title="Sends the gains to the controller." alt="" coords="308,92,399,119"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title="Sends the local trajectory to the controller." alt="" coords="277,143,429,170"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c" title="Sets up the serial port." alt="" coords="108,194,229,220"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1" title="Signal handler for SIGINT." alt="" coords="111,244,226,271"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="129,295,208,322"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="477,118,588,144"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="636,118,755,144"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title="Converts linear and angular velocity to wheel tickrate." alt="" coords="310,244,397,271"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title="Serializes the target and publishes it to the uart port." alt="" coords="310,295,397,322"/>
 </map>
 </div>
 
@@ -596,7 +698,18 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00069">69</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Publishes data in outbuf of length data_length to the uart port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart0_filestream</td><td>Uart filestream </td></tr>
+    <tr><td class="paramname">outbuf</td><td>Buffer with the data </td></tr>
+    <tr><td class="paramname">data_length</td><td>length of the data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00098">98</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -604,15 +717,15 @@ Variables</h2></td></tr>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e_icgraph" id="TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e_icgraph">
-<area shape="rect" title=" " alt="" coords="649,107,768,133"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="491,107,601,133"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c" title=" " alt="" coords="297,5,436,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title=" " alt="" coords="108,56,243,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title=" " alt="" coords="130,107,221,133"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title=" " alt="" coords="291,157,443,184"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title=" " alt="" coords="323,208,410,235"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,132,60,159"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="136,208,215,235"/>
+<area shape="rect" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="649,107,768,133"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="491,107,601,133"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c" title="Disables the control action." alt="" coords="297,5,436,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title="Enables the control action." alt="" coords="108,56,243,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title="Sends the gains to the controller." alt="" coords="130,107,221,133"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title="Sends the local trajectory to the controller." alt="" coords="291,157,443,184"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title="Serializes the target and publishes it to the uart port." alt="" coords="323,208,410,235"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,132,60,159"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="136,208,215,235"/>
 </map>
 </div>
 
@@ -660,7 +773,18 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00074">74</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Serializes the input data and publishes it to the uart port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart0_filestream</td><td>Uart stream </td></tr>
+    <tr><td class="paramname">outbuf</td><td>buffer where data has to be serialized </td></tr>
+    <tr><td class="paramname">input</td><td>input data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful,1 otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00108">108</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
@@ -668,8 +792,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_cgraph" id="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="164,5,283,32"/>
+<area shape="rect" title="Serializes the input data and publishes it to the uart port." alt="" coords="5,5,116,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="164,5,283,32"/>
 </map>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -679,14 +803,14 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_icgraph" id="TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd_icgraph">
-<area shape="rect" title=" " alt="" coords="491,107,601,133"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c" title=" " alt="" coords="297,5,436,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title=" " alt="" coords="108,56,243,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title=" " alt="" coords="130,107,221,133"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title=" " alt="" coords="291,157,443,184"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title=" " alt="" coords="323,208,410,235"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,132,60,159"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="136,208,215,235"/>
+<area shape="rect" title="Serializes the input data and publishes it to the uart port." alt="" coords="491,107,601,133"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a999dc66d2a9313e9fbe55150daf2d83c" title="Disables the control action." alt="" coords="297,5,436,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title="Enables the control action." alt="" coords="108,56,243,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title="Sends the gains to the controller." alt="" coords="130,107,221,133"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title="Sends the local trajectory to the controller." alt="" coords="291,157,443,184"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title="Serializes the target and publishes it to the uart port." alt="" coords="323,208,410,235"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,132,60,159"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="136,208,215,235"/>
 </map>
 </div>
 
@@ -726,7 +850,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00230">230</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Converts linear and angular velocity to wheel tickrate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vel</td><td>Linear velocity in cm/s </td></tr>
+    <tr><td class="paramname">ang_vel</td><td>Angular velocity in rad/s </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00286">286</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
@@ -734,9 +867,9 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b_icgraph" id="TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b_icgraph">
-<area shape="rect" title=" " alt="" coords="235,5,321,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="108,5,187,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Converts linear and angular velocity to wheel tickrate." alt="" coords="235,5,321,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="108,5,187,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -773,10 +906,21 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends the gains to the controller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart0_filestream</td><td>Uart filestream FD </td></tr>
+    <tr><td class="paramname">leftGain</td><td>Left motor gain </td></tr>
+    <tr><td class="paramname">rightGain</td><td>Right motor gain </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful,1 otherwise </dd></dl>
 <p>Left Motor Gains</p>
 <p>Right Motor Gains</p>
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00086">86</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00125">125</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
@@ -784,9 +928,9 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_cgraph" id="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,96,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="144,5,255,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="303,5,421,32"/>
+<area shape="rect" title="Sends the gains to the controller." alt="" coords="5,5,96,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="144,5,255,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="303,5,421,32"/>
 </map>
 </div>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -796,8 +940,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_icgraph" id="TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,199,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Sends the gains to the controller." alt="" coords="108,5,199,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -828,11 +972,13 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends the local trajectory to the controller. </p>
 <p>Ensure controller has started</p>
 <p>Start sending trajectories</p>
 <p>Ensure controller has stopped</p>
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00104">104</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00144">144</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
@@ -840,9 +986,9 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-15-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_cgraph" id="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,157,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="205,5,316,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="364,5,483,32"/>
+<area shape="rect" title="Sends the local trajectory to the controller." alt="" coords="5,5,157,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="205,5,316,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="364,5,483,32"/>
 </map>
 </div>
 <div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -852,8 +998,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-16-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_icgraph" id="TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,260,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Sends the local trajectory to the controller." alt="" coords="108,5,260,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -893,7 +1039,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00226">226</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Serializes the target and publishes it to the uart port. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00279">279</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
@@ -901,9 +1049,9 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-17-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_cgraph" id="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,92,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="140,5,251,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="299,5,417,32"/>
+<area shape="rect" title="Serializes the target and publishes it to the uart port." alt="" coords="5,5,92,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="140,5,251,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="299,5,417,32"/>
 </map>
 </div>
 <div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -913,9 +1061,9 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-18-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_icgraph" id="TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da_icgraph">
-<area shape="rect" title=" " alt="" coords="235,5,321,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="108,5,187,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Serializes the target and publishes it to the uart port." alt="" coords="235,5,321,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="108,5,187,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -937,7 +1085,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00213">213</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Sets up the serial port. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00267">267</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
@@ -945,8 +1095,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-19-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c_icgraph" id="TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,229,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Sets up the serial port." alt="" coords="108,5,229,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -968,7 +1118,10 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00244">244</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Signal handler for SIGINT. </p>
+<p>Shuts down the ros node </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00305">305</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-20-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-20-summary" class="dynsummary" style="display:block;">
@@ -976,8 +1129,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-20-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1_icgraph" id="TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,223,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Signal handler for SIGINT." alt="" coords="108,5,223,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -999,7 +1152,15 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00238">238</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Callback function for the target velocity subscriber. </p>
+<p>Converts the linear and angular velocity to wheel tickrate and sends it to the controller </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Contains linear and angular velocity of needed from the robot </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00297">297</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-21-summary" class="dynsummary" style="display:block;">
@@ -1007,11 +1168,11 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-21-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_cgraph.png" border="0" usemap="#TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_cgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_cgraph" id="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,84,57"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title=" " alt="" coords="132,5,219,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title=" " alt="" coords="132,56,219,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="267,56,377,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="425,56,544,83"/>
+<area shape="rect" title="Callback function for the target velocity subscriber." alt="" coords="5,31,84,57"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title="Converts linear and angular velocity to wheel tickrate." alt="" coords="132,5,219,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title="Serializes the target and publishes it to the uart port." alt="" coords="132,56,219,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="267,56,377,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="425,56,544,83"/>
 </map>
 </div>
 <div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1021,8 +1182,8 @@ template&lt;typename T &gt; </div>
 <div id="dynsection-22-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_icgraph.png" border="0" usemap="#TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_icgraph" alt=""/></div>
 <map name="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_icgraph" id="TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,187,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Callback function for the target velocity subscriber." alt="" coords="108,5,187,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -1049,7 +1210,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00021">21</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Control freq in Hz. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00023">23</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1073,7 +1236,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00023">23</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Diameter of the wheel in meters. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00027">27</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1097,7 +1262,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00025">25</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>2*PI </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00031">31</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1288,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00156">156</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Left Kd coeff. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00194">194</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1314,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00154">154</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Left Ku. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00192">192</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1169,7 +1340,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00155">155</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Left Tu. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00193">193</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1193,31 +1366,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00024">24</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Maximum RPM of the wheel. </p>
 
-</div>
-</div>
-<a id="ad547c854aeeed34c544e76640a5d1e18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad547c854aeeed34c544e76640a5d1e18">&#9670;&nbsp;</a></span>NO_OF_WAYPOINTS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const constexpr int NO_OF_WAYPOINTS = 350</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00020">20</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00029">29</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1384,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00165">165</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Buffer to store the serialized data. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00213">213</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1257,7 +1410,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00160">160</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Right Kd coeff. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00204">204</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1281,7 +1436,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00158">158</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Right Ku. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00202">202</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1305,7 +1462,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00159">159</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Right Tu. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00203">203</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1321,7 +1480,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00166">166</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Variable to store target as wheel tickrate. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00215">215</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1345,7 +1506,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00022">22</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Ticks per revolution of the wheel. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00025">25</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1369,7 +1532,9 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00162">162</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Local trajectory object. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00208">208</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1550,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00164">164</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Uart filestream FD. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00211">211</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -1409,16 +1576,22 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00026">26</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Maximum linear velocity of the wheel in m/s. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00033">33</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b50dc725db71458029b22868a9250dc9.html">nodes</a></li><li class="navelem"><a class="el" href="TargetPublisher_8cpp.html">TargetPublisher.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

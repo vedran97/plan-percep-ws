@@ -27,86 +27,92 @@ Include dependency graph for Target\+Publisher.\+cpp\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classTrajectory}{Trajectory}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Parabolic trajectory class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{TargetPublisher_8cpp_a7534f8628a2adf0c2d1cf2817cf47e42}{U\+S\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+R\+A\+J\+E\+C\+T\+O\+RY}}~0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Macro to generate a local trajectory and send it to the controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a57f05ffacf2851f97f108c13ffaae85b}{convert\+Linear\+To\+R\+PS}} (const float \&linear\+Velocity)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts linear velocity to Radians per second. \end{DoxyCompactList}\item 
 static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a69e5957211ff4ffa4ed80f7bf2a8cd30}{convert\+R\+P\+S\+To\+Linear}} (const float \&R\+PS)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts angular velocity to linear velocity. \end{DoxyCompactList}\item 
 static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_abb2d8596a890633a8d33de6a7c526626}{get\+X\+Linear\+Velocity}} (const float \&t, const float \&T)
-\item 
+\begin{DoxyCompactList}\small\item\em Parabolic velocity profile. \end{DoxyCompactList}\item 
 static constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a29b7792f93c86d79870c176349c0d0a6}{getT}} (const float \&x\+Initial, const float \&x\+Final)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the total time of the trajectory. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TargetPublisher_8cpp_a3b0df06aaae3df659fef76b19d813e6e}{publish\+To\+U\+A\+RT}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}}, int data\+\_\+length)
-\item 
+\begin{DoxyCompactList}\small\item\em Publishes data in outbuf of length data\+\_\+length to the uart port. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{TargetPublisher_8cpp_a479aecaedadf078d409ae752aae7a5bd}{publish\+To\+Uart}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}}, T \&input)
-\item 
+\begin{DoxyCompactList}\small\item\em Serializes the input data and publishes it to the uart port. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TargetPublisher_8cpp_a368e0cadfe160639a1f0f7a3b22e4bf7}{send\+Gains}} (int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}, terpbot\+::msgs\+::\+Gains \&left\+Gain, terpbot\+::msgs\+::\+Gains \&right\+Gain)
-\item 
+\begin{DoxyCompactList}\small\item\em Sends the gains to the controller. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TargetPublisher_8cpp_ad011ec3f7565c9327abd840122c80693}{send\+Local\+Trajectory}} (const \mbox{\hyperlink{classTrajectory}{Trajectory}} \&\mbox{\hyperlink{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}{trajectory}}, int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
-\item 
+\begin{DoxyCompactList}\small\item\em Sends the local trajectory to the controller. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_ab8b5665cf07eac3ce3d299ec8090e907}{enable\+\_\+controller}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables the control action. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}{disable\+\_\+controller}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disables the control action. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_ae8cbbf1297838da3cc659aff72aec8d8}{init\+Gains}} (terpbot\+::msgs\+::\+Gains \&left\+Gain, terpbot\+::msgs\+::\+Gains \&right\+Gain)
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the gains. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_a6ffaee91d7b0d823a2b3edf5d10a8c7c}{setup\+Serial\+Port}} (const int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
-\item 
+\begin{DoxyCompactList}\small\item\em Sets up the serial port. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{TargetPublisher_8cpp_a06dcf744fffc2be61691109a3d6748da}{send\+Point}} (const terpbot\+::msgs\+::\+Target \&targ, int \&\mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}})
-\item 
+\begin{DoxyCompactList}\small\item\em Serializes the target and publishes it to the uart port. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{TargetPublisher_8cpp_a967ee82b42ba01f107cc13926530d08b}{rot2wheel}} (float vel, float ang\+\_\+vel)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts linear and angular velocity to wheel tickrate. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_aa1fe1e89ec8a678408d81fa1090d8651}{target\+CB}} (const geometry\+\_\+msgs\+::\+Pose2\+D\+::\+Const\+Ptr \&msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Callback function for the target velocity subscriber. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TargetPublisher_8cpp_a258e3b580e688a0cf46e4258525aeaf1}{sigint\+\_\+handler}} (int sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Signal handler for S\+I\+G\+I\+NT. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TargetPublisher_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static const constexpr int \mbox{\hyperlink{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}{N\+O\+\_\+\+O\+F\+\_\+\+W\+A\+Y\+P\+O\+I\+N\+TS}} = 350
-\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a223242b810b83dfa45310239c5b2c33d}{C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+R\+EQ}} = 75
-\item 
+\begin{DoxyCompactList}\small\item\em Control freq in Hz. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}{T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+R\+EV}} = 495
-\item 
+\begin{DoxyCompactList}\small\item\em Ticks per revolution of the wheel. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}{D\+I\+A\+\_\+\+W\+H\+E\+EL}} = 64.\+5/1000
-\item 
+\begin{DoxyCompactList}\small\item\em Diameter of the wheel in meters. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}{M\+A\+X\+\_\+\+R\+PM}} = 140
-\item 
+\begin{DoxyCompactList}\small\item\em Maximum R\+PM of the wheel. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}{D\+O\+U\+B\+L\+E\+\_\+\+PI}} = 2$\ast$M\+\_\+\+PI
-\item 
+\begin{DoxyCompactList}\small\item\em 2$\ast$\+PI \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}{V\+M\+AX}} = ((float)\mbox{\hyperlink{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}{M\+A\+X\+\_\+\+R\+PM}}/60)$\ast$\mbox{\hyperlink{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}{D\+O\+U\+B\+L\+E\+\_\+\+PI}}$\ast$(\mbox{\hyperlink{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}{D\+I\+A\+\_\+\+W\+H\+E\+EL}}/2)
+\begin{DoxyCompactList}\small\item\em Maximum linear velocity of the wheel in m/s. \end{DoxyCompactList}\item 
+static const \mbox{\hyperlink{classTrajectory}{Trajectory}} \mbox{\hyperlink{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}{trajectory}}
+\begin{DoxyCompactList}\small\item\em Local trajectory object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}
+\begin{DoxyCompactList}\small\item\em Uart filestream FD. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}} \mbox{[}50\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer to store the serialized data. \end{DoxyCompactList}\item 
+terpbot\+::msgs\+::\+Target \mbox{\hyperlink{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}{target}}
+\begin{DoxyCompactList}\small\item\em Variable to store target as wheel tickrate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Left motor gains}\par
+{\em Left Motor Controller Gain variables }\begin{DoxyCompactItemize}
 \item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}{left\+\_\+\+KU}} = 32.\+5
-\item 
+\begin{DoxyCompactList}\small\item\em Left Ku. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}{left\+\_\+\+TU}} = 0.\+1481
-\item 
+\begin{DoxyCompactList}\small\item\em Left Tu. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}{left\+\_\+kd\+\_\+coeff}} = 0.\+075
+\begin{DoxyCompactList}\small\item\em Left Kd coeff. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Right Motor gains}\par
+{\em Right Motor Controller Gain variables }\begin{DoxyCompactItemize}
 \item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}{right\+\_\+\+KU}} = 36
-\item 
+\begin{DoxyCompactList}\small\item\em Right Ku. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}{right\+\_\+\+TU}} = 0.\+1481
-\item 
+\begin{DoxyCompactList}\small\item\em Right Tu. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}{right\+\_\+kd\+\_\+coeff}} = 0.\+075
-\item 
-static const \mbox{\hyperlink{classTrajectory}{Trajectory}} \mbox{\hyperlink{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}{trajectory}}
-\item 
-int \mbox{\hyperlink{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}{uart0\+\_\+filestream}}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}{outbuf}} \mbox{[}50\mbox{]}
-\item 
-terpbot\+::msgs\+::\+Target \mbox{\hyperlink{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}{target}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Right Kd coeff. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -118,7 +124,11 @@ terpbot\+::msgs\+::\+Target \mbox{\hyperlink{TargetPublisher_8cpp_aff9c3a670568c
 
 
 
-Definition at line 19 of file Target\+Publisher.\+cpp.
+Macro to generate a local trajectory and send it to the controller. 
+
+
+
+Definition at line 20 of file Target\+Publisher.\+cpp.
 
 
 
@@ -131,7 +141,19 @@ Definition at line 19 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 28 of file Target\+Publisher.\+cpp.
+Converts linear velocity to Radians per second. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em linear\+Velocity} & m/s \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angular vel in Radians per second 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -148,7 +170,19 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 31 of file Target\+Publisher.\+cpp.
+Converts angular velocity to linear velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R\+PS} & radians per sec \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+linear velocity in m/s 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}\label{TargetPublisher_8cpp_a999dc66d2a9313e9fbe55150daf2d83c}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!disable\_controller@{disable\_controller}}
@@ -156,9 +190,13 @@ Definition at line 31 of file Target\+Publisher.\+cpp.
 \doxysubsubsection{\texorpdfstring{disable\_controller()}{disable\_controller()}}
 {\footnotesize\ttfamily void disable\+\_\+controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Disables the control action. 
+
 Ensure controller has stopped
 
-Definition at line 184 of file Target\+Publisher.\+cpp.
+Definition at line 235 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -173,9 +211,13 @@ Here is the call graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{enable\_controller()}{enable\_controller()}}
 {\footnotesize\ttfamily void enable\+\_\+controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Enables the control action. 
+
 Ensure controller has started
 
-Definition at line 168 of file Target\+Publisher.\+cpp.
+Definition at line 218 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -199,7 +241,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 37 of file Target\+Publisher.\+cpp.
+Returns the total time of the trajectory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Initial} & initial position of the trajectory \\
+\hline
+{\em x\+Final} & final position of the trajectory \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -216,7 +269,21 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 34 of file Target\+Publisher.\+cpp.
+Parabolic velocity profile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & time in the trajectory \\
+\hline
+{\em T} & total time of the trajectory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+linear velocity in m/s 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -233,7 +300,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 199 of file Target\+Publisher.\+cpp.
+Initializes the gains. 
+
+
+
+Definition at line 252 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -250,7 +321,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 249 of file Target\+Publisher.\+cpp.
+Main function. 
+
+
+
+Definition at line 311 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -267,7 +342,23 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 
-Definition at line 69 of file Target\+Publisher.\+cpp.
+Publishes data in outbuf of length data\+\_\+length to the uart port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uart0\+\_\+filestream} & Uart filestream \\
+\hline
+{\em outbuf} & Buffer with the data \\
+\hline
+{\em data\+\_\+length} & length of the data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -285,7 +376,23 @@ int publish\+To\+Uart (\begin{DoxyParamCaption}\item[{int \&}]{uart0\+\_\+filest
 
 
 
-Definition at line 74 of file Target\+Publisher.\+cpp.
+Serializes the input data and publishes it to the uart port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uart0\+\_\+filestream} & Uart stream \\
+\hline
+{\em outbuf} & buffer where data has to be serialized \\
+\hline
+{\em input} & input data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful,1 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -309,7 +416,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 230 of file Target\+Publisher.\+cpp.
+Converts linear and angular velocity to wheel tickrate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel} & Linear velocity in cm/s \\
+\hline
+{\em ang\+\_\+vel} & Angular velocity in rad/s \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 286 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -324,11 +442,27 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{sendGains()}{sendGains()}}
 {\footnotesize\ttfamily int send\+Gains (\begin{DoxyParamCaption}\item[{int \&}]{uart0\+\_\+filestream,  }\item[{terpbot\+::msgs\+::\+Gains \&}]{left\+Gain,  }\item[{terpbot\+::msgs\+::\+Gains \&}]{right\+Gain }\end{DoxyParamCaption})}
 
+
+
+Sends the gains to the controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uart0\+\_\+filestream} & Uart filestream FD \\
+\hline
+{\em left\+Gain} & Left motor gain \\
+\hline
+{\em right\+Gain} & Right motor gain \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful,1 otherwise 
+\end{DoxyReturn}
 Left Motor Gains
 
 Right Motor Gains
 
-Definition at line 86 of file Target\+Publisher.\+cpp.
+Definition at line 125 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -350,13 +484,17 @@ Here is the caller graph for this function\+:\nopagebreak
 \doxysubsubsection{\texorpdfstring{sendLocalTrajectory()}{sendLocalTrajectory()}}
 {\footnotesize\ttfamily int send\+Local\+Trajectory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTrajectory}{Trajectory}} \&}]{trajectory,  }\item[{int \&}]{uart0\+\_\+filestream }\end{DoxyParamCaption})}
 
+
+
+Sends the local trajectory to the controller. 
+
 Ensure controller has started
 
 Start sending trajectories
 
 Ensure controller has stopped
 
-Definition at line 104 of file Target\+Publisher.\+cpp.
+Definition at line 144 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -380,7 +518,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 226 of file Target\+Publisher.\+cpp.
+Serializes the target and publishes it to the uart port. 
+
+
+
+Definition at line 279 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -404,7 +546,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 213 of file Target\+Publisher.\+cpp.
+Sets up the serial port. 
+
+
+
+Definition at line 267 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -421,7 +567,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 244 of file Target\+Publisher.\+cpp.
+Signal handler for S\+I\+G\+I\+NT. 
+
+Shuts down the ros node 
+
+Definition at line 305 of file Target\+Publisher.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -438,7 +588,16 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 238 of file Target\+Publisher.\+cpp.
+Callback function for the target velocity subscriber. 
+
+Converts the linear and angular velocity to wheel tickrate and sends it to the controller 
+\begin{DoxyParams}{Parameters}
+{\em msg} & Contains linear and angular velocity of needed from the robot \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 297 of file Target\+Publisher.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -465,7 +624,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 21 of file Target\+Publisher.\+cpp.
+Control freq in Hz. 
+
+
+
+Definition at line 23 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}\label{TargetPublisher_8cpp_a51ca90c8f05a1e746a3befc458926ea8}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!DIA\_WHEEL@{DIA\_WHEEL}}
@@ -475,7 +638,11 @@ Definition at line 21 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 23 of file Target\+Publisher.\+cpp.
+Diameter of the wheel in meters. 
+
+
+
+Definition at line 27 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}\label{TargetPublisher_8cpp_acd4a84848857c5da1d92647c43eb76fb}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!DOUBLE\_PI@{DOUBLE\_PI}}
@@ -485,7 +652,11 @@ Definition at line 23 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 25 of file Target\+Publisher.\+cpp.
+2$\ast$\+PI 
+
+
+
+Definition at line 31 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}\label{TargetPublisher_8cpp_a895fc4952adc149843b08ae70ed47086}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_kd\_coeff@{left\_kd\_coeff}}
@@ -495,7 +666,11 @@ Definition at line 25 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 156 of file Target\+Publisher.\+cpp.
+Left Kd coeff. 
+
+
+
+Definition at line 194 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}\label{TargetPublisher_8cpp_a3f84b50f95764d476e40f099d09db8ad}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_KU@{left\_KU}}
@@ -505,7 +680,11 @@ Definition at line 156 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 154 of file Target\+Publisher.\+cpp.
+Left Ku. 
+
+
+
+Definition at line 192 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}\label{TargetPublisher_8cpp_a7370eda00100b5750c57167b7aeba054}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!left\_TU@{left\_TU}}
@@ -515,7 +694,11 @@ Definition at line 154 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 155 of file Target\+Publisher.\+cpp.
+Left Tu. 
+
+
+
+Definition at line 193 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}\label{TargetPublisher_8cpp_a4a0647cf6b6d4d3c80c1485b3796ee78}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!MAX\_RPM@{MAX\_RPM}}
@@ -525,17 +708,11 @@ Definition at line 155 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 24 of file Target\+Publisher.\+cpp.
-
-\mbox{\Hypertarget{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}\label{TargetPublisher_8cpp_ad547c854aeeed34c544e76640a5d1e18}} 
-\index{TargetPublisher.cpp@{TargetPublisher.cpp}!NO\_OF\_WAYPOINTS@{NO\_OF\_WAYPOINTS}}
-\index{NO\_OF\_WAYPOINTS@{NO\_OF\_WAYPOINTS}!TargetPublisher.cpp@{TargetPublisher.cpp}}
-\doxysubsubsection{\texorpdfstring{NO\_OF\_WAYPOINTS}{NO\_OF\_WAYPOINTS}}
-{\footnotesize\ttfamily const constexpr int N\+O\+\_\+\+O\+F\+\_\+\+W\+A\+Y\+P\+O\+I\+N\+TS = 350\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+Maximum R\+PM of the wheel. 
 
 
 
-Definition at line 20 of file Target\+Publisher.\+cpp.
+Definition at line 29 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}\label{TargetPublisher_8cpp_abf2a642d6dc8d598aa48d8b9af0c6b0e}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!outbuf@{outbuf}}
@@ -545,7 +722,11 @@ Definition at line 20 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 165 of file Target\+Publisher.\+cpp.
+Buffer to store the serialized data. 
+
+
+
+Definition at line 213 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}\label{TargetPublisher_8cpp_a977ff9dbe087ca252ddf38aa7438fde6}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_kd\_coeff@{right\_kd\_coeff}}
@@ -555,7 +736,11 @@ Definition at line 165 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 160 of file Target\+Publisher.\+cpp.
+Right Kd coeff. 
+
+
+
+Definition at line 204 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}\label{TargetPublisher_8cpp_a2bfece145ba507d2da80eb491c380aa6}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_KU@{right\_KU}}
@@ -565,7 +750,11 @@ Definition at line 160 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 158 of file Target\+Publisher.\+cpp.
+Right Ku. 
+
+
+
+Definition at line 202 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}\label{TargetPublisher_8cpp_ae6d94b41d024102732f7657881838b20}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!right\_TU@{right\_TU}}
@@ -575,7 +764,11 @@ Definition at line 158 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 159 of file Target\+Publisher.\+cpp.
+Right Tu. 
+
+
+
+Definition at line 203 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}\label{TargetPublisher_8cpp_aff9c3a670568c37393aa33b56eb30949}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!target@{target}}
@@ -585,7 +778,11 @@ Definition at line 159 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 166 of file Target\+Publisher.\+cpp.
+Variable to store target as wheel tickrate. 
+
+
+
+Definition at line 215 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}\label{TargetPublisher_8cpp_aa82ce6f0d7def7fa07876d957b996007}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!TICKS\_PER\_REV@{TICKS\_PER\_REV}}
@@ -595,7 +792,11 @@ Definition at line 166 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 22 of file Target\+Publisher.\+cpp.
+Ticks per revolution of the wheel. 
+
+
+
+Definition at line 25 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}\label{TargetPublisher_8cpp_a58344b48a668567cdaf1dcb077cb0437}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!trajectory@{trajectory}}
@@ -605,7 +806,11 @@ Definition at line 22 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 162 of file Target\+Publisher.\+cpp.
+Local trajectory object. 
+
+
+
+Definition at line 208 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}\label{TargetPublisher_8cpp_a011caa8b8018db295b3db7cb04860521}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!uart0\_filestream@{uart0\_filestream}}
@@ -615,7 +820,11 @@ Definition at line 162 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 164 of file Target\+Publisher.\+cpp.
+Uart filestream FD. 
+
+
+
+Definition at line 211 of file Target\+Publisher.\+cpp.
 
 \mbox{\Hypertarget{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}\label{TargetPublisher_8cpp_acd7cd9e132a8d0c0b68269de081a83e9}} 
 \index{TargetPublisher.cpp@{TargetPublisher.cpp}!VMAX@{VMAX}}
@@ -625,5 +834,9 @@ Definition at line 164 of file Target\+Publisher.\+cpp.
 
 
 
-Definition at line 26 of file Target\+Publisher.\+cpp.
+Maximum linear velocity of the wheel in m/s. 
+
+
+
+Definition at line 33 of file Target\+Publisher.\+cpp.
 
