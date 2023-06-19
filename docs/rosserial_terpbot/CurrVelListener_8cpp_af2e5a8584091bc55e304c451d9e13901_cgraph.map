@@ -1,4 +1,4 @@
 <map id="publishOdom" name="publishOdom">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,113,32"/>
-<area shape="rect" id="node2" href="$CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title=" " alt="" coords="161,5,268,32"/>
+<area shape="rect" id="node1" title="Publishes the current odometry data to a ros topic." alt="" coords="5,5,113,32"/>
+<area shape="rect" id="node2" href="$CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title="Filter Velocity." alt="" coords="161,5,268,32"/>
 </map>

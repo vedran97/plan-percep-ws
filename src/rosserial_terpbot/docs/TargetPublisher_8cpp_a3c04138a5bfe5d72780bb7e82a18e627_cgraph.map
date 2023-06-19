@@ -1,14 +1,14 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,143,60,170"/>
-<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title=" " alt="" coords="286,16,421,43"/>
-<area shape="rect" id="node5" href="$TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8" title=" " alt="" coords="129,42,209,68"/>
-<area shape="rect" id="node6" href="$TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title=" " alt="" coords="308,92,399,119"/>
-<area shape="rect" id="node7" href="$TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title=" " alt="" coords="277,143,429,170"/>
-<area shape="rect" id="node8" href="$TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c" title=" " alt="" coords="108,194,229,220"/>
-<area shape="rect" id="node9" href="$TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1" title=" " alt="" coords="111,244,226,271"/>
-<area shape="rect" id="node10" href="$TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title=" " alt="" coords="129,295,208,322"/>
-<area shape="rect" id="node3" href="$TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="477,118,588,144"/>
-<area shape="rect" id="node4" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="636,118,755,144"/>
-<area shape="rect" id="node11" href="$TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title=" " alt="" coords="310,244,397,271"/>
-<area shape="rect" id="node12" href="$TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title=" " alt="" coords="310,295,397,322"/>
+<area shape="rect" id="node1" title="Main function." alt="" coords="5,143,60,170"/>
+<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#ab8b5665cf07eac3ce3d299ec8090e907" title="Enables the control action." alt="" coords="286,16,421,43"/>
+<area shape="rect" id="node5" href="$TargetPublisher_8cpp.html#ae8cbbf1297838da3cc659aff72aec8d8" title="Initializes the gains." alt="" coords="129,42,209,68"/>
+<area shape="rect" id="node6" href="$TargetPublisher_8cpp.html#a368e0cadfe160639a1f0f7a3b22e4bf7" title="Sends the gains to the controller." alt="" coords="308,92,399,119"/>
+<area shape="rect" id="node7" href="$TargetPublisher_8cpp.html#ad011ec3f7565c9327abd840122c80693" title="Sends the local trajectory to the controller." alt="" coords="277,143,429,170"/>
+<area shape="rect" id="node8" href="$TargetPublisher_8cpp.html#a6ffaee91d7b0d823a2b3edf5d10a8c7c" title="Sets up the serial port." alt="" coords="108,194,229,220"/>
+<area shape="rect" id="node9" href="$TargetPublisher_8cpp.html#a258e3b580e688a0cf46e4258525aeaf1" title="Signal handler for SIGINT." alt="" coords="111,244,226,271"/>
+<area shape="rect" id="node10" href="$TargetPublisher_8cpp.html#aa1fe1e89ec8a678408d81fa1090d8651" title="Callback function for the target velocity subscriber." alt="" coords="129,295,208,322"/>
+<area shape="rect" id="node3" href="$TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="477,118,588,144"/>
+<area shape="rect" id="node4" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="636,118,755,144"/>
+<area shape="rect" id="node11" href="$TargetPublisher_8cpp.html#a967ee82b42ba01f107cc13926530d08b" title="Converts linear and angular velocity to wheel tickrate." alt="" coords="310,244,397,271"/>
+<area shape="rect" id="node12" href="$TargetPublisher_8cpp.html#a06dcf744fffc2be61691109a3d6748da" title="Serializes the target and publishes it to the uart port." alt="" coords="310,295,397,322"/>
 </map>

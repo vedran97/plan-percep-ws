@@ -1,5 +1,5 @@
 <map id="disable_controller" name="disable_controller">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title=" " alt="" coords="192,5,303,32"/>
-<area shape="rect" id="node3" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="351,5,469,32"/>
+<area shape="rect" id="node1" title="Disables the control action." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#a479aecaedadf078d409ae752aae7a5bd" title="Serializes the input data and publishes it to the uart port." alt="" coords="192,5,303,32"/>
+<area shape="rect" id="node3" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="351,5,469,32"/>
 </map>

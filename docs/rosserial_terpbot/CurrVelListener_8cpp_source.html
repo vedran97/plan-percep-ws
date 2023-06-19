@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CurrVelListener_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,118 +82,127 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b50dc725db71458029b22868a9250dc9.html">nodes</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">CurrVelListener.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="CurrVelListener_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;termios.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;ros/ros.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;geometry_msgs/Pose2D.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;rosserial_terpbot/MessageParser.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;rpi-rt/rt.hpp&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">   13</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a> = 0;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">   14</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a> = 0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">   15</a></span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> constexpr <span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a> = 0.7;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">   16</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> raw, <span class="keywordtype">float</span>&amp; filter) {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <span class="keywordflow">return</span> filter = filter + <a class="code" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a> * ((raw - filter));</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">   19</a></span>&#160;geometry_msgs::Pose2D <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a>(geometry_msgs::Pose2D&amp; data,ros::Publisher&amp; curr_odom_publisher){</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">auto</span> ticks = data;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">auto</span> velX = <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(ticks.x,<a class="code" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">auto</span> velY = <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(ticks.y,<a class="code" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.x = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.x + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*cos(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.y = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.y + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*sin(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta + (((6.45/2)/19.2)*(2*3.14159/495) * (velY - velX));</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta = atan2(sin(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta),cos(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">//# Publish updated Pose2D message to &#39;/CURR_ODOM&#39; topic</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    curr_odom_publisher.publish(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">   36</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU3, 99, 100);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    rt.applyAffinity();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// rt.applyPriority();</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">auto</span> <a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a> = ::open(<span class="stringliteral">&quot;/dev/ttyACM0&quot;</span>, O_RDWR | O_NOCTTY | O_NDELAY);       <span class="comment">//Open in non blocking read/write mode</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a> == -1)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      <span class="comment">//ERROR - CAN&#39;T OPEN SERIAL PORT</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      printf(<span class="stringliteral">&quot;Error - Unable to open UART.  Ensure it is not in use by another application\n&quot;</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">struct </span>termios options;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    tcgetattr(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, &amp;options);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    options.c_cflag = B2000000 | CS8 | CLOCAL | CREAD;      <span class="comment">//&lt;Set baud rate</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    options.c_iflag = IGNPAR;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    options.c_oflag = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    options.c_lflag = 0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    tcflush(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, TCIFLUSH);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    tcsetattr(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, TCSANOW, &amp;options);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ros::init(argc, argv, <span class="stringliteral">&quot;vel_listener&quot;</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ros::NodeHandle nh;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    ros::Publisher curr_vel_pub = nh.advertise&lt;geometry_msgs::Pose2D&gt;(<span class="stringliteral">&quot;CURR_VEL&quot;</span>, 1000);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    ros::Publisher curr_odom_pub =  nh.advertise&lt;geometry_msgs::Pose2D&gt;(<span class="stringliteral">&quot;CURR_ODOM&quot;</span>, 1000);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    geometry_msgs::Pose2D curr_vel_msg;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::string line;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::ifstream tty(<span class="stringliteral">&quot;/dev/ttyACM0&quot;</span>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">auto</span> currRate = terpbot::msgs::CurrentTickRate();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">if</span> (tty.is_open()) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      std::cout &lt;&lt; <span class="stringliteral">&quot;tty is open&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">while</span> (getline(tty, line)&amp;&amp;ros::ok()) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> (line.length()==11) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                currRate.deserialize((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)line.c_str());</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                curr_vel_msg.x = currRate.leftTickRate;  </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                curr_vel_msg.y = currRate.rightTickRate;  </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                curr_vel_pub.publish(curr_vel_msg);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                ros::spinOnce();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <a class="code" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a>(curr_vel_msg,curr_odom_pub);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                ros::spinOnce();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        tty.close();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        close(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      close(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<a href="CurrVelListener_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;termios.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;ros/ros.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;geometry_msgs/Pose2D.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;rosserial_terpbot/MessageParser.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;rpi-rt/rt.hpp&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">   22</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a> = 0;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">   27</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a> = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">   30</a></span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> constexpr <span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a> = 0.7;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">   38</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> raw, <span class="keywordtype">float</span>&amp; filter) {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">return</span> filter = filter + <a class="code" href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a> * ((raw - filter));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">   42</a></span>&#160;geometry_msgs::Pose2D <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">   48</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a>(geometry_msgs::Pose2D&amp; data,ros::Publisher&amp; curr_odom_publisher){</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">auto</span> ticks = data;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">auto</span> velX = <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(ticks.x,<a class="code" href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">auto</span> velY = <a class="code" href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a>(ticks.y,<a class="code" href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.x = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.x + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*cos(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.y = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.y + (((6.45/2)/2)* (2*3.14159/495) *(velX + velY)*sin(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta = <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta + (((6.45/2)/19.2)*(2*3.14159/495) * (velY - velX));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta = atan2(sin(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta),cos(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>.theta));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//# Publish updated Pose2D message to &#39;/CURR_ODOM&#39; topic</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    curr_odom_publisher.publish(<a class="code" href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">   66</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    rpi_rt::rt_settings rt(rpi_rt::CPUS::CPU3, 99, 100);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    rt.applyAffinity();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// rt.applyPriority();</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// This blocl of code opens a serial port to read the data from the arduino</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">auto</span> <a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a> = ::open(<span class="stringliteral">&quot;/dev/ttyACM0&quot;</span>, O_RDWR | O_NOCTTY | O_NDELAY);       <span class="comment">//Open in non blocking read/write mode</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a> == -1)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="comment">//ERROR - CAN&#39;T OPEN SERIAL PORT</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      printf(<span class="stringliteral">&quot;Error - Unable to open UART.  Ensure it is not in use by another application\n&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">struct </span>termios options;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    tcgetattr(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, &amp;options);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    options.c_cflag = B2000000 | CS8 | CLOCAL | CREAD;      <span class="comment">//&lt;Set baud rate</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    options.c_iflag = IGNPAR;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    options.c_oflag = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    options.c_lflag = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    tcflush(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, TCIFLUSH);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    tcsetattr(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>, TCSANOW, &amp;options);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// block of code ends here</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ros::init(argc, argv, <span class="stringliteral">&quot;vel_listener&quot;</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    ros::NodeHandle nh;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    ros::Publisher curr_vel_pub = nh.advertise&lt;geometry_msgs::Pose2D&gt;(<span class="stringliteral">&quot;CURR_VEL&quot;</span>, 1000);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    ros::Publisher curr_odom_pub =  nh.advertise&lt;geometry_msgs::Pose2D&gt;(<span class="stringliteral">&quot;CURR_ODOM&quot;</span>, 1000);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    geometry_msgs::Pose2D curr_vel_msg;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    std::string line;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    std::ifstream tty(<span class="stringliteral">&quot;/dev/ttyACM0&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">auto</span> currRate = terpbot::msgs::CurrentTickRate();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (tty.is_open()) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      std::cout &lt;&lt; <span class="stringliteral">&quot;tty is open&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">while</span> (getline(tty, line)&amp;&amp;ros::ok()) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="comment">// 11 is the length of serialized message for CurrentTickRate</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">if</span> (line.length()==11) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                currRate.deserialize((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)line.c_str());</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                curr_vel_msg.x = currRate.leftTickRate;  </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                curr_vel_msg.y = currRate.rightTickRate;  </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                curr_vel_pub.publish(curr_vel_msg);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                ros::spinOnce();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <a class="code" href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a>(curr_vel_msg,curr_odom_pub);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                ros::spinOnce();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        tty.close();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        close(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      close(<a class="code" href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aCurrVelListener_8cpp_html_a4dabc3cdfa974a53a35b58ac4497d3c5"><div class="ttname"><a href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a></div><div class="ttdeci">static const constexpr float alpha</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00015">CurrVelListener.cpp:15</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_a728501774eddfb0503468a74ec08cecc"><div class="ttname"><a href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a></div><div class="ttdeci">geometry_msgs::Pose2D curr_odom</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00019">CurrVelListener.cpp:19</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00036">CurrVelListener.cpp:36</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_a417b18ab053907cde266bc1ef3c97c3b"><div class="ttname"><a href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a></div><div class="ttdeci">float leftTicks</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00013">CurrVelListener.cpp:13</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_a3d9738632b61b67f0060857f8b97f854"><div class="ttname"><a href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a></div><div class="ttdeci">float rightTicks</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00014">CurrVelListener.cpp:14</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_af2e5a8584091bc55e304c451d9e13901"><div class="ttname"><a href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a></div><div class="ttdeci">void publishOdom(geometry_msgs::Pose2D &amp;data, ros::Publisher &amp;curr_odom_publisher)</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00020">CurrVelListener.cpp:20</a></div></div>
-<div class="ttc" id="aTargetPublisher_8cpp_html_a011caa8b8018db295b3db7cb04860521"><div class="ttname"><a href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a></div><div class="ttdeci">int uart0_filestream</div><div class="ttdef"><b>Definition:</b> <a href="TargetPublisher_8cpp_source.html#l00164">TargetPublisher.cpp:164</a></div></div>
-<div class="ttc" id="aCurrVelListener_8cpp_html_a7f95eba7cc6eda9f5aeacdeefe605f67"><div class="ttname"><a href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a></div><div class="ttdeci">static float filterVelocity(const float raw, float &amp;filter)</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00016">CurrVelListener.cpp:16</a></div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aCurrVelListener_8cpp_html_a4dabc3cdfa974a53a35b58ac4497d3c5"><div class="ttname"><a href="CurrVelListener_8cpp.html#a4dabc3cdfa974a53a35b58ac4497d3c5">alpha</a></div><div class="ttdeci">static const constexpr float alpha</div><div class="ttdoc">Filter constant alpha = 0.7.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00030">CurrVelListener.cpp:30</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_a728501774eddfb0503468a74ec08cecc"><div class="ttname"><a href="CurrVelListener_8cpp.html#a728501774eddfb0503468a74ec08cecc">curr_odom</a></div><div class="ttdeci">geometry_msgs::Pose2D curr_odom</div><div class="ttdoc">Message to store the the current odometry data, to be published on a ros topic.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00042">CurrVelListener.cpp:42</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="CurrVelListener_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdoc">Main function.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00066">CurrVelListener.cpp:66</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_a417b18ab053907cde266bc1ef3c97c3b"><div class="ttname"><a href="CurrVelListener_8cpp.html#a417b18ab053907cde266bc1ef3c97c3b">leftTicks</a></div><div class="ttdeci">float leftTicks</div><div class="ttdoc">Left Motor Ticks.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00022">CurrVelListener.cpp:22</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_a3d9738632b61b67f0060857f8b97f854"><div class="ttname"><a href="CurrVelListener_8cpp.html#a3d9738632b61b67f0060857f8b97f854">rightTicks</a></div><div class="ttdeci">float rightTicks</div><div class="ttdoc">Right Motor Ticks.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00027">CurrVelListener.cpp:27</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_af2e5a8584091bc55e304c451d9e13901"><div class="ttname"><a href="CurrVelListener_8cpp.html#af2e5a8584091bc55e304c451d9e13901">publishOdom</a></div><div class="ttdeci">void publishOdom(geometry_msgs::Pose2D &amp;data, ros::Publisher &amp;curr_odom_publisher)</div><div class="ttdoc">Publishes the current odometry data to a ros topic.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00048">CurrVelListener.cpp:48</a></div></div>
+<div class="ttc" id="aTargetPublisher_8cpp_html_a011caa8b8018db295b3db7cb04860521"><div class="ttname"><a href="TargetPublisher_8cpp.html#a011caa8b8018db295b3db7cb04860521">uart0_filestream</a></div><div class="ttdeci">int uart0_filestream</div><div class="ttdoc">Uart filestream FD.</div><div class="ttdef"><b>Definition:</b> <a href="TargetPublisher_8cpp_source.html#l00211">TargetPublisher.cpp:211</a></div></div>
+<div class="ttc" id="aCurrVelListener_8cpp_html_a7f95eba7cc6eda9f5aeacdeefe605f67"><div class="ttname"><a href="CurrVelListener_8cpp.html#a7f95eba7cc6eda9f5aeacdeefe605f67">filterVelocity</a></div><div class="ttdeci">static float filterVelocity(const float raw, float &amp;filter)</div><div class="ttdoc">Filter Velocity.</div><div class="ttdef"><b>Definition:</b> <a href="CurrVelListener_8cpp_source.html#l00038">CurrVelListener.cpp:38</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b50dc725db71458029b22868a9250dc9.html">nodes</a></li><li class="navelem"><a class="el" href="CurrVelListener_8cpp.html">CurrVelListener.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

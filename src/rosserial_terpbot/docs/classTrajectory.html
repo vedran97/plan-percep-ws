@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classTrajectory.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,7 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -71,6 +91,9 @@ $(function() {
 <div class="title">Trajectory Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Parabolic trajectory class.  
+ <a href="classTrajectory.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Trajectory:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -78,27 +101,32 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classTrajectory__coll__graph.png" border="0" usemap="#Trajectory_coll__map" alt="Collaboration graph"/></div>
 <map name="Trajectory_coll__map" id="Trajectory_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,143,112"/>
+<area shape="rect" title="Parabolic trajectory class." alt="" coords="5,5,143,112"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa340ba80f1f4d1aa39f19f069d5d8089"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089">Trajectory</a> ()</td></tr>
+<tr class="memdesc:aa340ba80f1f4d1aa39f19f069d5d8089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a trajectory.  <a href="classTrajectory.html#aa340ba80f1f4d1aa39f19f069d5d8089">More...</a><br /></td></tr>
 <tr class="separator:aa340ba80f1f4d1aa39f19f069d5d8089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3062227204843ff1cfe2f497b5882913"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrajectory.html#a3062227204843ff1cfe2f497b5882913">wayPoints</a></td></tr>
+<tr class="memdesc:a3062227204843ff1cfe2f497b5882913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of waypoints.  <a href="classTrajectory.html#a3062227204843ff1cfe2f497b5882913">More...</a><br /></td></tr>
 <tr class="separator:a3062227204843ff1cfe2f497b5882913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e6d99598082a4e1cfbfa2f118c607b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrajectory.html#a9e6d99598082a4e1cfbfa2f118c607b4">noOfWayPoints</a> =0</td></tr>
+<tr class="memdesc:a9e6d99598082a4e1cfbfa2f118c607b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of waypoints.  <a href="classTrajectory.html#a9e6d99598082a4e1cfbfa2f118c607b4">More...</a><br /></td></tr>
 <tr class="separator:a9e6d99598082a4e1cfbfa2f118c607b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a288a767897c70ac192fc39b16050c800"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrajectory.html#a288a767897c70ac192fc39b16050c800">totalTime</a> =0</td></tr>
+<tr class="memdesc:a288a767897c70ac192fc39b16050c800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total time of the trajectory.  <a href="classTrajectory.html#a288a767897c70ac192fc39b16050c800">More...</a><br /></td></tr>
 <tr class="separator:a288a767897c70ac192fc39b16050c800"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00041">41</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<div class="textblock"><p>Parabolic trajectory class. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00061">61</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa340ba80f1f4d1aa39f19f069d5d8089"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa340ba80f1f4d1aa39f19f069d5d8089">&#9670;&nbsp;</a></span>Trajectory()</h2>
@@ -123,7 +151,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00046">46</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Constructs a trajectory. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00070">70</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -131,10 +161,10 @@ Public Attributes</h2></td></tr>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classTrajectory_aa340ba80f1f4d1aa39f19f069d5d8089_cgraph.png" border="0" usemap="#classTrajectory_aa340ba80f1f4d1aa39f19f069d5d8089_cgraph" alt=""/></div>
 <map name="classTrajectory_aa340ba80f1f4d1aa39f19f069d5d8089_cgraph" id="classTrajectory_aa340ba80f1f4d1aa39f19f069d5d8089_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,164,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a57f05ffacf2851f97f108c13ffaae85b" title=" " alt="" coords="212,5,363,32"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#a29b7792f93c86d79870c176349c0d0a6" title=" " alt="" coords="262,56,313,83"/>
-<area shape="rect" href="TargetPublisher_8cpp.html#abb2d8596a890633a8d33de6a7c526626" title=" " alt="" coords="215,107,360,133"/>
+<area shape="rect" title="Constructs a trajectory." alt="" coords="5,56,164,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a57f05ffacf2851f97f108c13ffaae85b" title="Converts linear velocity to Radians per second." alt="" coords="212,5,363,32"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#a29b7792f93c86d79870c176349c0d0a6" title="Returns the total time of the trajectory." alt="" coords="262,56,313,83"/>
+<area shape="rect" href="TargetPublisher_8cpp.html#abb2d8596a890633a8d33de6a7c526626" title="Parabolic velocity profile." alt="" coords="215,107,360,133"/>
 </map>
 </div>
 
@@ -153,7 +183,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00044">44</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Number of waypoints. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00066">66</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -169,7 +201,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00045">45</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Total time of the trajectory. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00068">68</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -185,7 +219,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00043">43</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
+<p>Vector of waypoints. </p>
+
+<p class="definition">Definition at line <a class="el" href="TargetPublisher_8cpp_source.html#l00064">64</a> of file <a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,11 +229,15 @@ Public Attributes</h2></td></tr>
 <li>src/nodes/<a class="el" href="TargetPublisher_8cpp_source.html">TargetPublisher.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classTrajectory.html">Trajectory</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
 <map id="publishToUart" name="publishToUart">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title=" " alt="" coords="164,5,283,32"/>
+<area shape="rect" id="node1" title="Serializes the input data and publishes it to the uart port." alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$TargetPublisher_8cpp.html#a3b0df06aaae3df659fef76b19d813e6e" title="Publishes data in outbuf of length data_length to the uart port." alt="" coords="164,5,283,32"/>
 </map>

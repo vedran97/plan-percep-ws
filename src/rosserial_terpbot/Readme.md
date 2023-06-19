@@ -1,3 +1,6 @@
+# Package level readme:
+This package contains the nodes that are responsible for publishing the current velocity and target velocity to the arduino. The arduino then uses this information to control the motors. The arduino also publishes the encoder information to the RPI, which is then used to calculate the current velocity and wheel odometry.
+
 ## This package contains the following nodes:
 1. Curr_Vel_node : This node opens a serial tty port and publishes velocity information on the topic /CURR_VEL and
 wheel odometry info on /CURR_ODOM. This runs in an isolated core of the RPI for real time performance.

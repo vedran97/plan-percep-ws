@@ -1,5 +1,10 @@
 \hypertarget{CurrVelListener_8cpp}{}\doxysection{src/nodes/\+Curr\+Vel\+Listener.cpp File Reference}
 \label{CurrVelListener_8cpp}\index{src/nodes/CurrVelListener.cpp@{src/nodes/CurrVelListener.cpp}}
+
+
+This file contains the implementation of the Curr\+Vel\+Listener node.  
+
+
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
@@ -23,22 +28,30 @@ Include dependency graph for Curr\+Vel\+Listener.\+cpp\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 static float \mbox{\hyperlink{CurrVelListener_8cpp_a7f95eba7cc6eda9f5aeacdeefe605f67}{filter\+Velocity}} (const float raw, float \&filter)
-\item 
+\begin{DoxyCompactList}\small\item\em Filter Velocity. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{CurrVelListener_8cpp_af2e5a8584091bc55e304c451d9e13901}{publish\+Odom}} (geometry\+\_\+msgs\+::\+Pose2D \&data, ros\+::\+Publisher \&curr\+\_\+odom\+\_\+publisher)
-\item 
+\begin{DoxyCompactList}\small\item\em Publishes the current odometry data to a ros topic. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{CurrVelListener_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 float \mbox{\hyperlink{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}{left\+Ticks}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Left Motor Ticks. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}{right\+Ticks}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Right Motor Ticks. \end{DoxyCompactList}\item 
 static const constexpr float \mbox{\hyperlink{CurrVelListener_8cpp_a4dabc3cdfa974a53a35b58ac4497d3c5}{alpha}} = 0.\+7
-\item 
+\begin{DoxyCompactList}\small\item\em Filter constant alpha = 0.\+7. \end{DoxyCompactList}\item 
 geometry\+\_\+msgs\+::\+Pose2D \mbox{\hyperlink{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}{curr\+\_\+odom}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Message to store the the current odometry data, to be published on a ros topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the Curr\+Vel\+Listener node. 
+
+\begin{DoxyAuthor}{Author}
+Vedant Ranade 
+\end{DoxyAuthor}
 
 
 \doxysubsection{Function Documentation}
@@ -50,7 +63,24 @@ geometry\+\_\+msgs\+::\+Pose2D \mbox{\hyperlink{CurrVelListener_8cpp_a728501774e
 
 
 
-Definition at line 16 of file Curr\+Vel\+Listener.\+cpp.
+Filter Velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw} & \\
+\hline
+{\em filter} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+filtered velocity 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Filter constant alpha = 0.\+7 
+\end{DoxyNote}
+
+
+Definition at line 38 of file Curr\+Vel\+Listener.\+cpp.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -67,7 +97,19 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 36 of file Curr\+Vel\+Listener.\+cpp.
+Main function. 
+
+Set the C\+PU affinity and priority for the current process
+
+Initialize the ros node and topics
+
+Used to store current tickrate data
+
+Used to read lines from an input stream opened on a serial port
+
+Used to store the current tickrate data
+
+Definition at line 66 of file Curr\+Vel\+Listener.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -84,7 +126,18 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 
-Definition at line 20 of file Curr\+Vel\+Listener.\+cpp.
+Publishes the current odometry data to a ros topic. 
+
+Filters left and right motor ticks, converts them to velocity , calculates the current odometry data and publishes it to a ros topic 
+\begin{DoxyParams}{Parameters}
+{\em data} & This contains the current tickrate raw data \\
+\hline
+{\em curr\+\_\+odom\+\_\+publisher} & This is the publisher object to publish the current odometry data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file Curr\+Vel\+Listener.\+cpp.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -111,7 +164,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Definition at line 15 of file Curr\+Vel\+Listener.\+cpp.
+Filter constant alpha = 0.\+7. 
+
+
+
+Definition at line 30 of file Curr\+Vel\+Listener.\+cpp.
 
 \mbox{\Hypertarget{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}\label{CurrVelListener_8cpp_a728501774eddfb0503468a74ec08cecc}} 
 \index{CurrVelListener.cpp@{CurrVelListener.cpp}!curr\_odom@{curr\_odom}}
@@ -121,7 +178,11 @@ Definition at line 15 of file Curr\+Vel\+Listener.\+cpp.
 
 
 
-Definition at line 19 of file Curr\+Vel\+Listener.\+cpp.
+Message to store the the current odometry data, to be published on a ros topic. 
+
+
+
+Definition at line 42 of file Curr\+Vel\+Listener.\+cpp.
 
 \mbox{\Hypertarget{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}\label{CurrVelListener_8cpp_a417b18ab053907cde266bc1ef3c97c3b}} 
 \index{CurrVelListener.cpp@{CurrVelListener.cpp}!leftTicks@{leftTicks}}
@@ -131,7 +192,11 @@ Definition at line 19 of file Curr\+Vel\+Listener.\+cpp.
 
 
 
-Definition at line 13 of file Curr\+Vel\+Listener.\+cpp.
+Left Motor Ticks. 
+
+
+
+Definition at line 22 of file Curr\+Vel\+Listener.\+cpp.
 
 \mbox{\Hypertarget{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}\label{CurrVelListener_8cpp_a3d9738632b61b67f0060857f8b97f854}} 
 \index{CurrVelListener.cpp@{CurrVelListener.cpp}!rightTicks@{rightTicks}}
@@ -141,5 +206,9 @@ Definition at line 13 of file Curr\+Vel\+Listener.\+cpp.
 
 
 
-Definition at line 14 of file Curr\+Vel\+Listener.\+cpp.
+Right Motor Ticks. 
+
+
+
+Definition at line 27 of file Curr\+Vel\+Listener.\+cpp.
 
